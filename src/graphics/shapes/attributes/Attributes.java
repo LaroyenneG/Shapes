@@ -1,4 +1,4 @@
 package graphics.shapes.attributes;
 
-public class Attributes {
+public abstract class Attributes {
 }

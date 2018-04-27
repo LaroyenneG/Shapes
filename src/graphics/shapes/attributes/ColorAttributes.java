@@ -2,7 +2,8 @@ package graphics.shapes.attributes;
 
 import java.awt.*;
 
-public class ColorAttributes {
-    public ColorAttributes(boolean b, boolean b1, Color blue, Color blue1) {
+public class ColorAttributes extends Attributes{
+    public ColorAttributes(boolean filled, boolean stroked, Color filledColor, Color strokedColor) {
+
     }
 }
