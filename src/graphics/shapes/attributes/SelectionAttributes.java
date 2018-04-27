@@ -17,18 +17,17 @@ public class SelectionAttributes extends Attributes {
     {
         selected = true;
     }
-    public void unselect()
+
+    public void unSelect()
     {
         selected = false;
     }
-    public void toggleSelection()
-    {
-        if(selected)
-        {
-            unselect();
-        }
-        else
-        {
+
+    public void toggleSelection() {
+
+        if (selected) {
+            unSelect();
+        } else {
             select();
         }
     }
