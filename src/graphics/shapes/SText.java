@@ -9,7 +9,6 @@ public class SText extends Shape {
 
     public SText(Point loc, String text)
     {
-        super(new Object());
         this.loc = loc;
         this.text = text;
     }

@@ -5,8 +5,7 @@ import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 
 public class Shape {
-    public Shape(Object newModel) {
-    }
+
 
     public void addAttributes(SelectionAttributes selectionAttributes) {
     }
