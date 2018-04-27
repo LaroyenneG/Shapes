@@ -1,6 +1,7 @@
 package graphics.shapes;
 
 import graphics.shapes.attributes.Attributes;
+
 import java.awt.*;
 
 public abstract class Shape {
@@ -9,10 +10,9 @@ public abstract class Shape {
     public void addAttributes(Attributes attr) {
     }
 
-   /* public Attributes getAttributes(String attr)
-    {
-
-    }*/
+    public Attributes getAttributes(String attr) {
+        return null;
+    }
 
     public void add(Object r) {
     }
