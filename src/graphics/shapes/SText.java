@@ -2,7 +2,7 @@ package graphics.shapes;
 
 import java.awt.*;
 
-public class SText {
+public class SText extends Shape {
 
     private String text;
     private Point loc;
