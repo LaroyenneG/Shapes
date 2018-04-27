@@ -1,4 +1,11 @@
 package graphics.shapes;
 
-public class ShapeVisitor {
+public interface ShapeVisitor {
+
+    void visitRectangle(SRectangle rectangle);
+
+    void visitCircle(SCircle circle);
+
+    void visitCollection(SCollection collection);
+
 }
