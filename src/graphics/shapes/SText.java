@@ -7,39 +7,37 @@ public class SText extends Shape {
     private String text;
     private Point loc;
 
-    public SText(Point loc, String text)
-    {
+    public SText(Point loc, String text) {
         this.loc = loc;
         this.text = text;
     }
 
-    public String getText()
-    {
+    public String getText() {
         return text;
     }
-    public void setText(String text)
-    {
+
+    public void setText(String text) {
         this.text = text;
     }
-    public Point getLoc()
-    {
+
+    public Point getLoc() {
         return loc;
     }
-    public void setLoc(Point loc)
-    {
+
+    public void setLoc(Point loc) {
         this.loc = loc;
     }
-    public void translate (int dx, int dy)
-    {
-        loc.translate(dx,dy);
+
+    public void translate(int dx, int dy) {
+        loc.translate(dx, dy);
     }
-    public Rectangle getBounds()
-    {
+
+    public Rectangle getBounds() {
         Rectangle rec = new Rectangle();// A modifier
         return rec;
     }
-    public void accept(ShapeVisitor sv)
-    {
+
+    public void accept(ShapeVisitor sv) {
 
     }
 }
