@@ -1,4 +1,6 @@
 package graphics.shapes.ui;
 
-public class ShapeDraftman {
+import graphics.shapes.ShapeVisitor;
+
+public class ShapeDraftman extends ShapeVisitor {
 }
