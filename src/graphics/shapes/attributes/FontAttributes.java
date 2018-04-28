@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class FontAttributes extends Attributes {
 
-    private String id;
     public Font font;
     public Color fontColor;
 
