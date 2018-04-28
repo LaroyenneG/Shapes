@@ -16,4 +16,18 @@ public class TestSCircle {
         assertEquals(point, sCircle.getLoc());
         assertEquals(5, sCircle.getRadius());
     }
+
+
+    @Test
+    public void testGetBounds() {
+
+        Point point = new Point(5, 9);
+
+        SCircle circle = new SCircle(point, 6);
+
+
+        Rectangle bounds = new Rectangle(-1, 15, 12, 12);
+
+        assertEquals(bounds, circle.getBounds());
+    }
 }

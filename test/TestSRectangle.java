@@ -1,2 +1,12 @@
+import org.junit.jupiter.api.Test;
+
 public class TestSRectangle {
+
+
+    @Test
+    public void testConstructor() {
+
+    }
+
+
 }

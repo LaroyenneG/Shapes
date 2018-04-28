@@ -40,8 +40,7 @@ public class SCircle extends Shape {
 
     public Rectangle getBounds() {
 
-        Rectangle rec = new Rectangle();// à modifier
-        return rec;
+        return new Rectangle(loc.x - radius, loc.y + radius, radius * 2, radius * 2);
     }
 
     public void accept(ShapeVisitor sv) {
