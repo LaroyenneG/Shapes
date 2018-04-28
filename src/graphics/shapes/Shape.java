@@ -8,6 +8,7 @@ public abstract class Shape {
 
 
     public void addAttributes(Attributes attr) {
+
     }
 
     public Attributes getAttributes(String attr) {
@@ -15,11 +16,16 @@ public abstract class Shape {
     }
 
     public void add(Object r) {
+
     }
 
     public abstract Point getLoc();
+
     public abstract void setLoc(Point loc);
+
     public abstract void translate(int dx, int dy);
+
     public abstract Rectangle getBounds();
+
     public abstract void accept(ShapeVisitor sv);
 }

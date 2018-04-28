@@ -5,21 +5,23 @@ public class SelectionAttributes extends Attributes {
     private boolean selected;
     private String id;
 
-    public String getId()
-    {
+    public String getId() {
+
         return id;
     }
-    public boolean isSelected()
-    {
+
+    public boolean isSelected() {
+
         return selected;
     }
-    public void select()
-    {
+
+    public void select() {
+
         selected = true;
     }
 
-    public void unSelect()
-    {
+    public void unSelect() {
+
         selected = false;
     }
 

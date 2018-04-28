@@ -9,23 +9,27 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
 
 
     public Controller(Object newModel) {
+
         model = newModel;
     }
 
+    final public View getView() {
+
+        return view;
+    }
+
     public void setView(View view) {
+
         this.view = view;
     }
 
-    final public View getView() {
-        return this.view;
+    public Object getModel() {
+        return model;
     }
 
     public void setModel(Object model) {
-        this.model = model;
-    }
 
-    public Object getModel() {
-        return this.model;
+        this.model = model;
     }
 
     public void mousePressed(MouseEvent e) {

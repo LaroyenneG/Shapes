@@ -6,6 +6,7 @@ import graphics.shapes.SRectangle;
 import graphics.shapes.ShapeVisitor;
 
 public class ShapeDraftman implements ShapeVisitor {
+
     @Override
     public void visitRectangle(SRectangle rectangle) {
 

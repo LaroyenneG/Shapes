@@ -11,14 +11,15 @@ public class ColorAttributes extends Attributes{
     public Color strokedColor;
 
     public ColorAttributes(boolean filled, boolean stroked, Color filledColor, Color strokedColor) {
+
         this.filled = filled;
         this.stroked = stroked;
         this.filledColor = filledColor;
         this.strokedColor = strokedColor;
     }
 
-    public String getId()
-    {
+    public String getId() {
+
         return id;
     }
 }

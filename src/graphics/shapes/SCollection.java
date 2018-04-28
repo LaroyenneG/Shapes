@@ -7,6 +7,7 @@ public class SCollection extends Shape {
 
     @Override
     public Point getLoc() {
+
         return null;
     }
 
