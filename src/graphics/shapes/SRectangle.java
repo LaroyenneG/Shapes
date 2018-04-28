@@ -30,13 +30,11 @@ public class SRectangle extends Shape {
 
     public void translate(int dx, int dy) {
 
-        loc.translate(dx,dy);
+        loc.translate(dx, dy);
     }
 
     public Rectangle getBounds() {
-
-        Rectangle rec = new Rectangle();
-        return rec;
+        return new Rectangle(loc.x, loc.y, (int) rect.getWidth(), (int) rect.getHeight());
     }
 
     public void accept(ShapeVisitor sv) {
