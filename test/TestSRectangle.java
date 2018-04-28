@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestSRectangle {
 
@@ -23,4 +23,6 @@ public class TestSRectangle {
         assertEquals(new Rectangle(2,4,4,2), rec.getBounds());
     }
 
+
 }
+
