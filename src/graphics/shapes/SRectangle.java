@@ -10,7 +10,7 @@ public class SRectangle extends Shape {
     public SRectangle(Point loc, int width, int height) {
 
         this.loc = loc;
-        this.rect = new Rectangle(loc.x, loc.y, width, height);
+        rect = new Rectangle(loc.x, loc.y, width, height);
     }
 
     public Rectangle getRect() {
@@ -42,5 +42,4 @@ public class SRectangle extends Shape {
     public void accept(ShapeVisitor sv) {
 
     }
-
 }

@@ -13,8 +13,8 @@ import java.awt.*;
 
 public class Editor extends JFrame {
 
-    ShapesView sView;
-    SCollection model;
+    private ShapesView sView;
+    private SCollection model;
 
     public Editor() {
 
@@ -31,13 +31,6 @@ public class Editor extends JFrame {
         sView = new ShapesView(model);
         sView.setPreferredSize(new Dimension(300, 300));
         getContentPane().add(sView, java.awt.BorderLayout.CENTER);
-    }
-
-    public static void main(String[] args) {
-
-        Editor self = new Editor();
-        self.pack();
-        self.setVisible(true);
     }
 
     private void buildModel() {
@@ -74,4 +67,13 @@ public class Editor extends JFrame {
 
         model.add(sc);
     }
+
+
+    public static void main(String[] args) {
+
+        Editor self = new Editor();
+        self.pack();
+        self.setVisible(true);
+    }
 }
+

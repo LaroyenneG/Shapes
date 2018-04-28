@@ -12,6 +12,7 @@ public abstract class Shape {
     }
 
     public Attributes getAttributes(String attr) {
+
         return null;
     }
 
