@@ -14,9 +14,6 @@ public class TestColorAttributes {
     @Test
     public void testConstructor() {
 
-
-        for (int i = 0; i < 1000; i++) {
-
             Color color1 = new Color(Math.abs(random.nextInt() % 256), Math.abs(random.nextInt() % 256), Math.abs(random.nextInt() % 256));
 
             Color color2 = new Color(Math.abs(random.nextInt() % 256), Math.abs(random.nextInt() % 256), Math.abs(random.nextInt() % 256));
@@ -34,6 +31,5 @@ public class TestColorAttributes {
 
 
             /* Tester id */
-        }
     }
 }

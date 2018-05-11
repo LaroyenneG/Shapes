@@ -1,10 +1,5 @@
 package graphics.ui;
 
-import graphics.shapes.Shape;
-import graphics.shapes.attributes.SelectionAttributes;
-import graphics.shapes.ui.ShapesController;
-import javafx.scene.control.SeparatorMenuItem;
-
 import java.awt.event.*;
 
 public class Controller implements MouseListener, MouseMotionListener, KeyListener {
