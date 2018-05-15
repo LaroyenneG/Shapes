@@ -23,28 +23,33 @@ public class SText extends Shape {
         this.text = text;
     }
 
+    @Override
     public Point getLoc() {
 
         return loc;
     }
 
+    @Override
     public void setLoc(Point loc) {
 
         this.loc = loc;
     }
 
+    @Override
     public void translate(int dx, int dy) {
 
         loc.translate(dx, dy);
     }
 
+    @Override
     public Rectangle getBounds() {
 
         Rectangle rec = new Rectangle();// A modifier
         return rec;
     }
 
+    @Override
     public void accept(ShapeVisitor sv) {
-
+        sv.visitText(this);
     }
 }

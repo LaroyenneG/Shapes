@@ -23,27 +23,32 @@ public class SCircle extends Shape {
         this.radius = radius;
     }
 
+    @Override
     public Point getLoc() {
 
         return loc;
     }
 
+    @Override
     public void setLoc(Point loc) {
 
         this.loc = loc;
     }
 
+    @Override
     public void translate(int dx, int dy) {
 
         loc.translate(dx, dy);
     }
 
+    @Override
     public Rectangle getBounds() {
 
         return new Rectangle(loc.x - radius, loc.y + radius, radius * 2, radius * 2);
     }
 
+    @Override
     public void accept(ShapeVisitor sv) {
-
+        sv.visitCircle(this);
     }
 }

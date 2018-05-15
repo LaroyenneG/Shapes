@@ -71,6 +71,12 @@ public class Editor extends JFrame {
 
     public static void main(String[] args) {
 
+
+        if (args.length != 0) {
+            System.err.println("Usage : Editor");
+            System.exit(-1);
+        }
+
         Editor self = new Editor();
         self.pack();
         self.setVisible(true);

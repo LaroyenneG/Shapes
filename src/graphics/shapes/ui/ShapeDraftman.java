@@ -1,11 +1,12 @@
 package graphics.shapes.ui;
 
-import graphics.shapes.SCircle;
-import graphics.shapes.SCollection;
-import graphics.shapes.SRectangle;
-import graphics.shapes.ShapeVisitor;
+import graphics.shapes.*;
+import graphics.shapes.attributes.ColorAttributes;
 
 public class ShapeDraftman implements ShapeVisitor {
+
+
+    public static ColorAttributes DEFAULT_COLOR_ATTRIBUTES;
 
     @Override
     public void visitRectangle(SRectangle rectangle) {
@@ -21,4 +22,11 @@ public class ShapeDraftman implements ShapeVisitor {
     public void visitCollection(SCollection collection) {
 
     }
+
+    @Override
+    public void visitText(SText text) {
+
+    }
+
+
 }

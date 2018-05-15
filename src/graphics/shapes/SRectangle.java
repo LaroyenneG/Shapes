@@ -18,26 +18,31 @@ public class SRectangle extends Shape {
         return rect;
     }
 
+    @Override
     public Point getLoc() {
 
         return loc;
     }
 
+    @Override
     public void setLoc(Point loc) {
 
         this.loc = loc;
     }
 
+    @Override
     public void translate(int dx, int dy) {
 
         loc.translate(dx, dy);
     }
 
+    @Override
     public Rectangle getBounds() {
         return new Rectangle(loc.x, loc.y, (int) rect.getWidth(), (int) rect.getHeight());
     }
 
+    @Override
     public void accept(ShapeVisitor sv) {
-
+        sv.visitRectangle(this);
     }
 }
