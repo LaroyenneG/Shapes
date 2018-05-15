@@ -1,6 +1,9 @@
 package graphics.ui;
 
 import java.awt.event.*;
+/*
+Ne pas modifier la class faire des class filles
+ */
 
 public class Controller implements MouseListener, MouseMotionListener, KeyListener {
 
