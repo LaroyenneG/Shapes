@@ -23,6 +23,10 @@ public abstract class Shape {
         return attributes.get(attr);
     }
 
+    /*
+    @Override
+    public abstract String toString();
+    */
 
     public abstract Point getLoc();
 
