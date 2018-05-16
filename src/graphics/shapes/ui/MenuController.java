@@ -9,8 +9,11 @@ import java.awt.event.ActionListener;
 
 public class MenuController extends Controller implements ActionListener {
 
+    private JOptionPane dialog;
+
     public MenuController(Object newModel) {
         super(newModel);
+        dialog = new JOptionPane();
     }
 
     @Override
@@ -19,8 +22,7 @@ public class MenuController extends Controller implements ActionListener {
         switch (actionEvent.getActionCommand()) {
 
             case EditorMenu.ID_CREDIT:
-                JOptionPane dialog = new JOptionPane();
-                JOptionPane.showMessageDialog(dialog, "Create by :\n\tLAROYENNE Guillaume\n\tLucas...", "Credit", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(dialog, "Create by :\n\tLucas COLLOT-PENICHOT\n\tGuillaume LAROYENNE\n\tAlexis DECKER-WURTZ\n\tChristopher BERTRAND", "Credit", JOptionPane.INFORMATION_MESSAGE);
                 break;
 
 
@@ -33,6 +35,10 @@ public class MenuController extends Controller implements ActionListener {
                 /*
                 repaint
                  */
+                break;
+
+            case EditorMenu.ID_SCHOOL:
+                JOptionPane.showMessageDialog(dialog, "ENSISA\nhttp://www.ensisa.uha.fr/\n12 Rue des Frères Lumière\n68093 Mulhouse\nFrance", "School", JOptionPane.INFORMATION_MESSAGE);
                 break;
 
             default:

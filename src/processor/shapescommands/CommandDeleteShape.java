@@ -4,7 +4,7 @@ import processor.engine.Processor;
 
 public class CommandDeleteShape extends CommandShapesEditor {
 
-    public CommandDeleteShape(String name) {
+    public CommandDeleteShape() {
         super("delete");
     }
 

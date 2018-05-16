@@ -7,6 +7,9 @@ import graphics.shapes.SText;
 import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
+import processor.engine.Processor;
+import processor.engine.ProcessorException;
+import processor.shapescommands.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -83,7 +86,6 @@ public class Editor extends JFrame {
 
     public static void main(String[] args) {
 
-
         if (args.length != 0) {
             System.err.println("Usage : Editor");
             System.exit(-1);
@@ -92,6 +94,30 @@ public class Editor extends JFrame {
         Editor self = new Editor();
         self.pack();
         self.setVisible(true);
+
+        Processor processor = new Processor();
+
+        processor.addNewCommand(new CommandCreateShape());
+        processor.addNewCommand(new CommandDeleteShape());
+        processor.addNewCommand(new CommandMoveShape());
+        processor.addNewCommand(new CommandListShapes());
+        processor.addNewCommand(new CommandResizeShape());
+
+
+        processor.setSystem(self.model);
+
+        processor.setIn(System.in);
+        processor.setOut(System.out);
+
+        while (!processor.isTerminated()) {
+
+            try {
+                processor.printPrompt();
+                processor.execute(processor.decode(processor.fetch()));
+            } catch (ProcessorException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 

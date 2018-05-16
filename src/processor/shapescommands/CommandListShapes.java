@@ -4,7 +4,7 @@ import processor.engine.Processor;
 
 public class CommandListShapes extends CommandShapesEditor {
 
-    public CommandListShapes(String name) {
+    public CommandListShapes() {
         super("list");
     }
 

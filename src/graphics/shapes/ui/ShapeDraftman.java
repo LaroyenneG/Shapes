@@ -8,7 +8,7 @@ import java.awt.*;
 public class ShapeDraftman implements ShapeVisitor {
 
 
-    public static ColorAttributes DEFAULT_COLOR_ATTRIBUTES;
+    public static final ColorAttributes DEFAULT_COLOR_ATTRIBUTES = new ColorAttributes(false, false, Color.WHITE, Color.WHITE);
 
     public ShapeDraftman(Graphics g) {
 
@@ -33,6 +33,4 @@ public class ShapeDraftman implements ShapeVisitor {
     public void visitText(SText text) {
 
     }
-
-
 }

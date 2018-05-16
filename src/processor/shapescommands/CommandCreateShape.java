@@ -5,7 +5,7 @@ import processor.engine.Processor;
 
 public class CommandCreateShape extends Command {
 
-    public CommandCreateShape(String name) {
+    public CommandCreateShape() {
         super("create");
     }
 

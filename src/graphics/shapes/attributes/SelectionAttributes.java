@@ -2,11 +2,17 @@ package graphics.shapes.attributes;
 
 public class SelectionAttributes extends Attributes {
 
+    public static final String ID = "selection";
+
     private boolean selected;
 
-    public String getId() {
+    public SelectionAttributes() {
+        selected = false;
+    }
 
-        return id;
+    @Override
+    public String getId() {
+        return ID;
     }
 
     public boolean isSelected() {

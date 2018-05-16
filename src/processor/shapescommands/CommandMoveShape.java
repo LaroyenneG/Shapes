@@ -4,7 +4,7 @@ import processor.engine.Processor;
 
 public class CommandMoveShape extends CommandShapesEditor {
 
-    public CommandMoveShape(String name) {
+    public CommandMoveShape() {
         super("move");
     }
 

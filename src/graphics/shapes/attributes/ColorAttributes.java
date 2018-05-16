@@ -4,6 +4,8 @@ import java.awt.*;
 
 public class ColorAttributes extends Attributes{
 
+    public static final String ID = "color";
+
     public boolean filled;
     public boolean stroked;
     public Color filledColor;
@@ -17,8 +19,8 @@ public class ColorAttributes extends Attributes{
         this.strokedColor = strokedColor;
     }
 
+    @Override
     public String getId() {
-
-        return id;
+        return ID;
     }
 }

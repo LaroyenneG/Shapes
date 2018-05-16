@@ -4,12 +4,23 @@ import java.awt.*;
 
 public class FontAttributes extends Attributes {
 
+    public static final String ID = "font";
+
     public Font font;
     public Color fontColor;
 
-    public String getId() {
+    public FontAttributes(Font font, Color fontColor) {
+        this.font = font;
+        this.fontColor = fontColor;
+    }
 
-        return id;
+    public FontAttributes() {
+        this(null, null);
+    }
+
+    @Override
+    public String getId() {
+        return ID;
     }
 
     /*

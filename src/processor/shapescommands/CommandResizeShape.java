@@ -4,8 +4,8 @@ import processor.engine.Processor;
 
 public class CommandResizeShape extends CommandShapesEditor {
 
-    public CommandResizeShape(String name) {
-        super(name);
+    public CommandResizeShape() {
+        super("resize");
     }
 
     /*
