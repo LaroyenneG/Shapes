@@ -21,6 +21,10 @@ public class SCollection extends Shape {
         return shapes.iterator();
     }
 
+    public void deleteAllShapes() {
+        shapes.clear();
+    }
+
     @Override
     public Point getLoc() {
 

@@ -14,6 +14,7 @@ import java.awt.*;
 public class Editor extends JFrame {
 
     private ShapesView sView;
+    private EditorMenu menu;
     private SCollection model;
 
     public Editor() {
@@ -30,7 +31,18 @@ public class Editor extends JFrame {
 
         sView = new ShapesView(model);
         sView.setPreferredSize(new Dimension(300, 300));
+
         getContentPane().add(sView, java.awt.BorderLayout.CENTER);
+
+        menu = new EditorMenu();
+
+        setJMenuBar(menu);
+
+        setMenuController(new MenuController(model));
+    }
+
+    public void setMenuController(MenuController controller) {
+        menu.setController(controller);
     }
 
     private void buildModel() {
