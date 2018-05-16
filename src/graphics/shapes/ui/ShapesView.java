@@ -1,6 +1,7 @@
 package graphics.shapes.ui;
 
 import graphics.shapes.Shape;
+import graphics.ui.Controller;
 import graphics.ui.View;
 
 import java.awt.*;
@@ -28,5 +29,11 @@ public class ShapesView extends View {
         ShapeDraftman draftman = new ShapeDraftman(g);
 
         model.accept(draftman);
+    }
+
+    @Override
+    public Controller defaultController(Object model) {
+
+        return new ShapesController(model);
     }
 }

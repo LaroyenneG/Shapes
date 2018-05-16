@@ -49,8 +49,8 @@ public class EditorMenu extends JMenuBar {
         jMenuItems.add(reset);
         jMenuItems.add(school);
         jMenuItems.add(quit);
-        initAttributes();
 
+        initAttributes();
         setController(controller);
     }
 

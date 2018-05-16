@@ -42,9 +42,6 @@ public class Editor extends JFrame {
         setJMenuBar(menu);
     }
 
-    public void setMenuController(MenuController controller) {
-        menu.setController(controller);
-    }
 
     private void buildModel() {
 
