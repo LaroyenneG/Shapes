@@ -3,15 +3,14 @@ package graphics.shapes;
 import graphics.shapes.attributes.Attributes;
 
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.TreeMap;
 
 public abstract class Shape {
 
-    Map<String, Attributes> attributes;
+    TreeMap<String, Attributes> attributes;
 
     public Shape() {
-        attributes = new HashMap<>();
+        attributes = new TreeMap<>();
     }
 
     public void addAttributes(Attributes attr) {

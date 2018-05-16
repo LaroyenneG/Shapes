@@ -1,5 +1,7 @@
 package graphics.shapes.ui;
 
+import graphics.ui.Controller;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,8 +25,14 @@ public class EditorMenu extends JMenuBar {
 
     private List<JMenuItem> jMenuItems;
 
-    public EditorMenu() {
+    private Controller controller;
+    private Object model;
+
+    public EditorMenu(Object model) {
         super();
+
+        this.model = model;
+
         jMenuItems = new ArrayList<>();
 
         info = new JMenu("Info");
@@ -35,11 +43,15 @@ public class EditorMenu extends JMenuBar {
         school = new JMenuItem("School");
         quit = new JMenuItem("Quiter");
 
+        controller = defaultController(model);
+
         jMenuItems.add(credit);
         jMenuItems.add(reset);
         jMenuItems.add(school);
         jMenuItems.add(quit);
         initAttributes();
+
+        setController(controller);
     }
 
 
@@ -65,5 +77,10 @@ public class EditorMenu extends JMenuBar {
         for (JMenuItem item : jMenuItems) {
             item.addActionListener(listener);
         }
+    }
+
+    public Controller defaultController(Object model) {
+
+        return new MenuController(model);
     }
 }

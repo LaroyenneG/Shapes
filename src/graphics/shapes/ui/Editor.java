@@ -37,11 +37,9 @@ public class Editor extends JFrame {
 
         getContentPane().add(sView, java.awt.BorderLayout.CENTER);
 
-        menu = new EditorMenu();
+        menu = new EditorMenu(model);
 
         setJMenuBar(menu);
-
-        setMenuController(new MenuController(model));
     }
 
     public void setMenuController(MenuController controller) {

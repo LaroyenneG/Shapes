@@ -5,9 +5,8 @@ import graphics.ui.Controller;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class MenuController extends Controller implements ActionListener {
+public class MenuController extends Controller {
 
     private JOptionPane dialog;
 

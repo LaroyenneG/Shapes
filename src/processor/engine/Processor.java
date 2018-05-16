@@ -8,7 +8,7 @@ import java.util.TreeMap;
 
 public class Processor {
 
-    private static final String DEFAULT_PROMPT = "$";
+    private static final String DEFAULT_PROMPT = "shapes$";
 
     private PrintStream out;
     private InputStream in;
@@ -116,7 +116,7 @@ public class Processor {
     public String toString() {
 
         StringBuilder string = new StringBuilder();
-        string.append("processor.engine.Processor(");
+        string.append("Processor(");
         for (Map.Entry<String, Command> c : proc.entrySet()) {
             string.append(c);
             string.append(" ");

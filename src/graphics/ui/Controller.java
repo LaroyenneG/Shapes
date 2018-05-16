@@ -5,7 +5,7 @@ import java.awt.event.*;
 Ne pas modifier la class faire des class filles
  */
 
-public class Controller implements MouseListener, MouseMotionListener, KeyListener {
+public class Controller implements MouseListener, MouseMotionListener, KeyListener, ActionListener {
 
     private Object model;
     private View view;
@@ -35,34 +35,47 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
         this.model = model;
     }
 
+    @Override
     public void mousePressed(MouseEvent e) {
-
     }
 
+    @Override
     public void mouseReleased(MouseEvent e) {
     }
 
+    @Override
     public void mouseClicked(MouseEvent e) {
     }
 
+    @Override
     public void mouseEntered(MouseEvent e) {
     }
 
+    @Override
     public void mouseExited(MouseEvent e) {
     }
 
+    @Override
     public void mouseMoved(MouseEvent evt) {
     }
 
+    @Override
     public void mouseDragged(MouseEvent evt) {
     }
 
+    @Override
     public void keyTyped(KeyEvent evt) {
     }
 
+    @Override
     public void keyPressed(KeyEvent evt) {
     }
 
+    @Override
     public void keyReleased(KeyEvent evt) {
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
     }
 }
