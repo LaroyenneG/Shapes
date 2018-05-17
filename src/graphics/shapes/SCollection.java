@@ -17,7 +17,7 @@ public class SCollection extends Shape {
         shapes.add(shape);
     }
 
-    public Iterator iterator() {
+    public Iterator<Shape> iterator() {
         return shapes.iterator();
     }
 

@@ -14,8 +14,9 @@ public abstract class Command {
         return name;
     }
 
+
     @Override
     public String toString() {
-        return "processor.engine.Command(" + name + ")";
+        return name;
     }
 }

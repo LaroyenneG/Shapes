@@ -16,4 +16,16 @@ public class CommandMoveShape extends CommandShapesEditor {
     public void execute(Processor processor) {
 
     }
+
+    @Override
+    public String toString() {
+
+        StringBuffer buffer = new StringBuffer();
+
+        buffer.append(super.toString());
+        buffer.append(" ");
+        buffer.append("<id> <position>");
+
+        return new String(buffer);
+    }
 }

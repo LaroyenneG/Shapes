@@ -38,4 +38,16 @@ public class CommandScript extends Command {
             processor.setIn(lastInputStream);
         }
     }
+
+    @Override
+    public String toString() {
+
+        StringBuffer buffer = new StringBuffer();
+
+        buffer.append(super.toString());
+        buffer.append(" ");
+        buffer.append("<file>");
+
+        return new String(buffer);
+    }
 }

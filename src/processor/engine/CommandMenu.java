@@ -10,7 +10,9 @@ public class CommandMenu extends Command {
     @Override
     public void execute(Processor processor) {
 
-        processor.out().println("Shapes Editor Menu :\n");
-
+        processor.out().println("Shapes Editor Menu :");
+        for (Command c : processor.getCommands()) {
+            processor.out().println("\t- " + c);
+        }
     }
 }

@@ -2,13 +2,11 @@ package processor.engine;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Processor {
 
-    private static final String DEFAULT_PROMPT = "shapes$";
+    private static final String DEFAULT_PROMPT = "[shapes]$";
 
     private PrintStream out;
     private InputStream in;
@@ -111,13 +109,26 @@ public class Processor {
         this.system = system;
     }
 
+    public List<Command> getCommands() {
+
+        List<Command> list = new ArrayList<>(proc.values());
+
+        list.sort(new Comparator<Command>() {
+            @Override
+            public int compare(Command c1, Command c2) {
+                return c1.getName().compareTo(c2.getName());
+            }
+        });
+
+        return list;
+    }
 
     @Override
     public String toString() {
 
         StringBuilder string = new StringBuilder();
         string.append("Processor(");
-        for (Map.Entry<String, Command> c : proc.entrySet()) {
+        for (Command c : proc.values()) {
             string.append(c);
             string.append(" ");
         }

@@ -82,7 +82,7 @@ public class Editor extends JFrame {
     public static void main(String[] args) {
 
         if (args.length != 0) {
-            System.err.println("Usage : Editor");
+            System.err.println("Usage : java Editor");
             System.exit(-1);
         }
 
