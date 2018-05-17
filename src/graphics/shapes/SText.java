@@ -44,8 +44,7 @@ public class SText extends Shape {
     @Override
     public Rectangle getBounds() {
 
-        Rectangle rec = new Rectangle();// A modifier
-        return rec;
+        return new Rectangle();
     }
 
     @Override
