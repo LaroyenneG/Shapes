@@ -12,6 +12,8 @@ public class ShapesView extends View {
     public ShapesView(Object model) {
 
         super(model);
+
+        controller = defaultController(model);
     }
 
 
