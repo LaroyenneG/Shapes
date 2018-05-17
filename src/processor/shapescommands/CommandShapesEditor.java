@@ -4,8 +4,10 @@ import graphics.shapes.SCollection;
 import graphics.shapes.Shape;
 import processor.engine.Command;
 import processor.engine.Processor;
+import processor.engine.ProcessorException;
 
 import java.awt.*;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 
 public abstract class CommandShapesEditor extends Command {
@@ -14,7 +16,7 @@ public abstract class CommandShapesEditor extends Command {
         super(name);
     }
 
-    protected SCollection model(Processor processor) {
+    SCollection model(Processor processor) {
         return (SCollection) processor.getSystem();
     }
 
@@ -43,17 +45,31 @@ public abstract class CommandShapesEditor extends Command {
 
     protected Shape commandSelectShape(Processor processor) throws CommandShapesExecption {
 
-        int id = processor.scanner().nextInt();
+        int id = -1;
 
-        return searchShape(model(processor), id);
+        try {
+
+            id = processor.scanner().nextInt();
+
+            return searchShape(model(processor), id);
+
+        } catch (InputMismatchException e) {
+            throw new CommandShapesExecption("bad input");
+        }
     }
 
-    protected Point readPoint(Processor processor) {
+    protected Point readPoint(Processor processor) throws ProcessorException {
 
-        int x = processor.scanner().nextInt();
-        int y = processor.scanner().nextInt();
+        try {
 
-        return new Point(x, y);
+            int x = processor.scanner().nextInt();
+            int y = processor.scanner().nextInt();
+
+            return new Point(x, y);
+
+        } catch (InputMismatchException e) {
+            throw new ProcessorException("bad input");
+        }
     }
 
     @Override
