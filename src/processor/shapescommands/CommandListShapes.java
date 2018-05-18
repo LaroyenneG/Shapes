@@ -12,9 +12,25 @@ public class CommandListShapes extends CommandShapesEditor {
         super("list");
     }
 
-    /*
-    liste toute les shapes en UTILISANT LE METHODE toString().
-     */
+    private static void printList(Processor processor, SCollection collection, int i) {
+
+        Iterator<Shape> iterator = collection.iterator();
+
+        while (iterator.hasNext()) {
+
+            Shape shape = iterator.next();
+
+            for (int n = 0; n < i; n++) {
+                processor.out().print('\t');
+            }
+
+            processor.out().println(shape);
+
+            if (shape instanceof SCollection) {
+                printList(processor, (SCollection) shape, i + 1);
+            }
+        }
+    }
 
     @Override
     public void execute(Processor processor) {
@@ -24,8 +40,7 @@ public class CommandListShapes extends CommandShapesEditor {
         Iterator<Shape> iterator = shapes.iterator();
 
         while (iterator.hasNext()) {
-            processor.out().print("\t-> ");
-            processor.out().println(iterator.next());
+            printList(processor, shapes, 0);
         }
     }
 }

@@ -4,7 +4,6 @@ import graphics.shapes.SCollection;
 import graphics.shapes.Shape;
 import processor.engine.Command;
 import processor.engine.Processor;
-import processor.engine.ProcessorException;
 
 import java.awt.*;
 import java.util.InputMismatchException;
@@ -16,11 +15,11 @@ public abstract class CommandShapesEditor extends Command {
         super(name);
     }
 
-    SCollection model(Processor processor) {
+    static SCollection model(Processor processor) {
         return (SCollection) processor.getSystem();
     }
 
-    private Shape searchShape(SCollection collection, int id) throws CommandShapesExecption {
+    private static Shape searchShape(SCollection collection, int id) throws CommandShapesExecption {
 
         Shape shape = null;
 
@@ -43,33 +42,24 @@ public abstract class CommandShapesEditor extends Command {
         return shape;
     }
 
-    protected Shape commandSelectShape(Processor processor) throws CommandShapesExecption {
+    protected static Shape commandSelectShape(Processor processor) throws InputMismatchException, CommandShapesExecption {
 
-        int id = -1;
+        int id = processor.scanner().nextInt();
 
-        try {
-
-            id = processor.scanner().nextInt();
-
-            return searchShape(model(processor), id);
-
-        } catch (InputMismatchException e) {
-            throw new CommandShapesExecption("bad input");
-        }
+        return searchShape(model(processor), id);
     }
 
-    protected Point readPoint(Processor processor) throws ProcessorException {
+    protected static Point readPoint(Processor processor) throws InputMismatchException {
 
-        try {
+        int x = processor.scanner().nextInt();
+        int y = processor.scanner().nextInt();
 
-            int x = processor.scanner().nextInt();
-            int y = processor.scanner().nextInt();
+        return new Point(x, y);
+    }
 
-            return new Point(x, y);
+    protected static int readInt(Processor processor) throws InputMismatchException {
 
-        } catch (InputMismatchException e) {
-            throw new ProcessorException("bad input");
-        }
+        return processor.scanner().nextInt();
     }
 
     @Override
