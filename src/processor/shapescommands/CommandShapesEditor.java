@@ -6,7 +6,6 @@ import processor.engine.Command;
 import processor.engine.Processor;
 
 import java.awt.*;
-import java.util.InputMismatchException;
 import java.util.Iterator;
 
 public abstract class CommandShapesEditor extends Command {
@@ -42,14 +41,14 @@ public abstract class CommandShapesEditor extends Command {
         return shape;
     }
 
-    protected static Shape commandSelectShape(Processor processor) throws InputMismatchException, CommandShapesException {
+    static Shape commandSelectShape(Processor processor) throws CommandShapesException {
 
         int id = processor.scanner().nextInt();
 
         return searchShape(model(processor), id);
     }
 
-    protected static Point readPoint(Processor processor) throws InputMismatchException {
+    static Point readPoint(Processor processor) {
 
         int x = processor.scanner().nextInt();
         int y = processor.scanner().nextInt();
@@ -57,9 +56,14 @@ public abstract class CommandShapesEditor extends Command {
         return new Point(x, y);
     }
 
-    protected static int readInt(Processor processor) throws InputMismatchException {
+    static int readInt(Processor processor) {
 
         return processor.scanner().nextInt();
+    }
+
+    static String readString(Processor processor) {
+
+        return processor.scanner().next();
     }
 
     @Override

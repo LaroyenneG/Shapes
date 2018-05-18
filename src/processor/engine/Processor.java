@@ -49,7 +49,7 @@ public class Processor {
         Command command = proc.get(name);
 
         if (command == null) {
-            throw new ProcessorException("Bad processor.shapescommands : " + name);
+            throw new ProcessorException("Invalid command : " + name);
         }
 
         return command;
@@ -134,6 +134,6 @@ public class Processor {
         }
         string.append(")");
 
-        return string.toString();
+        return new String(string);
     }
 }

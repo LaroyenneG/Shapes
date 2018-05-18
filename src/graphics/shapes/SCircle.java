@@ -54,9 +54,11 @@ public class SCircle extends Shape {
 
     @Override
     public String toString() {
+
         StringBuffer string = new StringBuffer();
+
         string.append(super.toString());
-        string.append("\tradius:");
+        string.append("\tradius : ");
         string.append(radius);
 
         return new String(string);

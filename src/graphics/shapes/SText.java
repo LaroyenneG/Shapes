@@ -59,9 +59,10 @@ public class SText extends Shape {
 
     @Override
     public String toString() {
+
         StringBuffer string = new StringBuffer();
         string.append(super.toString());
-        string.append("\ttext :");
+        string.append("\ttext : ");
         string.append(text);
 
         return new String(string);

@@ -1,5 +1,6 @@
 package processor.shapescommands;
 
+import graphics.shapes.Shape;
 import processor.engine.Processor;
 
 public class CommandResizeShape extends CommandShapesEditor {
@@ -8,12 +9,22 @@ public class CommandResizeShape extends CommandShapesEditor {
         super("resize");
     }
 
-    /*
-    redimentionne la figure.
-     */
+    private static void resizeShape(Shape shape, int r) {
+
+        /*
+        methode manquante pour cet op
+         */
+    }
 
     @Override
     public void execute(Processor processor) {
+
+        try {
+            Shape shape = commandSelectShape(processor);
+            resizeShape(shape, readInt(processor));
+        } catch (CommandShapesException e) {
+            processor.out().println(e.getMessage());
+        }
 
     }
 

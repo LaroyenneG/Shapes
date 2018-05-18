@@ -48,12 +48,15 @@ public class SRectangle extends Shape {
 
     @Override
     public String toString() {
+
         StringBuffer string = new StringBuffer();
+
         string.append(super.toString());
-        string.append("\tlargeur :");
+        string.append("\twidth : ");
         string.append(rect.width);
-        string.append("\thauteur");
+        string.append("\theight : ");
         string.append(rect.height);
+
         return new String(string);
     }
 

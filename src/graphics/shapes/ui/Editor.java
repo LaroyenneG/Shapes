@@ -13,6 +13,7 @@ import processor.shapescommands.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.InputMismatchException;
 
 public class Editor extends JFrame {
 
@@ -110,7 +111,9 @@ public class Editor extends JFrame {
                 processor.printPrompt();
                 processor.execute(processor.decode(processor.fetch()));
             } catch (ProcessorException e) {
-                e.printStackTrace();
+                processor.out().println(e.getMessage());
+            } catch (InputMismatchException e) {
+                processor.out().println("bad input value");
             }
         }
     }

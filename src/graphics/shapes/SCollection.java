@@ -71,6 +71,7 @@ public class SCollection extends Shape {
 
     @Override
     public String toString() {
+
         StringBuffer string = new StringBuffer();
         string.append(super.toString());
 

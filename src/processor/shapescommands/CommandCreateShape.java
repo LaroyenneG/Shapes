@@ -1,6 +1,6 @@
 package processor.shapescommands;
 
-import graphics.shapes.Shape;
+import graphics.shapes.*;
 import processor.engine.Processor;
 
 public class CommandCreateShape extends CommandShapesEditor {
@@ -10,32 +10,41 @@ public class CommandCreateShape extends CommandShapesEditor {
     }
 
 
-    private static Shape createShape(String name) throws CommandShapesException {
+    private static SRectangle createRectangle(Processor processor) {
+
+        return new SRectangle(readPoint(processor), readInt(processor), readInt(processor));
+    }
+
+    private static SCircle createCircle(Processor processor) {
+        return new SCircle(readPoint(processor), readInt(processor));
+    }
+
+    private static SText createText(Processor processor) {
+        return new SText(readPoint(processor), readString(processor));
+    }
+
+
+    private static Shape createShape(Processor processor) throws CommandShapesException {
 
         Shape shape = null;
 
-        switch (name) {
+        switch (processor.scanner().next()) {
 
             case "rectangle":
-
+                shape = createRectangle(processor);
                 break;
 
             case "cercle":
-
+                shape = createCircle(processor);
                 break;
 
             case "text":
-
-                break;
-
-            case "collection":
-
+                shape = createText(processor);
                 break;
 
             default:
                 throw new CommandShapesException("invalid shape name");
         }
-
 
         return shape;
     }
@@ -44,6 +53,13 @@ public class CommandCreateShape extends CommandShapesEditor {
     @Override
     public void execute(Processor processor) {
 
+        SCollection collection = model(processor);
+
+        try {
+            collection.add(createShape(processor));
+        } catch (CommandShapesException e) {
+            processor.out().println(e.getMessage());
+        }
     }
 
     @Override
@@ -53,7 +69,7 @@ public class CommandCreateShape extends CommandShapesEditor {
 
         buffer.append(super.toString());
         buffer.append(" ");
-        buffer.append("<type> <position>");
+        buffer.append("<type> <options>");
 
         return new String(buffer);
     }

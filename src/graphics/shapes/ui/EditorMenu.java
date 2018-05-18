@@ -35,13 +35,13 @@ public class EditorMenu extends JMenuBar {
 
         jMenuItems = new ArrayList<>();
 
-        info = new JMenu("Info");
+        info = new JMenu("About");
         option = new JMenu("Options");
 
         reset = new JMenuItem("Reset");
         credit = new JMenuItem("Credit");
         school = new JMenuItem("School");
-        quit = new JMenuItem("Quiter");
+        quit = new JMenuItem("Exit");
 
         controller = defaultController(model);
 
