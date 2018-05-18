@@ -6,7 +6,7 @@ import javax.swing.*;
 public abstract class View extends JPanel {
 
     private Object model;
-    protected Controller controller;
+    private Controller controller;
 
     public View(Object model) {
 
