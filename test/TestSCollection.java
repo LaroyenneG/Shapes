@@ -14,8 +14,8 @@ public class TestSCollection {
 
 
         SCollection sCollection = new SCollection();
-        sCollection.add(new SCircle(new Point(1, 2), 2));
-        sCollection.add(new SRectangle(new Point(2, 4), 4, 4));
+        sCollection.add(new SCircle(new Point(0, 1), 1));
+        sCollection.add(new SRectangle(new Point(3, 1), 2, 2));
 
         /*
         SCollection subcollection = new SCollection();
@@ -32,7 +32,7 @@ public class TestSCollection {
     public void testGetBounds() {
 
         SCollection collection = toolBuild();
-        assertEquals(new Rectangle(1,2,5,6), collection.getBounds());
+        assertEquals(new Rectangle(-1, 0, 6, 3), collection.getBounds());
     }
 
 

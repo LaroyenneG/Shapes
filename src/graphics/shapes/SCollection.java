@@ -73,12 +73,4 @@ public class SCollection extends Shape {
         return new String(string);
     }
 
-    public static void main(String [] args)
-    {
-        SCollection sCollection = new SCollection();
-        sCollection.add(new SCircle(new Point(1, 2), 2));
-        sCollection.add(new SRectangle(new Point(2, 4), 4, 4));
-
-        System.out.println(sCollection);
-    }
 }
