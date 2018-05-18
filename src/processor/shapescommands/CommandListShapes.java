@@ -24,7 +24,7 @@ public class CommandListShapes extends CommandShapesEditor {
                 processor.out().print('\t');
             }
 
-            processor.out().println(shape);
+            processor.out().println("-> " + shape);
 
             if (shape instanceof SCollection) {
                 printList(processor, (SCollection) shape, i + 1);
@@ -37,10 +37,6 @@ public class CommandListShapes extends CommandShapesEditor {
 
         SCollection shapes = model(processor);
 
-        Iterator<Shape> iterator = shapes.iterator();
-
-        while (iterator.hasNext()) {
-            printList(processor, shapes, 0);
-        }
+        printList(processor, shapes, 0);
     }
 }

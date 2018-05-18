@@ -40,7 +40,12 @@ public abstract class Shape {
         string.append(className);
         string.append("@");
         string.append(hashCode());
-        string.append("\tposition:");
+
+        for (int i = className.length() + String.valueOf(hashCode()).length(); i < 25; i++) {
+            string.append(' ');
+        }
+
+        string.append("position:");
         string.append(getLoc().x);
         string.append(",");
         string.append(getLoc().y);
