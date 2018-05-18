@@ -44,7 +44,7 @@ public class SCircle extends Shape {
     @Override
     public Rectangle getBounds() {
 
-        return new Rectangle(loc.x , loc.y, radius * 2, radius * 2);
+        return new Rectangle(loc.x - radius, loc.y - radius, radius * 2, radius * 2);
     }
 
     @Override
