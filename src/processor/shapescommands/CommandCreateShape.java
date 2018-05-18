@@ -1,10 +1,9 @@
 package processor.shapescommands;
 
 import graphics.shapes.Shape;
-import processor.engine.Command;
 import processor.engine.Processor;
 
-public class CommandCreateShape extends Command {
+public class CommandCreateShape extends CommandShapesEditor {
 
     public CommandCreateShape() {
         super("create");
@@ -21,6 +20,18 @@ public class CommandCreateShape extends Command {
         switch (name) {
 
             case "rectangle":
+
+                break;
+
+            case "cercle":
+
+                break;
+
+            case "text":
+
+                break;
+
+            case "collection":
 
                 break;
 
