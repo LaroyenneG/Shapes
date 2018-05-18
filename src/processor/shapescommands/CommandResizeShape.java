@@ -31,12 +31,12 @@ public class CommandResizeShape extends CommandShapesEditor {
     @Override
     public String toString() {
 
-        StringBuffer buffer = new StringBuffer();
+        StringBuffer string = new StringBuffer();
 
-        buffer.append(super.toString());
-        buffer.append(" ");
-        buffer.append("<id> <size>");
+        string.append(super.toString());
+        string.append(" ");
+        string.append("<id> <size>");
 
-        return new String(buffer);
+        return new String(string);
     }
 }

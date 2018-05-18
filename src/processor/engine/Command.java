@@ -14,6 +14,10 @@ public abstract class Command {
         return name;
     }
 
+    public String man() {
+
+        return "no information";
+    }
 
     @Override
     public String toString() {

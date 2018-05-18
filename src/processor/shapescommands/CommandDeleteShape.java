@@ -30,7 +30,7 @@ public class CommandDeleteShape extends CommandShapesEditor {
 
         buffer.append(super.toString());
         buffer.append(" ");
-        buffer.append("<id>");
+        buffer.append("[id]");
 
         return new String(buffer);
     }

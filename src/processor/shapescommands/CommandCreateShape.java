@@ -34,7 +34,7 @@ public class CommandCreateShape extends CommandShapesEditor {
                 shape = createRectangle(processor);
                 break;
 
-            case "cercle":
+            case "circle":
                 shape = createCircle(processor);
                 break;
 
@@ -69,7 +69,7 @@ public class CommandCreateShape extends CommandShapesEditor {
 
         buffer.append(super.toString());
         buffer.append(" ");
-        buffer.append("<type> <options>");
+        buffer.append("<type> <Values>...");
 
         return new String(buffer);
     }

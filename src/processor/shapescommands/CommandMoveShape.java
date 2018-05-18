@@ -27,12 +27,12 @@ public class CommandMoveShape extends CommandShapesEditor {
     @Override
     public String toString() {
 
-        StringBuffer buffer = new StringBuffer();
+        StringBuffer string = new StringBuffer();
 
-        buffer.append(super.toString());
-        buffer.append(" ");
-        buffer.append("<id> <position>");
+        string.append(super.toString());
+        string.append(" ");
+        string.append("<id> <point>");
 
-        return new String(buffer);
+        return new String(string);
     }
 }

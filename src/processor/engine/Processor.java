@@ -31,6 +31,7 @@ public class Processor {
         proc = new TreeMap<>();
 
         addNewCommand(new CommandQuit());
+        addNewCommand(new CommandMan());
         addNewCommand(new CommandMenu());
         addNewCommand(new CommandScript());
     }
