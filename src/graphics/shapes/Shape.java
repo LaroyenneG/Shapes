@@ -22,11 +22,6 @@ public abstract class Shape {
         return attributes.get(attr);
     }
 
-    /*
-    @Override
-    public abstract String toString();
-    */
-
     public abstract Point getLoc();
 
     public abstract void setLoc(Point loc);
@@ -38,6 +33,7 @@ public abstract class Shape {
     public abstract void accept(ShapeVisitor sv);
 
     public String toString() {
+
         StringBuffer string = new StringBuffer();
         String className = getClass().getSimpleName();
         className = className.substring(1);
@@ -48,7 +44,6 @@ public abstract class Shape {
         string.append(getLoc().x);
         string.append(",");
         string.append(getLoc().y);
-
 
         return new String(string);
     }
