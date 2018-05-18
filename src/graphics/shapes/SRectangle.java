@@ -45,4 +45,16 @@ public class SRectangle extends Shape {
     public void accept(ShapeVisitor sv) {
         sv.visitRectangle(this);
     }
+
+    @Override
+    public String toString() {
+        StringBuffer string = new StringBuffer();
+        string.append(super.toString());
+        string.append("\tlargeur :");
+        string.append(rect.width);
+        string.append("\thauteur");
+        string.append(rect.height);
+        return new String(string);
+    }
+
 }

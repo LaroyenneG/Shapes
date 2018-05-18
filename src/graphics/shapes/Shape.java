@@ -36,4 +36,20 @@ public abstract class Shape {
     public abstract Rectangle getBounds();
 
     public abstract void accept(ShapeVisitor sv);
+
+    public String toString() {
+        StringBuffer string = new StringBuffer();
+        String className = getClass().getSimpleName();
+        className = className.substring(1);
+        string.append(className);
+        string.append("@");
+        string.append(hashCode());
+        string.append("\tposition:");
+        string.append(getLoc().x);
+        string.append(",");
+        string.append(getLoc().y);
+
+
+        return new String(string);
+    }
 }

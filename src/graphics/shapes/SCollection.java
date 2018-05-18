@@ -27,8 +27,8 @@ public class SCollection extends Shape {
 
     @Override
     public Point getLoc() {
-
-        return null;
+        Rectangle bound = getBounds();
+        return bound.getLocation();
     }
 
     @Override
@@ -44,10 +44,17 @@ public class SCollection extends Shape {
     @Override
     public Rectangle getBounds() {
 
-        Rectangle rectangle = new Rectangle();
+        Rectangle rectangle = null;
+
 
         for (Shape s : shapes) {
-            rectangle = rectangle.union(s.getBounds());
+            if(rectangle == null)
+            {
+                rectangle = s.getBounds();
+            }
+            else {
+                rectangle = rectangle.union(s.getBounds());
+            }
         }
 
         return rectangle;
@@ -56,5 +63,22 @@ public class SCollection extends Shape {
     @Override
     public void accept(ShapeVisitor sv) {
         sv.visitCollection(this);
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer string = new StringBuffer();
+        string.append(super.toString());
+
+        return new String(string);
+    }
+
+    public static void main(String [] args)
+    {
+        SCollection sCollection = new SCollection();
+        sCollection.add(new SCircle(new Point(1, 2), 2));
+        sCollection.add(new SRectangle(new Point(2, 4), 4, 4));
+
+        System.out.println(sCollection);
     }
 }

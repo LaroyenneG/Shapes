@@ -44,11 +44,22 @@ public class SCircle extends Shape {
     @Override
     public Rectangle getBounds() {
 
-        return new Rectangle(loc.x - radius, loc.y + radius, radius * 2, radius * 2);
+        return new Rectangle(loc.x , loc.y, radius * 2, radius * 2);
     }
 
     @Override
     public void accept(ShapeVisitor sv) {
         sv.visitCircle(this);
     }
+
+    @Override
+    public String toString() {
+        StringBuffer string = new StringBuffer();
+        string.append(super.toString());
+        string.append("\tradius:");
+        string.append(radius);
+
+        return new String(string);
+    }
+
 }
