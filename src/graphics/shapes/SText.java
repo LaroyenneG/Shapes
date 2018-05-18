@@ -1,8 +1,12 @@
 package graphics.shapes;
 
+import graphics.shapes.attributes.FontAttributes;
+
 import java.awt.*;
 
 public class SText extends Shape {
+
+    private static final FontAttributes DEFAULT_POLICE = new FontAttributes();
 
     private String text;
     private Point loc;
@@ -11,6 +15,7 @@ public class SText extends Shape {
 
         this.loc = loc;
         this.text = text;
+        addAttributes(DEFAULT_POLICE);
     }
 
     public String getText() {
@@ -51,4 +56,5 @@ public class SText extends Shape {
     public void accept(ShapeVisitor sv) {
         sv.visitText(this);
     }
+
 }
