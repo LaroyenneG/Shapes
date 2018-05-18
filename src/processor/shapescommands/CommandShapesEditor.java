@@ -19,7 +19,7 @@ public abstract class CommandShapesEditor extends Command {
         return (SCollection) processor.getSystem();
     }
 
-    private static Shape searchShape(SCollection collection, int id) throws CommandShapesExecption {
+    private static Shape searchShape(SCollection collection, int id) throws CommandShapesException {
 
         Shape shape = null;
 
@@ -27,22 +27,22 @@ public abstract class CommandShapesEditor extends Command {
 
         while (iterator.hasNext()) {
 
-            Object selected = iterator.next().hashCode();
+            Shape selected = iterator.next();
 
             if (selected.hashCode() == id) {
-                shape = (Shape) selected;
+                shape = selected;
                 break;
             }
         }
 
         if (shape == null) {
-            throw new CommandShapesExecption("invalid shape id");
+            throw new CommandShapesException("invalid shape id");
         }
 
         return shape;
     }
 
-    protected static Shape commandSelectShape(Processor processor) throws InputMismatchException, CommandShapesExecption {
+    protected static Shape commandSelectShape(Processor processor) throws InputMismatchException, CommandShapesException {
 
         int id = processor.scanner().nextInt();
 

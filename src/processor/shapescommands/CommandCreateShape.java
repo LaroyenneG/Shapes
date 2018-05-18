@@ -9,11 +9,8 @@ public class CommandCreateShape extends CommandShapesEditor {
         super("create");
     }
 
-    /*
-    cree une nouvelle figure
-     */
 
-    private Shape createShape(String name) throws CommandShapesExecption {
+    private static Shape createShape(String name) throws CommandShapesException {
 
         Shape shape = null;
 
@@ -36,7 +33,7 @@ public class CommandCreateShape extends CommandShapesEditor {
                 break;
 
             default:
-                throw new CommandShapesExecption("invalid shape name");
+                throw new CommandShapesException("invalid shape name");
         }
 
 

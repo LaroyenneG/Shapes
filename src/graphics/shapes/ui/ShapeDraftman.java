@@ -27,7 +27,6 @@ public class ShapeDraftman implements ShapeVisitor {
             colorAttributesAttributes = DEFAULT_COLOR_ATTRIBUTES;
         }
         graph2D.drawRect(rect.x, rect.y, rect.width, rect.height);
-        System.out.println("TOTO");
     }
 
     @Override

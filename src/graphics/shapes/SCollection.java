@@ -25,6 +25,10 @@ public class SCollection extends Shape {
         shapes.clear();
     }
 
+    public void deleteShape(Shape shape) {
+        shapes.remove(shape);
+    }
+
     @Override
     public Point getLoc() {
         Rectangle bound = getBounds();

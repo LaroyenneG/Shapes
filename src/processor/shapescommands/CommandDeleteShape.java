@@ -1,5 +1,6 @@
 package processor.shapescommands;
 
+import graphics.shapes.Shape;
 import processor.engine.Processor;
 
 public class CommandDeleteShape extends CommandShapesEditor {
@@ -8,13 +9,18 @@ public class CommandDeleteShape extends CommandShapesEditor {
         super("delete");
     }
 
-    /*
-    supprime la figure
-     */
-
     @Override
     public void execute(Processor processor) {
 
+        try {
+
+            Shape shape = commandSelectShape(processor);
+
+            model(processor).deleteShape(shape);
+
+        } catch (CommandShapesException e) {
+            processor.out().println(e.getMessage());
+        }
     }
 
     @Override
