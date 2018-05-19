@@ -8,10 +8,8 @@ import java.awt.*;
 import java.util.Iterator;
 
 public class ShapeDraftman implements ShapeVisitor {
-    private Graphics2D graph2D;
-
-
     public static final ColorAttributes DEFAULT_COLOR_ATTRIBUTES = new ColorAttributes(false, false, Color.WHITE, Color.WHITE);
+    private Graphics2D graph2D;
 
     public ShapeDraftman(Graphics g) {
         graph2D = (Graphics2D) g;
@@ -35,11 +33,11 @@ public class ShapeDraftman implements ShapeVisitor {
             graph2D.setColor(colorAttributes.strokedColor);
             graph2D.drawRect(rect.x, rect.y, rect.width, rect.height);
         }
-
     }
 
     @Override
     public void visitCircle(SCircle circle) {
+
         ColorAttributes colorAttributes = (ColorAttributes) circle.getAttributes(ColorAttributes.ID);
 
         if (colorAttributes == null) {
@@ -53,8 +51,6 @@ public class ShapeDraftman implements ShapeVisitor {
             graph2D.setColor(colorAttributes.strokedColor);
             graph2D.drawOval(circle.getLoc().x, circle.getLoc().y, circle.getRadius(), circle.getRadius());
         }
-
-
     }
 
     @Override
@@ -69,6 +65,7 @@ public class ShapeDraftman implements ShapeVisitor {
 
     @Override
     public void visitText(SText text) {
+
         ColorAttributes colorAttributes = (ColorAttributes) text.getAttributes(ColorAttributes.ID);
         Rectangle bounds = text.getBounds();
 
@@ -83,7 +80,5 @@ public class ShapeDraftman implements ShapeVisitor {
             graph2D.setColor(colorAttributes.strokedColor);
             graph2D.drawString(text.getText(), text.getLoc().x, text.getLoc().y);
         }
-
-
     }
 }
