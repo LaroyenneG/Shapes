@@ -70,6 +70,20 @@ public class ShapeDraftman implements ShapeVisitor {
     @Override
     public void visitText(SText text) {
         ColorAttributes colorAttributes = (ColorAttributes) text.getAttributes(ColorAttributes.ID);
+        Rectangle bounds = text.getBounds();
+
+        if (colorAttributes == null) {
+            colorAttributes = DEFAULT_COLOR_ATTRIBUTES;
+        }
+        if (colorAttributes.filled) {
+            graph2D.setColor(colorAttributes.filledColor);
+            graph2D.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+        }
+        if (colorAttributes.stroked) {
+            graph2D.setColor(colorAttributes.strokedColor);
+            graph2D.drawString(text.getText(), text.getLoc().x, text.getLoc().y);
+        }
+
 
     }
 }
