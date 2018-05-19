@@ -20,17 +20,28 @@ public class ShapeDraftman implements ShapeVisitor {
     @Override
     public void visitRectangle(SRectangle rectangle) {
 
-        ColorAttributes colorAttributesAttributes = (ColorAttributes) rectangle.getAttributes(ColorAttributes.ID);
+        ColorAttributes colorAttributes = (ColorAttributes) rectangle.getAttributes(ColorAttributes.ID);
         Rectangle rect = rectangle.getRect();
 
-        if (colorAttributesAttributes == null) {
-            colorAttributesAttributes = DEFAULT_COLOR_ATTRIBUTES;
+        if (colorAttributes == null) {
+            colorAttributes = DEFAULT_COLOR_ATTRIBUTES;
         }
-        graph2D.drawRect(rect.x, rect.y, rect.width, rect.height);
+
+        if (colorAttributes.filled) {
+            graph2D.setColor(colorAttributes.filledColor);
+            graph2D.fillRect(rect.x, rect.y, rect.width, rect.height);
+        }
+        if (colorAttributes.stroked) {
+            graph2D.setColor(colorAttributes.strokedColor);
+            graph2D.drawRect(rect.x, rect.y, rect.width, rect.height);
+        }
+
     }
 
     @Override
     public void visitCircle(SCircle circle) {
+        ColorAttributes colorAttributes = (ColorAttributes) circle.getAttributes(ColorAttributes.ID);
+
 
     }
 
@@ -39,11 +50,7 @@ public class ShapeDraftman implements ShapeVisitor {
 
         Iterator<Shape> shapes = collection.iterator();
         while (shapes.hasNext()) {
-            Shape sh = shapes.next();
-
-            if (sh instanceof SRectangle) {
-                visitRectangle((SRectangle) sh);
-            }
+            shapes.next().accept(this);
         }
 
     }
