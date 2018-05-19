@@ -110,6 +110,7 @@ public class Editor extends JFrame {
             try {
                 processor.printPrompt();
                 processor.execute(processor.decode(processor.fetch()));
+                self.sView.repaint();
             } catch (ProcessorException e) {
                 processor.out().println(e.getMessage());
             } catch (InputMismatchException e) {
