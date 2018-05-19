@@ -41,14 +41,16 @@ public abstract class Shape {
         string.append("@");
         string.append(hashCode());
 
-        for (int i = className.length() + String.valueOf(hashCode()).length(); i < 25; i++) {
+        for (int i = className.length() + String.valueOf(hashCode()).length(); i < 23; i++) {
             string.append(' ');
         }
 
-        string.append("position:");
+        string.append("position : ");
+        string.append('(');
         string.append(getLoc().x);
         string.append(",");
         string.append(getLoc().y);
+        string.append(')');
 
         return new String(string);
     }

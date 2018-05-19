@@ -20,7 +20,7 @@ public class CommandListShapes extends CommandShapesEditor {
 
             Shape shape = iterator.next();
 
-            for (int n = 0; n < i; n++) {
+            for (int n = 0; n < i * 2; n++) {
                 processor.out().print('\t');
             }
 

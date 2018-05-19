@@ -20,7 +20,7 @@ public class CommandResizeShape extends CommandShapesEditor {
     public void execute(Processor processor) {
 
         try {
-            Shape shape = commandSelectShape(processor);
+            Shape shape = selectShape(processor);
             resizeShape(shape, readInt(processor));
         } catch (CommandShapesException e) {
             processor.out().println(e.getMessage());
@@ -34,7 +34,7 @@ public class CommandResizeShape extends CommandShapesEditor {
         StringBuffer string = new StringBuffer();
 
         string.append(super.toString());
-        string.append(" ");
+        string.append(' ');
         string.append("<id> <size>");
 
         return new String(string);

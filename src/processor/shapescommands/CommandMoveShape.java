@@ -15,7 +15,7 @@ public class CommandMoveShape extends CommandShapesEditor {
 
         try {
 
-            Shape shape = commandSelectShape(processor);
+            Shape shape = selectShape(processor);
 
             shape.setLoc(readPoint(processor));
 
@@ -30,7 +30,7 @@ public class CommandMoveShape extends CommandShapesEditor {
         StringBuffer string = new StringBuffer();
 
         string.append(super.toString());
-        string.append(" ");
+        string.append(' ');
         string.append("<id> <point>");
 
         return new String(string);

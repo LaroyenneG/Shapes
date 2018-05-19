@@ -41,7 +41,7 @@ public abstract class CommandShapesEditor extends Command {
         return shape;
     }
 
-    static Shape commandSelectShape(Processor processor) throws CommandShapesException {
+    static Shape selectShape(Processor processor) throws CommandShapesException {
 
         int id = processor.scanner().nextInt();
 
@@ -61,9 +61,21 @@ public abstract class CommandShapesEditor extends Command {
         return processor.scanner().nextInt();
     }
 
+    static boolean readBool(Processor processor) {
+        return processor.scanner().nextBoolean();
+    }
+
     static String readString(Processor processor) {
 
         return processor.scanner().next();
+    }
+
+    static Color readColor(Processor processor) {
+        return Color.getColor(processor.scanner().next());
+    }
+
+    static Font readFont(Processor processor) {
+        return Font.getFont(processor.scanner().next());
     }
 
     @Override

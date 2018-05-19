@@ -98,10 +98,9 @@ public class Editor extends JFrame {
         processor.addNewCommand(new CommandMoveShape());
         processor.addNewCommand(new CommandListShapes());
         processor.addNewCommand(new CommandResizeShape());
-
+        processor.addNewCommand(new CommandAddAttribute());
 
         processor.setSystem(self.model);
-
         processor.setIn(System.in);
         processor.setOut(System.out);
 

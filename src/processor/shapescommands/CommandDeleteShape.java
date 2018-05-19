@@ -14,7 +14,7 @@ public class CommandDeleteShape extends CommandShapesEditor {
 
         try {
 
-            Shape shape = commandSelectShape(processor);
+            Shape shape = selectShape(processor);
 
             model(processor).deleteShape(shape);
 
@@ -29,7 +29,7 @@ public class CommandDeleteShape extends CommandShapesEditor {
         StringBuffer buffer = new StringBuffer();
 
         buffer.append(super.toString());
-        buffer.append(" ");
+        buffer.append(' ');
         buffer.append("[id]");
 
         return new String(buffer);

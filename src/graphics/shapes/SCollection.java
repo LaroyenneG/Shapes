@@ -77,5 +77,4 @@ public class SCollection extends Shape {
 
         return new String(string);
     }
-
 }

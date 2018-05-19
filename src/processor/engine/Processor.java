@@ -131,7 +131,7 @@ public class Processor {
         string.append("Processor(");
         for (Command c : proc.values()) {
             string.append(c);
-            string.append(" ");
+            string.append(' ');
         }
         string.append(")");
 

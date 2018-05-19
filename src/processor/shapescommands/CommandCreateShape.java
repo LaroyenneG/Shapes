@@ -53,9 +53,8 @@ public class CommandCreateShape extends CommandShapesEditor {
     @Override
     public void execute(Processor processor) {
 
-        SCollection collection = model(processor);
-
         try {
+            SCollection collection = model(processor);
             collection.add(createShape(processor));
         } catch (CommandShapesException e) {
             processor.out().println(e.getMessage());
@@ -68,8 +67,8 @@ public class CommandCreateShape extends CommandShapesEditor {
         StringBuffer buffer = new StringBuffer();
 
         buffer.append(super.toString());
-        buffer.append(" ");
-        buffer.append("<type> <Values>...");
+        buffer.append(' ');
+        buffer.append("<type> <values>...");
 
         return new String(buffer);
     }
