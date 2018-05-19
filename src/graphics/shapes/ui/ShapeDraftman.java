@@ -42,6 +42,18 @@ public class ShapeDraftman implements ShapeVisitor {
     public void visitCircle(SCircle circle) {
         ColorAttributes colorAttributes = (ColorAttributes) circle.getAttributes(ColorAttributes.ID);
 
+        if (colorAttributes == null) {
+            colorAttributes = DEFAULT_COLOR_ATTRIBUTES;
+        }
+        if (colorAttributes.filled) {
+            graph2D.setColor(colorAttributes.filledColor);
+            graph2D.fillOval(circle.getLoc().x, circle.getLoc().y, circle.getRadius(), circle.getRadius());
+        }
+        if (colorAttributes.stroked) {
+            graph2D.setColor(colorAttributes.strokedColor);
+            graph2D.drawOval(circle.getLoc().x, circle.getLoc().y, circle.getRadius(), circle.getRadius());
+        }
+
 
     }
 
@@ -57,6 +69,7 @@ public class ShapeDraftman implements ShapeVisitor {
 
     @Override
     public void visitText(SText text) {
+        ColorAttributes colorAttributes = (ColorAttributes) text.getAttributes(ColorAttributes.ID);
 
     }
 }
