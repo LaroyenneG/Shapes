@@ -1,5 +1,7 @@
 package processor.engine;
 
+import processor.shapescommands.CommandShapesException;
+
 public class CommandMan extends Command {
 
     public CommandMan() {
@@ -7,16 +9,21 @@ public class CommandMan extends Command {
     }
 
     @Override
-    public void execute(Processor processor) {
-
-        String name = processor.scanner().next();
+    public void execute(Processor processor, String[] args) {
 
         try {
 
+            if (args.length != 1) {
+                throw new CommandShapesException("invalid argument number");
+            }
+
+            String name = args[0];
             processor.out().println(processor.decode(name).man());
 
         } catch (ProcessorException e) {
-            processor.out().println("Command not found");
+            processor.err().println("Command not found");
+        } catch (CommandShapesException e) {
+            processor.err().println(e.getMessage());
         }
     }
 

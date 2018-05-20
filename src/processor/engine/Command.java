@@ -8,7 +8,7 @@ public abstract class Command {
         this.name = name;
     }
 
-    public abstract void execute(Processor processor);
+    public abstract void execute(Processor processor, String[] args);
 
     public String getName() {
         return name;

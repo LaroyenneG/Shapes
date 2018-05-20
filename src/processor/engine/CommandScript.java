@@ -12,13 +12,13 @@ public class CommandScript extends Command {
     }
 
     @Override
-    public void execute(Processor processor) {
-
-        File file = new File(processor.fetch());
+    public void execute(Processor processor, String[] args) {
 
         InputStream lastInputStream = processor.in();
 
         try {
+
+            File file = new File(processor.fetch());
 
             FileInputStream inputStream = new FileInputStream(file);
 
@@ -28,7 +28,7 @@ public class CommandScript extends Command {
 
             while ((line = processor.fetch()) != null) {
                 if (line.charAt(0) != '#') {
-                    processor.execute(processor.decode(line));
+                    processor.execute(processor.decode(line), null);
                 }
             }
 
@@ -39,6 +39,7 @@ public class CommandScript extends Command {
         } finally {
             processor.setIn(lastInputStream);
         }
+
     }
 
     @Override

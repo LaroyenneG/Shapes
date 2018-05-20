@@ -8,7 +8,7 @@ public class CommandQuit extends Command {
     }
 
     @Override
-    public void execute(Processor processor) {
+    public void execute(Processor processor, String[] args) {
 
         processor.terminated();
     }

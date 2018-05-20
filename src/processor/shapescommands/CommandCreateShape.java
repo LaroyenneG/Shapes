@@ -10,36 +10,40 @@ public class CommandCreateShape extends CommandShapesEditor {
     }
 
 
-    private static SRectangle createRectangle(Processor processor) {
+    private static SRectangle createRectangle(String[] args) {
 
-        return new SRectangle(readPoint(processor), readInt(processor), readInt(processor));
+        return new SRectangle(readPoint(args[0], args[1]), readInt(args[2]), readInt(args[3]));
     }
 
-    private static SCircle createCircle(Processor processor) {
-        return new SCircle(readPoint(processor), readInt(processor));
+    private static SCircle createCircle(String[] args) {
+        return new SCircle(readPoint(args[0], args[1]), readInt(args[2]));
     }
 
-    private static SText createText(Processor processor) {
-        return new SText(readPoint(processor), readString(processor));
+    private static SText createText(String[] args) {
+        return new SText(readPoint(args[0], args[1]), args[2]);
     }
 
 
-    private static Shape createShape(Processor processor) throws CommandShapesException {
+    private static Shape createShape(String[] args) throws CommandShapesException {
 
         Shape shape = null;
 
-        switch (processor.scanner().next()) {
+        String[] nArgs = new String[args.length - 1];
+
+        System.arraycopy(args, 1, nArgs, 0, args.length);
+
+        switch (args[0]) {
 
             case "rectangle":
-                shape = createRectangle(processor);
+                shape = createRectangle(nArgs);
                 break;
 
             case "circle":
-                shape = createCircle(processor);
+                shape = createCircle(nArgs);
                 break;
 
             case "text":
-                shape = createText(processor);
+                shape = createText(nArgs);
                 break;
 
             default:
@@ -51,11 +55,11 @@ public class CommandCreateShape extends CommandShapesEditor {
 
 
     @Override
-    public void execute(Processor processor) {
+    public void execute(Processor processor, String[] args) {
 
         try {
             SCollection collection = model(processor);
-            Shape shape = createShape(processor);
+            Shape shape = createShape(args);
             collection.add(shape);
             processor.out().println(shape.hashCode());
         } catch (CommandShapesException e) {

@@ -11,13 +11,17 @@ public class CommandMoveShape extends CommandShapesEditor {
 
 
     @Override
-    public void execute(Processor processor) {
+    public void execute(Processor processor, String[] args) {
 
         try {
 
-            Shape shape = selectShape(processor);
+            if (args.length != 4) {
+                throw new CommandShapesException("invalid argument number");
+            }
 
-            shape.setLoc(readPoint(processor));
+            Shape shape = selectShape(processor, args[0]);
+
+            shape.setLoc(readPoint(args[1], args[2]));
 
         } catch (CommandShapesException e) {
             processor.err().println(e.getMessage());

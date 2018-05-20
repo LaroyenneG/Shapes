@@ -17,11 +17,16 @@ public class CommandResizeShape extends CommandShapesEditor {
     }
 
     @Override
-    public void execute(Processor processor) {
+    public void execute(Processor processor, String[] args) {
 
         try {
-            Shape shape = selectShape(processor);
-            resizeShape(shape, readInt(processor));
+
+            if (args.length != 2) {
+                throw new CommandShapesException("invalid argument number");
+            }
+
+            Shape shape = selectShape(processor, args[0]);
+            resizeShape(shape, readInt(args[1]));
         } catch (CommandShapesException e) {
             processor.err().println(e.getMessage());
         }

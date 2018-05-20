@@ -8,7 +8,7 @@ public class CommandMenu extends Command {
     }
 
     @Override
-    public void execute(Processor processor) {
+    public void execute(Processor processor, String[] args) {
 
         processor.out().println("Shapes Editor Menu :");
         for (Command c : processor.getCommands()) {

@@ -13,19 +13,19 @@ public class CommandAddAttribute extends CommandShapesEditor {
     }
 
 
-    private static Attributes createAttribute(Processor processor) throws CommandShapesException {
+    private static Attributes createAttribute(String[] arg) throws CommandShapesException {
 
 
         Attributes attributes = null;
 
-        switch (processor.scanner().next()) {
+        switch (arg[0]) {
 
             case "font":
-                attributes = new FontAttributes(readFont(processor), readColor(processor));
+                attributes = new FontAttributes(readFont(arg[1]), readColor(arg[2]));
                 break;
 
             case "color":
-                attributes = new ColorAttributes(readBool(processor), readBool(processor), readColor(processor), readColor(processor));
+                attributes = new ColorAttributes(readBool(arg[1]), readBool(arg[2]), readColor(arg[3]), readColor(arg[4]));
                 break;
 
             case "selection":
@@ -41,10 +41,19 @@ public class CommandAddAttribute extends CommandShapesEditor {
 
 
     @Override
-    public void execute(Processor processor) {
+    public void execute(Processor processor, String[] args) {
 
         try {
-            selectShape(processor).addAttributes(createAttribute(processor));
+
+            if (args.length < 2) {
+                throw new CommandShapesException("invalid argument number");
+            }
+
+            String[] attAgrs = new String[args.length - 1];
+
+            System.arraycopy(args, 1, attAgrs, 0, attAgrs.length);
+
+            selectShape(processor, args[1]).addAttributes(createAttribute(attAgrs));
         } catch (CommandShapesException e) {
             processor.err().println(e.getMessage());
         }

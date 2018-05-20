@@ -41,43 +41,36 @@ public abstract class CommandShapesEditor extends Command {
         return shape;
     }
 
-    static Shape selectShape(Processor processor) throws CommandShapesException {
+    static Shape selectShape(Processor processor, String string) throws CommandShapesException {
 
-        int id = processor.scanner().nextInt();
+        int id = readInt(string);
 
         return searchShape(model(processor), id);
     }
 
-    static Point readPoint(Processor processor) {
+    static Point readPoint(String a, String b) {
 
-        int x = processor.scanner().nextInt();
-        int y = processor.scanner().nextInt();
-
-        return new Point(x, y);
+        return new Point(readInt(a), readInt(b));
     }
 
-    static int readInt(Processor processor) {
+    static int readInt(String string) {
 
-        return processor.scanner().nextInt();
+        return Integer.parseInt(string);
     }
 
-    static boolean readBool(Processor processor) {
-        return processor.scanner().nextBoolean();
+    static boolean readBool(String string) {
+        return Boolean.parseBoolean(string);
     }
 
-    static String readString(Processor processor) {
 
-        return processor.scanner().next();
+    static Color readColor(String string) {
+        return Color.getColor(string);
     }
 
-    static Color readColor(Processor processor) {
-        return Color.getColor(processor.scanner().next());
-    }
-
-    static Font readFont(Processor processor) {
-        return Font.getFont(processor.scanner().next());
+    static Font readFont(String string) {
+        return Font.getFont(string);
     }
 
     @Override
-    public abstract void execute(Processor processor);
+    public abstract void execute(Processor processor, String[] args);
 }

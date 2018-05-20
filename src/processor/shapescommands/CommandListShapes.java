@@ -33,7 +33,7 @@ public class CommandListShapes extends CommandShapesEditor {
     }
 
     @Override
-    public void execute(Processor processor) {
+    public void execute(Processor processor, String[] args) {
 
         SCollection shapes = model(processor);
 

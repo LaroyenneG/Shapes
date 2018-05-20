@@ -1,8 +1,10 @@
 package processor.engine;
 
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.TreeMap;
 
 public class Processor {
 
@@ -11,7 +13,7 @@ public class Processor {
     private PrintStream out;
     private PrintStream err;
     private InputStream in;
-    private Scanner scanner;
+    private BufferedReader reader;
 
     private Object system;
 
@@ -24,7 +26,7 @@ public class Processor {
         out = null;
         in = null;
         err = null;
-        scanner = null;
+        reader = null;
 
         system = null;
 
@@ -38,13 +40,61 @@ public class Processor {
         addNewCommand(new CommandScript());
     }
 
-    public String fetch() {
+    public String fetch() throws IOException {
 
-        if (!scanner.hasNext()) {
-            return null;
+        return reader.readLine();
+    }
+
+    public void interpretLine(String line) throws ProcessorException, IOException {
+
+        int a = -1;
+        int b = -1;
+
+        for (int i = 0; i < line.length(); i++) {
+            if (line.charAt(i) == '{') {
+                a = i;
+                break;
+            }
         }
 
-        return scanner.next();
+        for (int j = line.length() - 1; j >= a; j++) {
+            if (line.charAt(j) == '}') {
+                b = j;
+                break;
+            }
+        }
+
+
+        if (a >= 0 && b >= 0) {
+
+            String subString = line.substring(a, b);
+
+
+            OutputStream saveOut = out();
+
+            final PipedOutputStream output = new PipedOutputStream();
+            final PipedInputStream input = new PipedInputStream(output);
+            final BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+
+            setOut(new PrintStream(output));
+
+            interpretLine(subString);
+
+            line = line.replaceAll(subString, reader.readLine());
+
+            output.close();
+            input.close();
+
+            setOut(new PrintStream(saveOut));
+        }
+
+        String[] args = line.split(" ");
+
+        String[] cmdArgs = new String[args.length - 1];
+
+        System.arraycopy(args, 1, cmdArgs, 0, args.length);
+
+        execute(decode(args[1]), cmdArgs);
     }
 
     public Command decode(String name) throws ProcessorException {
@@ -66,9 +116,9 @@ public class Processor {
         terminated = false;
     }
 
-    public void execute(Command command) {
+    public void execute(Command command, String[] args) {
 
-        command.execute(this);
+        command.execute(this, args);
     }
 
     public boolean isTerminated() {
@@ -93,7 +143,7 @@ public class Processor {
 
     public void setIn(InputStream inputStream) {
         in = inputStream;
-        scanner = new Scanner(in);
+        reader = new BufferedReader(new InputStreamReader(in));
     }
 
     public void addNewCommand(Command command) {
@@ -108,8 +158,8 @@ public class Processor {
         err = printStream;
     }
 
-    public Scanner scanner() {
-        return scanner;
+    public BufferedReader reader() {
+        return reader;
     }
 
     public Object getSystem() {

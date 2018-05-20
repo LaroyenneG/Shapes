@@ -10,11 +10,15 @@ public class CommandDeleteShape extends CommandShapesEditor {
     }
 
     @Override
-    public void execute(Processor processor) {
+    public void execute(Processor processor, String[] args) {
 
         try {
 
-            Shape shape = selectShape(processor);
+            if (args.length != 1) {
+                throw new CommandShapesException("invalid argument nnumber");
+            }
+
+            Shape shape = selectShape(processor, args[0]);
 
             model(processor).deleteShape(shape);
 
