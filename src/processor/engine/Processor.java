@@ -1,5 +1,7 @@
 package processor.engine;
 
+import processor.shapescommands.CommandClearShape;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,6 +9,11 @@ import java.util.List;
 import java.util.TreeMap;
 
 public class Processor {
+
+
+    private static final char SEP_CHAR_1 = '(';
+    private static final char SEP_CHAR_2 = ')';
+    private static final char COMMANT_CHAR = '#';
 
     private static final String DEFAULT_PROMPT = "[shapes]$";
 
@@ -38,6 +45,7 @@ public class Processor {
         addNewCommand(new CommandMan());
         addNewCommand(new CommandMenu());
         addNewCommand(new CommandScript());
+        addNewCommand(new CommandClearShape());
     }
 
     public String fetch() throws IOException {
@@ -47,7 +55,7 @@ public class Processor {
 
     public void interpretLine(String line) throws ProcessorException {
 
-        if (line.length() < 1 || line.charAt(0) == '#') {
+        if (line.length() < 1 || line.charAt(0) == COMMANT_CHAR) {
             return;
         }
 
@@ -61,10 +69,10 @@ public class Processor {
             int b = -1;
 
             for (int i = 0; i < line.length(); i++) {
-                if (line.charAt(i) == '(') {
+                if (line.charAt(i) == SEP_CHAR_1) {
                     a = i + 1;
                     for (int j = line.length() - 1; j >= a; j--) {
-                        if (line.charAt(j) == ')') {
+                        if (line.charAt(j) == SEP_CHAR_2) {
                             b = j;
                             break;
                         }
