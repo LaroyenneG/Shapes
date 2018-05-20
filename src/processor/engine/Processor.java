@@ -50,7 +50,7 @@ public class Processor {
         Command command = proc.get(name);
 
         if (command == null) {
-            throw new ProcessorException("Invalid command : " + name);
+            throw new ProcessorException("invalid command : " + name);
         }
 
         return command;

@@ -27,7 +27,9 @@ public class CommandScript extends Command {
             String line = null;
 
             while ((line = processor.fetch()) != null) {
-                processor.execute(processor.decode(line));
+                if (line.charAt(0) != '#') {
+                    processor.execute(processor.decode(line));
+                }
             }
 
             inputStream.close();
@@ -45,7 +47,7 @@ public class CommandScript extends Command {
         StringBuffer buffer = new StringBuffer();
 
         buffer.append(super.toString());
-        buffer.append(" ");
+        buffer.append(' ');
         buffer.append("<file>");
 
         return new String(buffer);
