@@ -19,7 +19,7 @@ public class CommandDeleteShape extends CommandShapesEditor {
             model(processor).deleteShape(shape);
 
         } catch (CommandShapesException e) {
-            processor.out().println(e.getMessage());
+            processor.err().println(e.getMessage());
         }
     }
 

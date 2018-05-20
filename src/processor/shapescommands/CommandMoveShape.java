@@ -20,7 +20,7 @@ public class CommandMoveShape extends CommandShapesEditor {
             shape.setLoc(readPoint(processor));
 
         } catch (CommandShapesException e) {
-            processor.out().println(e.getMessage());
+            processor.err().println(e.getMessage());
         }
     }
 

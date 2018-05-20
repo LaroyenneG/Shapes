@@ -9,6 +9,7 @@ public class Processor {
     private static final String DEFAULT_PROMPT = "[shapes]$";
 
     private PrintStream out;
+    private PrintStream err;
     private InputStream in;
     private Scanner scanner;
 
@@ -22,6 +23,7 @@ public class Processor {
 
         out = null;
         in = null;
+        err = null;
         scanner = null;
 
         system = null;
@@ -81,6 +83,10 @@ public class Processor {
         return out;
     }
 
+    public PrintStream err() {
+        return err;
+    }
+
     public InputStream in() {
         return in;
     }
@@ -96,6 +102,10 @@ public class Processor {
 
     public void setOut(PrintStream printStream) {
         out = printStream;
+    }
+
+    public void setErr(PrintStream printStream) {
+        err = printStream;
     }
 
     public Scanner scanner() {

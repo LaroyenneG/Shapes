@@ -46,7 +46,7 @@ public class CommandAddAttribute extends CommandShapesEditor {
         try {
             selectShape(processor).addAttributes(createAttribute(processor));
         } catch (CommandShapesException e) {
-            processor.out().println(e.getMessage());
+            processor.err().println(e.getMessage());
         }
     }
 

@@ -23,7 +23,7 @@ public class CommandResizeShape extends CommandShapesEditor {
             Shape shape = selectShape(processor);
             resizeShape(shape, readInt(processor));
         } catch (CommandShapesException e) {
-            processor.out().println(e.getMessage());
+            processor.err().println(e.getMessage());
         }
 
     }

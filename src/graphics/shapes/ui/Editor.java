@@ -103,6 +103,7 @@ public class Editor extends JFrame {
         processor.setSystem(self.model);
         processor.setIn(System.in);
         processor.setOut(System.out);
+        processor.setErr(System.err);
 
         while (!processor.isTerminated()) {
 
@@ -111,9 +112,9 @@ public class Editor extends JFrame {
                 processor.execute(processor.decode(processor.fetch()));
                 self.sView.repaint();
             } catch (ProcessorException e) {
-                processor.out().println(e.getMessage());
+                processor.err().println(e.getMessage());
             } catch (InputMismatchException e) {
-                processor.out().println("bad input value");
+                processor.err().println("bad input value");
             }
         }
     }

@@ -55,9 +55,11 @@ public class CommandCreateShape extends CommandShapesEditor {
 
         try {
             SCollection collection = model(processor);
-            collection.add(createShape(processor));
+            Shape shape = createShape(processor);
+            collection.add(shape);
+            processor.out().println(shape.hashCode());
         } catch (CommandShapesException e) {
-            processor.out().println(e.getMessage());
+            processor.err().println(e.getMessage());
         }
     }
 

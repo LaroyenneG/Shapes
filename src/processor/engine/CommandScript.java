@@ -35,7 +35,7 @@ public class CommandScript extends Command {
             inputStream.close();
 
         } catch (ProcessorException | IOException e) {
-            e.printStackTrace();
+            processor.err().println(e.getMessage());
         } finally {
             processor.setIn(lastInputStream);
         }
