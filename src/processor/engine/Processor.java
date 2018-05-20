@@ -51,57 +51,65 @@ public class Processor {
             return;
         }
 
-        int a = -1;
-        int b = -1;
+        String oldLine = null;
 
-        for (int i = 0; i < line.length(); i++) {
-            if (line.charAt(i) == '(') {
-                a = i + 1;
-                for (int j = line.length() - 1; j >= a; j--) {
-                    if (line.charAt(j) == ')') {
-                        b = j;
-                        break;
+        do {
+
+            oldLine = line;
+
+            int a = -1;
+            int b = -1;
+
+            for (int i = 0; i < line.length(); i++) {
+                if (line.charAt(i) == '(') {
+                    a = i + 1;
+                    for (int j = line.length() - 1; j >= a; j--) {
+                        if (line.charAt(j) == ')') {
+                            b = j;
+                            break;
+                        }
                     }
+                    break;
                 }
-                break;
             }
-        }
 
 
-        if (a >= 0 && b >= 0 && a < b) {
+            if (a >= 0 && b >= 0 && a < b) {
 
-            String subString = line.substring(a, b);
+                String subString = line.substring(a, b);
 
-            OutputStream saveOut = out();
+                OutputStream saveOut = out();
 
-            try {
-                final PipedOutputStream output = new PipedOutputStream();
-                final PipedInputStream input;
+                try {
+                    final PipedOutputStream output = new PipedOutputStream();
+                    final PipedInputStream input;
 
-                input = new PipedInputStream(output);
+                    input = new PipedInputStream(output);
 
-                final BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                    final BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
-                setOut(new PrintStream(output));
+                    setOut(new PrintStream(output));
 
-                interpretLine(subString);
+                    interpretLine(subString);
 
-                out().println();
-                output.flush();
+                    out().println();
+                    output.flush();
 
-                String result = reader.readLine();
+                    String result = reader.readLine();
 
-                line = line.substring(0, a - 1) + result + line.substring(b + 1, line.length());
+                    line = line.substring(0, a - 1) + result + line.substring(b + 1, line.length());
 
-                output.close();
-                input.close();
+                    output.close();
+                    input.close();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                setOut(new PrintStream(saveOut));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    setOut(new PrintStream(saveOut));
+                }
             }
-        }
+
+        } while (!oldLine.equals(line));
 
         String[] args = line.split(" ");
 
