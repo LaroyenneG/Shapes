@@ -45,56 +45,71 @@ public class Processor {
         return reader.readLine();
     }
 
-    public void interpretLine(String line) throws ProcessorException, IOException {
+    public void interpretLine(String line) throws ProcessorException {
+
+        if (line.length() < 1 || line.charAt(0) == '#') {
+            return;
+        }
 
         int a = -1;
         int b = -1;
 
         for (int i = 0; i < line.length(); i++) {
-            if (line.charAt(i) == '{') {
-                a = i;
+            if (line.charAt(i) == '(') {
+                a = i + 1;
+                for (int j = line.length() - 1; j >= a; j--) {
+                    if (line.charAt(j) == ')') {
+                        b = j;
+                        break;
+                    }
+                }
                 break;
             }
         }
 
-        for (int j = line.length() - 1; j >= a; j++) {
-            if (line.charAt(j) == '}') {
-                b = j;
-                break;
-            }
-        }
 
-
-        if (a >= 0 && b >= 0) {
+        if (a >= 0 && b >= 0 && a < b) {
 
             String subString = line.substring(a, b);
 
-
             OutputStream saveOut = out();
 
-            final PipedOutputStream output = new PipedOutputStream();
-            final PipedInputStream input = new PipedInputStream(output);
-            final BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+            try {
+                final PipedOutputStream output = new PipedOutputStream();
+                final PipedInputStream input;
 
-            setOut(new PrintStream(output));
+                input = new PipedInputStream(output);
 
-            interpretLine(subString);
+                final BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
-            line = line.replaceAll(subString, reader.readLine());
+                setOut(new PrintStream(output));
 
-            output.close();
-            input.close();
+                interpretLine(subString);
 
-            setOut(new PrintStream(saveOut));
+                out().println();
+                output.flush();
+
+                String result = reader.readLine();
+
+                line = line.substring(0, a - 1) + result + line.substring(b + 1, line.length());
+
+                output.close();
+                input.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                setOut(new PrintStream(saveOut));
+            }
         }
 
         String[] args = line.split(" ");
 
         String[] cmdArgs = new String[args.length - 1];
 
-        System.arraycopy(args, 1, cmdArgs, 0, args.length);
+        System.arraycopy(args, 1, cmdArgs, 0, args.length - 1);
 
-        execute(decode(args[1]), cmdArgs);
+        execute(decode(args[0]), cmdArgs);
     }
 
     public Command decode(String name) throws ProcessorException {

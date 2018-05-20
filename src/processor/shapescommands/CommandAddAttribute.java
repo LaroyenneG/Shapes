@@ -51,7 +51,7 @@ public class CommandAddAttribute extends CommandShapesEditor {
 
             String[] attAgrs = new String[args.length - 1];
 
-            System.arraycopy(args, 1, attAgrs, 0, attAgrs.length);
+            System.arraycopy(args, 1, attAgrs, 0, args.length - 1);
 
             selectShape(processor, args[1]).addAttributes(createAttribute(attAgrs));
         } catch (CommandShapesException e) {

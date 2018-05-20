@@ -15,7 +15,7 @@ public class CommandDeleteShape extends CommandShapesEditor {
         try {
 
             if (args.length != 1) {
-                throw new CommandShapesException("invalid argument nnumber");
+                throw new CommandShapesException("invalid argument number");
             }
 
             Shape shape = selectShape(processor, args[0]);

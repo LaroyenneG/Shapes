@@ -30,7 +30,7 @@ public class CommandCreateShape extends CommandShapesEditor {
 
         String[] nArgs = new String[args.length - 1];
 
-        System.arraycopy(args, 1, nArgs, 0, args.length);
+        System.arraycopy(args, 1, nArgs, 0, args.length - 1);
 
         switch (args[0]) {
 
@@ -58,6 +58,11 @@ public class CommandCreateShape extends CommandShapesEditor {
     public void execute(Processor processor, String[] args) {
 
         try {
+
+            if (args.length < 3) {
+                throw new CommandShapesException("invalid argument number");
+            }
+
             SCollection collection = model(processor);
             Shape shape = createShape(args);
             collection.add(shape);

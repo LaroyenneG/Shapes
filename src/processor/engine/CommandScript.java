@@ -27,15 +27,14 @@ public class CommandScript extends Command {
             String line = null;
 
             while ((line = processor.fetch()) != null) {
-                if (line.charAt(0) != '#') {
-                    processor.execute(processor.decode(line), null);
-                }
+                processor.interpretLine(line);
             }
 
             inputStream.close();
 
-        } catch (ProcessorException | IOException e) {
+        } catch (ProcessorException | NumberFormatException | IOException e) {
             processor.err().println(e.getMessage());
+            e.printStackTrace();
         } finally {
             processor.setIn(lastInputStream);
         }
