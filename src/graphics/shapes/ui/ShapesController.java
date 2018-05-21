@@ -40,7 +40,9 @@ public class ShapesController extends Controller {
 
         for (Iterator<Shape> iter = collection.iterator(); iter.hasNext(); ) {
             Shape shape = iter.next();
+
             if (((SelectionAttributes) shape.getAttributes(SelectionAttributes.ID)).isSelected()) {
+
                 shape.translate(dx, dy);
             }
         }
@@ -66,7 +68,7 @@ public class ShapesController extends Controller {
         }
 
         if (target == null || !select) {
-
+            unselectAll();
         } else if (target != null && select) {
 
         }
@@ -74,8 +76,12 @@ public class ShapesController extends Controller {
     }
 
     public void mouseDragged(MouseEvent e) {
-        int dx = mouseposition.x - mouseposition2.x;
-        int dy = mouseposition.y - mouseposition2.y;
+        mouseposition = e.getLocationOnScreen();
+        x = (int) mouseposition.getX();
+        y = (int) mouseposition.getY();
+        int dx = x - mouseposition2.x;
+        int dy = y - mouseposition2.y;
+
 
         if (!e.isShiftDown()) {
 
@@ -98,14 +104,15 @@ public class ShapesController extends Controller {
         }
         if (target != null) {
             ((SelectionAttributes) target.getAttributes(SelectionAttributes.ID)).toggleSelection();
-            if (e.getButton() != 1) {
-                ((SelectionAttributes) target.getAttributes(SelectionAttributes.ID)).select();
-            }
         }
 
         super.getView().repaint();
         mouseposition2 = e.getLocationOnScreen();
         mouseposition = e.getLocationOnScreen();
+    }
+
+    public void mouseReleased(MouseEvent e) {
+
     }
 
 
