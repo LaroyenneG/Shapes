@@ -14,11 +14,15 @@ public class CommandScript extends Command {
     @Override
     public void execute(Processor processor, String[] args) {
 
+
         InputStream lastInputStream = processor.in();
 
         try {
+            if (args.length != 1) {
+                throw new ProcessorException("invalid argument number");
+            }
 
-            File file = new File(processor.fetch());
+            File file = new File(args[0]);
 
             FileInputStream inputStream = new FileInputStream(file);
 
@@ -34,11 +38,9 @@ public class CommandScript extends Command {
 
         } catch (ProcessorException | NumberFormatException | IOException e) {
             processor.err().println(e.getMessage());
-            e.printStackTrace();
         } finally {
             processor.setIn(lastInputStream);
         }
-
     }
 
     @Override

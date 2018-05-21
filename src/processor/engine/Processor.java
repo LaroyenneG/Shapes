@@ -9,8 +9,8 @@ public class Processor {
 
 
     private static final char COMMAND_CHAR = '#';
-    private static final char SEP_CHAR_1 = '(';
-    private static final char SEP_CHAR_2 = ')';
+    private static final char SEP_CHAR_1 = '{';
+    private static final char SEP_CHAR_2 = '}';
     private static final char VARIABLE_CHAR = '$';
     private static final char QUOTES = '"';
 
@@ -63,16 +63,15 @@ public class Processor {
 
         for (int i = 0; i < args.length; i++) {
 
-            String string = args[i];
+            StringBuilder string = new StringBuilder(args[i]);
 
-            if (string.contains(String.valueOf(QUOTES))) {
+            if (string.toString().contains(String.valueOf(QUOTES))) {
 
                 for (i = i + 1; i < args.length; i++) {
 
-                    string += " " + args[i];
+                    string.append(" ").append(args[i]);
 
                     if (args[i].contains(String.valueOf(QUOTES))) {
-                        string = string.replaceAll(String.valueOf(QUOTES), "");
                         break;
                     }
 
@@ -80,9 +79,10 @@ public class Processor {
                         throw new ProcessorException("invalid quote");
                     }
                 }
+                string = new StringBuilder(string.toString().replaceAll(String.valueOf(QUOTES), ""));
             }
 
-            argsList.add(string);
+            argsList.add(string.toString());
         }
 
         return argsList.toArray(new String[0]);
@@ -138,14 +138,17 @@ public class Processor {
 
                     interpretLine(subString);
 
-                    out().println();
                     output.flush();
+                    output.close();
 
-                    String result = reader.readLine();
+                    int l = -1;
+                    StringBuilder result = new StringBuilder();
+                    while ((l = reader.read()) > 0) {
+                        result.append((char) l);
+                    }
 
                     line = line.substring(0, a - 1) + result + line.substring(b + 1, line.length());
 
-                    output.close();
                     input.close();
 
                 } catch (IOException e) {

@@ -28,12 +28,12 @@ public class CommandAddAttribute extends CommandShapesEditor {
                 attributes = new ColorAttributes(readBool(arg[1]), readBool(arg[2]), readColor(arg[3]), readColor(arg[4]));
                 break;
 
-            case "selection":
+            case "select":
                 attributes = new SelectionAttributes();
                 break;
 
             default:
-                throw new CommandShapesException("bad attribute");
+                throw new CommandShapesException("bad attribute : " + arg[0]);
         }
 
         return attributes;
@@ -53,7 +53,7 @@ public class CommandAddAttribute extends CommandShapesEditor {
 
             System.arraycopy(args, 1, attAgrs, 0, args.length - 1);
 
-            selectShape(processor, args[1]).addAttributes(createAttribute(attAgrs));
+            selectShape(processor, args[0]).addAttributes(createAttribute(attAgrs));
         } catch (CommandShapesException e) {
             processor.err().println(e.getMessage());
         }

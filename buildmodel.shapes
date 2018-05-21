@@ -1,0 +1,24 @@
+# Default script builder
+# Command to run this script script <path file>
+
+clear
+$r1={create rectangle 10 10 20 30}
+addatt $r1 color true false blue blue
+
+
+$c1={create circle 200 200 50}
+addatt $c1 color false true blue blue
+
+
+$c2={create circle 100 100 10}
+addatt $c2 color false true blue blue
+
+
+$s1={create text 100 100 "penichiot le chio"}
+addatt $s1 color true true red blue
+
+create collection $r1 $c1
+delete $r1
+delete $c1
+list
+

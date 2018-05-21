@@ -5,7 +5,6 @@ import graphics.shapes.SCollection;
 import graphics.shapes.SRectangle;
 import graphics.shapes.SText;
 import graphics.shapes.attributes.ColorAttributes;
-import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 import processor.engine.Processor;
 import processor.engine.ProcessorException;
@@ -52,35 +51,35 @@ public class Editor extends JFrame {
 
         SRectangle r = new SRectangle(new Point(10, 10), 20, 30);
         r.addAttributes(new ColorAttributes(true, false, Color.BLUE, Color.BLUE));
-        r.addAttributes(new SelectionAttributes());
+        //r.addAttributes(new SelectionAttributes());
         model.add(r);
 
         SCircle c2 = new SCircle(new Point(200, 200), 50);
         c2.addAttributes(new ColorAttributes(false, true, Color.BLUE, Color.BLUE));
-        c2.addAttributes(new SelectionAttributes());
+        //c2.addAttributes(new SelectionAttributes());
         model.add(c2);
 
 
         SCircle c = new SCircle(new Point(100, 100), 10);
         c.addAttributes(new ColorAttributes(false, true, Color.BLUE, Color.BLUE));
-        c.addAttributes(new SelectionAttributes());
+        //c.addAttributes(new SelectionAttributes());
         model.add(c);
 
         SText t = new SText(new Point(100, 100), "hello");
         t.addAttributes(new ColorAttributes(true, true, Color.YELLOW, Color.BLUE));
-        t.addAttributes(new FontAttributes());
-        t.addAttributes(new SelectionAttributes());
+        //t.addAttributes(new FontAttributes());
+        //t.addAttributes(new SelectionAttributes());
         model.add(t);
 
         SCollection sc = new SCollection();
         sc.addAttributes(new SelectionAttributes());
         r = new SRectangle(new Point(20, 30), 30, 30);
         r.addAttributes(new ColorAttributes(true, false, Color.MAGENTA, Color.BLUE));
-        r.addAttributes(new SelectionAttributes());
+        //r.addAttributes(new SelectionAttributes());
         sc.add(r);
         c = new SCircle(new Point(150, 100), 20);
         c.addAttributes(new ColorAttributes(false, true, Color.BLUE, Color.DARK_GRAY));
-        c.addAttributes(new SelectionAttributes());
+        //c.addAttributes(new SelectionAttributes());
         sc.add(c);
 
         model.add(sc);

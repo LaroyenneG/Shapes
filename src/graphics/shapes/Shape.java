@@ -1,6 +1,7 @@
 package graphics.shapes;
 
 import graphics.shapes.attributes.Attributes;
+import graphics.shapes.attributes.SelectionAttributes;
 
 import java.awt.*;
 import java.util.TreeMap;
@@ -11,6 +12,7 @@ public abstract class Shape {
 
     public Shape() {
         attributes = new TreeMap<>();
+        addAttributes(new SelectionAttributes());
     }
 
     public void addAttributes(Attributes attr) {

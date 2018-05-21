@@ -58,7 +58,7 @@ public class CommandCreateShape extends CommandShapesEditor {
                 break;
 
             case "collection":
-                shape = createSCollection(processor, args);
+                shape = createSCollection(processor, nArgs);
                 break;
 
             default:
@@ -81,7 +81,7 @@ public class CommandCreateShape extends CommandShapesEditor {
             SCollection collection = model(processor);
             Shape shape = createShape(processor, args);
             collection.add(shape);
-            processor.out().println(shape.hashCode());
+            processor.out().print(shape.hashCode());
         } catch (CommandShapesException e) {
             processor.err().println(e.getMessage());
         }
