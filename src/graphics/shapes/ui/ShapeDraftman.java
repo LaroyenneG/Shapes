@@ -3,6 +3,7 @@ package graphics.shapes.ui;
 import graphics.shapes.*;
 import graphics.shapes.Shape;
 import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.attributes.SelectionAttributes;
 
 import java.awt.*;
 import java.util.Iterator;
@@ -13,6 +14,16 @@ public class ShapeDraftman implements ShapeVisitor {
 
     public ShapeDraftman(Graphics g) {
         graph2D = (Graphics2D) g;
+    }
+
+    private void drawHandler(Rectangle rect) {
+        int size = 5;
+        Color HANDLER_COLOR = Color.GRAY;
+        Rectangle r = rect.getBounds();
+        graph2D.setColor(HANDLER_COLOR);
+
+        graph2D.drawRect(rect.getLocation().x - size, rect.getLocation().y - size, size, size);
+        graph2D.drawRect(rect.getLocation().x + r.width, rect.getLocation().y + r.height, size, size);
     }
 
     @Override
@@ -56,9 +67,15 @@ public class ShapeDraftman implements ShapeVisitor {
     @Override
     public void visitCollection(SCollection collection) {
 
+        Rectangle rect = collection.getBounds();
         Iterator<Shape> shapes = collection.iterator();
         while (shapes.hasNext()) {
             shapes.next().accept(this);
+        }
+
+        SelectionAttributes sa = (SelectionAttributes) collection.getAttributes(SelectionAttributes.ID);
+        if (sa.isSelected()) {
+            this.drawHandler(rect);
         }
 
     }
@@ -80,5 +97,6 @@ public class ShapeDraftman implements ShapeVisitor {
             graph2D.setColor(colorAttributes.strokedColor);
             graph2D.drawString(text.getText(), text.getLoc().x, text.getLoc().y);
         }
+
     }
 }
