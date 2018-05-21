@@ -3,17 +3,17 @@ package processor.engine;
 import processor.shapescommands.CommandClearShape;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Processor {
 
 
+    private static final char COMMAND_CHAR = '#';
     private static final char SEP_CHAR_1 = '(';
     private static final char SEP_CHAR_2 = ')';
-    private static final char COMMANT_CHAR = '#';
+    private static final char VARIABLE_CHAR = '$';
+
+    private HashMap<String, String> variables;
 
     private static final String DEFAULT_PROMPT = "[shapes]$";
 
@@ -40,6 +40,7 @@ public class Processor {
         terminated = false;
 
         proc = new TreeMap<>();
+        variables = new HashMap<>();
 
         addNewCommand(new CommandQuit());
         addNewCommand(new CommandMan());
@@ -55,9 +56,11 @@ public class Processor {
 
     public void interpretLine(String line) throws ProcessorException {
 
-        if (line.length() < 1 || line.charAt(0) == COMMANT_CHAR) {
+
+        if (line.length() < 1 || line.charAt(0) == COMMAND_CHAR) {
             return;
         }
+
 
         String oldLine = null;
 
@@ -119,6 +122,43 @@ public class Processor {
 
         } while (!oldLine.equals(line));
 
+
+        /* Variable manager */
+
+        if (line.charAt(0) == VARIABLE_CHAR) {
+
+            /* Affectation */
+
+            StringBuilder varName = new StringBuilder();
+            StringBuilder varValue = new StringBuilder();
+            for (int i = 1; i < line.length(); i++) {
+                if (line.charAt(i) == '=') {
+                    for (int j = i + 1; j < line.length(); j++) {
+                        varValue.append(line.charAt(j));
+                    }
+                    break;
+                }
+                varName.append(line.charAt(i));
+            }
+
+            if (varName.length() >= 1 && !varName.toString().contains(" ") && varValue.length() >= 1 && !varValue.toString().contains(" ")) {
+                variables.put(varName.toString(), varValue.toString());
+                return;
+            }
+        }
+
+        /* Reader */
+
+        do {
+            oldLine = line;
+            for (String key : variables.keySet()) {
+                String value = variables.get(key);
+                String name = VARIABLE_CHAR + key;
+                line = line.replace(name, value);
+            }
+        } while (!oldLine.equals(line));
+
+
         String[] args = line.split(" ");
 
         String[] cmdArgs = new String[args.length - 1];
@@ -126,6 +166,7 @@ public class Processor {
         System.arraycopy(args, 1, cmdArgs, 0, args.length - 1);
 
         execute(decode(args[0]), cmdArgs);
+
     }
 
     public Command decode(String name) throws ProcessorException {

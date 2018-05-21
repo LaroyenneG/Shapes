@@ -23,8 +23,19 @@ public class CommandCreateShape extends CommandShapesEditor {
         return new SText(readPoint(args[0], args[1]), args[2]);
     }
 
+    private static SCollection createSCollection(Processor processor, String[] args) throws CommandShapesException {
 
-    private static Shape createShape(String[] args) throws CommandShapesException {
+        SCollection sCollection = new SCollection();
+        for (String s :
+                args) {
+            sCollection.add(selectShape(processor, s));
+        }
+
+        return sCollection;
+    }
+
+
+    private static Shape createShape(Processor processor, String[] args) throws CommandShapesException {
 
         Shape shape = null;
 
@@ -46,6 +57,10 @@ public class CommandCreateShape extends CommandShapesEditor {
                 shape = createText(nArgs);
                 break;
 
+            case "collection":
+                shape = createSCollection(processor, args);
+                break;
+
             default:
                 throw new CommandShapesException("invalid shape name");
         }
@@ -64,7 +79,7 @@ public class CommandCreateShape extends CommandShapesEditor {
             }
 
             SCollection collection = model(processor);
-            Shape shape = createShape(args);
+            Shape shape = createShape(processor, args);
             collection.add(shape);
             processor.out().println(shape.hashCode());
         } catch (CommandShapesException e) {
