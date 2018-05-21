@@ -1,6 +1,7 @@
 package graphics.shapes.ui;
 
 import graphics.ui.Controller;
+import graphics.ui.View;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -77,6 +78,10 @@ public class EditorMenu extends JMenuBar {
         for (JMenuItem item : jMenuItems) {
             item.addActionListener(listener);
         }
+    }
+
+    public void setView(View view) {
+        controller.setView(view);
     }
 
     public Controller defaultController(Object model) {

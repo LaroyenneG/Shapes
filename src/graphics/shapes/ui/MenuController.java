@@ -31,9 +31,7 @@ public class MenuController extends Controller {
 
             case EditorMenu.ID_RESET:
                 ((SCollection) getModel()).deleteAllShapes();
-                /*
-                repaint
-                 */
+                getView().repaint();
                 break;
 
             case EditorMenu.ID_SCHOOL:
