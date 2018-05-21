@@ -179,7 +179,7 @@ public class Processor {
                 varName.append(line.charAt(i));
             }
 
-            if (varName.length() >= 1 && !varName.toString().contains(" ") && varValue.length() >= 1 && !varValue.toString().contains(" ")) {
+            if (varName.length() >= 1 && !varName.toString().contains(" ") && varValue.length() >= 1) {
                 variables.put(varName.toString(), varValue.toString());
                 return;
             }
