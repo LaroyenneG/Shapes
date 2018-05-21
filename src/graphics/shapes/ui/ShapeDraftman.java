@@ -16,14 +16,14 @@ public class ShapeDraftman implements ShapeVisitor {
         graph2D = (Graphics2D) g;
     }
 
-    private void drawHandler(Rectangle rect) {
+    private void drawHandler(Shape shape) {
         int size = 5;
         Color HANDLER_COLOR = Color.GRAY;
-        Rectangle r = rect.getBounds();
+        Rectangle r = shape.getBounds();
         graph2D.setColor(HANDLER_COLOR);
 
-        graph2D.drawRect(rect.getLocation().x - size, rect.getLocation().y - size, size, size);
-        graph2D.drawRect(rect.getLocation().x + r.width, rect.getLocation().y + r.height, size, size);
+        graph2D.drawRect(shape.getLoc().x - size, shape.getLoc().y - size, size, size);
+        graph2D.drawRect(shape.getLoc().x + r.width, shape.getLoc().y + r.height, size, size);
     }
 
     @Override
@@ -39,17 +39,17 @@ public class ShapeDraftman implements ShapeVisitor {
 
         if (colorAttributes.filled) {
             graph2D.setColor(colorAttributes.filledColor);
-            graph2D.fillRect(rect.x, rect.y, rect.width, rect.height);
+            graph2D.fillRect(rectangle.getLoc().x, rectangle.getLoc().y, rect.width, rect.height);
         }
         if (colorAttributes.stroked) {
             graph2D.setColor(colorAttributes.strokedColor);
-            graph2D.drawRect(rect.x, rect.y, rect.width, rect.height);
+            graph2D.drawRect(rectangle.getLoc().x, rectangle.getLoc().y, rect.width, rect.height);
         }
 
-        this.graph2D.drawRect(rect.x, rect.y, rect.width, rect.height);
+        this.graph2D.drawRect(rectangle.getLoc().x, rectangle.getLoc().y, rect.width, rect.height);
         SelectionAttributes sa = (SelectionAttributes) rectangle.getAttributes(SelectionAttributes.ID);
         if (sa.isSelected())
-            this.drawHandler(bounds);
+            this.drawHandler(rectangle);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class ShapeDraftman implements ShapeVisitor {
 
         SelectionAttributes sa = (SelectionAttributes) circle.getAttributes(SelectionAttributes.ID);
         if (sa.isSelected())
-            this.drawHandler(bounds);
+            this.drawHandler(circle);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class ShapeDraftman implements ShapeVisitor {
 
         SelectionAttributes sa = (SelectionAttributes) collection.getAttributes(SelectionAttributes.ID);
         if (sa.isSelected()) {
-            this.drawHandler(rect);
+            this.drawHandler(collection);
         }
 
     }
@@ -111,7 +111,7 @@ public class ShapeDraftman implements ShapeVisitor {
 
         SelectionAttributes sa = (SelectionAttributes) text.getAttributes(SelectionAttributes.ID);
         if (sa.isSelected())
-            this.drawHandler(bounds);
+            this.drawHandler(text);
 
     }
 }
