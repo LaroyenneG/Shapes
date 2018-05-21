@@ -1,8 +1,6 @@
 package graphics.shapes.attributes;
 
 import java.awt.*;
-import java.awt.font.FontRenderContext;
-import java.awt.font.GlyphVector;
 import java.awt.image.BufferedImage;
 
 public class FontAttributes extends Attributes {
@@ -18,7 +16,7 @@ public class FontAttributes extends Attributes {
     }
 
     public FontAttributes() {
-        this(new Font("Courier New", 1, 14), Color.BLACK);
+        this(new Font("Courier New", Font.BOLD, 14), Color.BLACK);
     }
 
     @Override
@@ -26,24 +24,17 @@ public class FontAttributes extends Attributes {
         return ID;
     }
 
-    /*
-    Retourne le rectangle entourant la chaine de carractére.
-    Voir avec les outils java. Composant de la plateforme java.
-     */
+
     public Rectangle getBounds(String str) {
-        Font font = Font.decode("Courier New-" + 16);
 
-        BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
-        Graphics g = image.getGraphics();
+        Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+
+        BufferedImage image = new BufferedImage(dimension.width, dimension.height, BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g = (Graphics2D) image.getGraphics();
         g.setFont(font);
-        FontRenderContext render = image.createGraphics().getFontRenderContext();
-        GlyphVector v = font.createGlyphVector(render, "sdfghjk");
 
-        int hauteur, largeur;
-        hauteur = v.getPixelBounds(render, 0, 0).height;
-        largeur = v.getPixelBounds(render, 0, 0).width;
-
-        return new Rectangle(0, 0, hauteur, largeur);
+        return font.getStringBounds(str, g.getFontRenderContext()).getBounds();
     }
 
 }
