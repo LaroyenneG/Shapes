@@ -37,6 +37,10 @@ public class SCollection extends Shape {
 
     @Override
     public void setLoc(Point loc) {
+        Iterator<Shape> shapes = this.iterator();
+        while (shapes.hasNext()) {
+            shapes.next().setLoc(loc);
+        }
 
     }
 

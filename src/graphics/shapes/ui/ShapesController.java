@@ -42,10 +42,7 @@ public class ShapesController extends Controller {
             Shape shape = iter.next();
 
             if (((SelectionAttributes) shape.getAttributes(SelectionAttributes.ID)).isSelected()) {
-                System.out.println("go One");
-                System.out.print(shape);
-                System.out.print(" ");
-                System.out.println(((SelectionAttributes) shape.getAttributes(SelectionAttributes.ID)).isSelected());
+
                 shape.translate(dx, dy);
             }
         }
@@ -84,14 +81,10 @@ public class ShapesController extends Controller {
         y = (int) mouseposition.getY();
         int dx = x - mouseposition2.x;
         int dy = y - mouseposition2.y;
-        System.out.print(dx);
-        System.out.print(":");
-        System.out.print(dy);
-        System.out.println(" ");
+
 
         if (!e.isShiftDown()) {
 
-            System.out.print("go translate");
             translateSelected(dx, dy);
         }
         mouseposition2 = e.getLocationOnScreen();
