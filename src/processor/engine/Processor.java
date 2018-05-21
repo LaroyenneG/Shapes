@@ -12,6 +12,7 @@ public class Processor {
     private static final char SEP_CHAR_1 = '(';
     private static final char SEP_CHAR_2 = ')';
     private static final char VARIABLE_CHAR = '$';
+    private static final char QUOTES = '"';
 
     private HashMap<String, String> variables;
 
@@ -47,12 +48,46 @@ public class Processor {
         addNewCommand(new CommandMenu());
         addNewCommand(new CommandScript());
         addNewCommand(new CommandClearShape());
+        addNewCommand(new CommandEcho());
     }
 
     public String fetch() throws IOException {
 
         return reader.readLine();
     }
+
+
+    private static String[] argsSpace(String[] args) throws ProcessorException {
+
+        List<String> argsList = new ArrayList<>();
+
+        for (int i = 0; i < args.length; i++) {
+
+            String string = args[i];
+
+            if (string.contains(String.valueOf(QUOTES))) {
+
+                for (i = i + 1; i < args.length; i++) {
+
+                    string += " " + args[i];
+
+                    if (args[i].contains(String.valueOf(QUOTES))) {
+                        string = string.replaceAll(String.valueOf(QUOTES), "");
+                        break;
+                    }
+
+                    if (i + 1 >= args.length) {
+                        throw new ProcessorException("invalid quote");
+                    }
+                }
+            }
+
+            argsList.add(string);
+        }
+
+        return argsList.toArray(new String[0]);
+    }
+
 
     public void interpretLine(String line) throws ProcessorException {
 
@@ -160,6 +195,8 @@ public class Processor {
 
 
         String[] args = line.split(" ");
+
+        args = argsSpace(args);
 
         String[] cmdArgs = new String[args.length - 1];
 
