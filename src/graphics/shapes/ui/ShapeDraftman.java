@@ -31,6 +31,7 @@ public class ShapeDraftman implements ShapeVisitor {
 
         ColorAttributes colorAttributes = (ColorAttributes) rectangle.getAttributes(ColorAttributes.ID);
         Rectangle rect = rectangle.getRect();
+        Rectangle bounds = rect.getBounds();
 
         if (colorAttributes == null) {
             colorAttributes = DEFAULT_COLOR_ATTRIBUTES;
@@ -44,12 +45,18 @@ public class ShapeDraftman implements ShapeVisitor {
             graph2D.setColor(colorAttributes.strokedColor);
             graph2D.drawRect(rect.x, rect.y, rect.width, rect.height);
         }
+
+        this.graph2D.drawRect(rect.x, rect.y, rect.width, rect.height);
+        SelectionAttributes sa = (SelectionAttributes) rectangle.getAttributes(SelectionAttributes.ID);
+        if (sa.isSelected())
+            this.drawHandler(bounds);
     }
 
     @Override
     public void visitCircle(SCircle circle) {
 
         ColorAttributes colorAttributes = (ColorAttributes) circle.getAttributes(ColorAttributes.ID);
+        Rectangle bounds = circle.getBounds();
 
         if (colorAttributes == null) {
             colorAttributes = DEFAULT_COLOR_ATTRIBUTES;
@@ -62,6 +69,10 @@ public class ShapeDraftman implements ShapeVisitor {
             graph2D.setColor(colorAttributes.strokedColor);
             graph2D.drawOval(circle.getLoc().x, circle.getLoc().y, circle.getRadius(), circle.getRadius());
         }
+
+        SelectionAttributes sa = (SelectionAttributes) circle.getAttributes(SelectionAttributes.ID);
+        if (sa.isSelected())
+            this.drawHandler(bounds);
     }
 
     @Override
@@ -97,6 +108,10 @@ public class ShapeDraftman implements ShapeVisitor {
             graph2D.setColor(colorAttributes.strokedColor);
             graph2D.drawString(text.getText(), text.getLoc().x, text.getLoc().y);
         }
+
+        SelectionAttributes sa = (SelectionAttributes) text.getAttributes(SelectionAttributes.ID);
+        if (sa.isSelected())
+            this.drawHandler(bounds);
 
     }
 }

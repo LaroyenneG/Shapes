@@ -2,7 +2,6 @@ package graphics.shapes.ui;
 
 import graphics.shapes.SCollection;
 import graphics.shapes.Shape;
-import graphics.shapes.attributes.Attributes;
 import graphics.shapes.attributes.SelectionAttributes;
 import graphics.ui.Controller;
 
@@ -62,8 +61,9 @@ public class ShapesController extends Controller {
         x = (int) mouseposition.getX();
         y = (int) mouseposition.getY();
         Shape target = this.getTarget(e);
-        Attributes attributes = target.getAttributes(SelectionAttributes.ID);
-        select = ((SelectionAttributes) attributes).isSelected();
+        if (target != null) {
+            select = ((SelectionAttributes) target.getAttributes(SelectionAttributes.ID)).isSelected();
+        }
 
         if (target == null || !select) {
 
@@ -77,7 +77,11 @@ public class ShapesController extends Controller {
         int dx = mouseposition.x - mouseposition2.x;
         int dy = mouseposition.y - mouseposition2.y;
 
-        translateSelected(dx, dy);
+        if (!e.isShiftDown()) {
+
+            translateSelected(dx, dy);
+        }
+        mouseposition2 = e.getLocationOnScreen();
         super.getView().repaint();
     }
 

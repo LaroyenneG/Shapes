@@ -54,6 +54,11 @@ public class Editor extends JFrame {
         r.addAttributes(new SelectionAttributes());
         model.add(r);
 
+        SRectangle r2 = new SRectangle(new Point(300, 300), 20, 30);
+        r2.addAttributes(new ColorAttributes(true, false, Color.BLUE, Color.BLUE));
+        r2.addAttributes(new SelectionAttributes());
+        model.add(r2);
+
         SCircle c = new SCircle(new Point(100, 100), 10);
         c.addAttributes(new ColorAttributes(false, true, Color.BLUE, Color.BLUE));
         c.addAttributes(new SelectionAttributes());
