@@ -48,8 +48,13 @@ public class SText extends Shape {
 
     @Override
     public Rectangle getBounds() {
+
         FontAttributes font = (FontAttributes) getAttributes(FontAttributes.ID);
-        return font.getBounds(text);
+
+        Rectangle bounds = font.getBounds(text);
+        bounds.setLocation(new Point(loc.x, loc.y - bounds.height));
+
+        return bounds;
     }
 
     @Override
