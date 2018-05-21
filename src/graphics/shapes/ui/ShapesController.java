@@ -118,6 +118,10 @@ public class ShapesController extends Controller {
         mouseposition = e.getLocationOnScreen();
     }
 
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
 
 }
 
