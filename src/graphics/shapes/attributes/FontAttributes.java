@@ -6,6 +6,9 @@ import java.awt.image.BufferedImage;
 public class FontAttributes extends Attributes {
 
     public static final String ID = "font";
+    private static final String DEFAULT_FONT = "Courier New";
+    private static final int DEFAULT_SIZE = 14;
+    private static final Color DEFAULT_COLOR = Color.BLACK;
 
     public Font font;
     public Color fontColor;
@@ -16,7 +19,7 @@ public class FontAttributes extends Attributes {
     }
 
     public FontAttributes() {
-        this(new Font("Courier New", Font.BOLD, 14), Color.BLACK);
+        this(new Font(DEFAULT_FONT, Font.BOLD, DEFAULT_SIZE), DEFAULT_COLOR);
     }
 
     @Override
