@@ -5,6 +5,11 @@ import processor.engine.Processor;
 
 public class CommandCreateShape extends CommandShapesEditor {
 
+    public static final String RECT_OPTION_NAME = "rectangle";
+    public static final String CIR_OPTION_NAME = "circle";
+    public static final String TEXT_OPTION_NAME = "text";
+    public static final String COL_OPTION_NAME = "collection";
+
     public CommandCreateShape() {
         super("create");
     }
@@ -25,13 +30,17 @@ public class CommandCreateShape extends CommandShapesEditor {
 
     private static SCollection createSCollection(Processor processor, String[] args) throws CommandShapesException {
 
-        SCollection sCollection = new SCollection();
+        SCollection collection = new SCollection();
         for (String s :
                 args) {
-            sCollection.add(selectShape(processor, s));
+
+            Shape shape = selectShape(processor, s);
+
+            collection.add(shape);
+            model(processor).deleteShape(shape);
         }
 
-        return sCollection;
+        return collection;
     }
 
 
@@ -45,19 +54,19 @@ public class CommandCreateShape extends CommandShapesEditor {
 
         switch (args[0]) {
 
-            case "rectangle":
+            case RECT_OPTION_NAME:
                 shape = createRectangle(nArgs);
                 break;
 
-            case "circle":
+            case CIR_OPTION_NAME:
                 shape = createCircle(nArgs);
                 break;
 
-            case "text":
+            case TEXT_OPTION_NAME:
                 shape = createText(nArgs);
                 break;
 
-            case "collection":
+            case COL_OPTION_NAME:
                 shape = createSCollection(processor, nArgs);
                 break;
 

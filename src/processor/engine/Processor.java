@@ -8,11 +8,12 @@ import java.util.*;
 public class Processor {
 
 
-    private static final char COMMAND_CHAR = '#';
-    private static final char SEP_CHAR_1 = '{';
-    private static final char SEP_CHAR_2 = '}';
-    private static final char VARIABLE_CHAR = '$';
-    private static final char QUOTES = '"';
+    public static final char COMMAND_CHAR = '#';
+    public static final char SEP_CHAR_1 = '{';
+    public static final char SEP_CHAR_2 = '}';
+    public static final char VARIABLE_CHAR = '$';
+    public static final char QUOTES = '"';
+    public static final char COMMAND_AFFECTATION = '=';
 
     private HashMap<String, String> variables;
 
@@ -200,7 +201,7 @@ public class Processor {
             StringBuilder varName = new StringBuilder();
             StringBuilder varValue = new StringBuilder();
             for (int i = 1; i < line.length(); i++) {
-                if (line.charAt(i) == '=') {
+                if (line.charAt(i) == COMMAND_AFFECTATION) {
                     for (int j = i + 1; j < line.length(); j++) {
                         varValue.append(line.charAt(j));
                     }

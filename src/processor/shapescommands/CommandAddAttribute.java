@@ -32,7 +32,7 @@ public class CommandAddAttribute extends CommandShapesEditor {
                 break;
 
             case SELECT_OPTION_NAME:
-                attributes = new SelectionAttributes();
+                attributes = new SelectionAttributes(readBool(arg[1]));
                 break;
 
             default:
@@ -48,7 +48,7 @@ public class CommandAddAttribute extends CommandShapesEditor {
 
         try {
 
-            if (args.length < 2) {
+            if (args.length < 3) {
                 throw new CommandShapesException("invalid argument number");
             }
 

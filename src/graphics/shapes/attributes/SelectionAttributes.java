@@ -10,6 +10,11 @@ public class SelectionAttributes extends Attributes {
         selected = false;
     }
 
+    public SelectionAttributes(boolean selected) {
+        this.selected = selected;
+    }
+
+
     @Override
     public String getId() {
         return ID;

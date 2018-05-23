@@ -62,9 +62,17 @@ public abstract class CommandShapesEditor extends Command {
         return Boolean.parseBoolean(string);
     }
 
+    static String converColor(Color color) {
+
+        String hex = Integer.toHexString(color.getRGB());
+
+        hex = "#" + hex.substring(2, hex.length());
+
+        return hex;
+    }
 
     static Color readColor(String string) {
-        return Color.getColor(string);
+        return Color.decode(string);
     }
 
     static Font readFont(String string) {

@@ -15,7 +15,7 @@ public class CommandMoveShape extends CommandShapesEditor {
 
         try {
 
-            if (args.length != 4) {
+            if (args.length != 3) {
                 throw new CommandShapesException("invalid argument number");
             }
 
@@ -35,7 +35,7 @@ public class CommandMoveShape extends CommandShapesEditor {
 
         string.append(super.toString());
         string.append(' ');
-        string.append("<id> <point>");
+        string.append("<id> <value> <value>");
 
         return new String(string);
     }

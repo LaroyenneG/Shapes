@@ -11,9 +11,7 @@ public class CommandResizeShape extends CommandShapesEditor {
 
     private static void resizeShape(Shape shape, int r) {
 
-        /*
-        methode manquante pour cet op
-         */
+
     }
 
     @Override
