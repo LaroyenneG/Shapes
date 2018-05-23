@@ -33,7 +33,8 @@ public class SRectangle extends Shape {
     @Override
     public void translate(int dx, int dy) {
 
-        loc.translate(dx, dy);
+        loc.x += dx;
+        loc.y += dy;
     }
 
     @Override

@@ -13,6 +13,7 @@ public class FontAttributes extends Attributes {
 
     public Font font;
     public Color fontColor;
+    private int fSize;
 
     public FontAttributes(Font font, Color fontColor) {
         this.font = font;
@@ -33,5 +34,10 @@ public class FontAttributes extends Attributes {
 
         return font.getStringBounds(str, new FontRenderContext(new AffineTransform(), true, true)).getBounds();
     }
+
+    public void setFontSize(int size) {
+        font = new Font(DEFAULT_FONT, Font.BOLD, size);
+    }
+
 
 }

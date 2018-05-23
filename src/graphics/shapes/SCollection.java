@@ -79,6 +79,11 @@ public class SCollection extends Shape {
 
     @Override
     public void reSize(int dx, int dy) {
+        Iterator<Shape> shapes = this.iterator();
+        while (shapes.hasNext()) {
+            shapes.next().reSize(dx, dy);
+
+        }
     }
     @Override
     public String toString() {
