@@ -53,6 +53,11 @@ public class SCircle extends Shape {
     }
 
     @Override
+    public void reSize(int dx, int dy) {
+        setRadius(getRadius() - dx);
+    }
+
+    @Override
     public String toString() {
 
         StringBuffer string = new StringBuffer();

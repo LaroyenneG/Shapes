@@ -34,6 +34,8 @@ public abstract class Shape {
 
     public abstract void accept(ShapeVisitor sv);
 
+    public abstract void reSize(int x, int y);
+
     public String toString() {
 
         StringBuffer string = new StringBuffer();

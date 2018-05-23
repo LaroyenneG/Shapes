@@ -78,6 +78,9 @@ public class SCollection extends Shape {
     }
 
     @Override
+    public void reSize(int dx, int dy) {
+    }
+    @Override
     public String toString() {
 
         StringBuffer string = new StringBuffer();

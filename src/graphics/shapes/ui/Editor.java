@@ -65,7 +65,7 @@ public class Editor extends JFrame {
         //c.addAttributes(new SelectionAttributes());
         model.add(c);
 
-        SText t = new SText(new Point(100, 100), "hello");
+        SText t = new SText(new Point(0, 0), "hello");
         t.addAttributes(new ColorAttributes(true, true, Color.YELLOW, Color.BLUE));
         //t.addAttributes(new FontAttributes());
         //t.addAttributes(new SelectionAttributes());

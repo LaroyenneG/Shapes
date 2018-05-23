@@ -47,6 +47,12 @@ public class SRectangle extends Shape {
     }
 
     @Override
+    public void reSize(int dx, int dy) {
+        rect.width += dx;
+        rect.height += dy;
+    }
+
+    @Override
     public String toString() {
 
         StringBuffer string = new StringBuffer();

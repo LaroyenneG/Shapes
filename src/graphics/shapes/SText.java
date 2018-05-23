@@ -52,7 +52,7 @@ public class SText extends Shape {
         FontAttributes font = (FontAttributes) getAttributes(FontAttributes.ID);
 
         Rectangle bounds = font.getBounds(text);
-        bounds.setLocation(new Point(loc.x, loc.y - bounds.height));
+        bounds.setLocation(new Point(loc.x, loc.y));
 
         return bounds;
     }
@@ -60,6 +60,10 @@ public class SText extends Shape {
     @Override
     public void accept(ShapeVisitor sv) {
         sv.visitText(this);
+    }
+
+    @Override
+    public void reSize(int dx, int dy) {
     }
 
     @Override

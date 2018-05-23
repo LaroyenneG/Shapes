@@ -11,21 +11,28 @@ import java.util.Iterator;
 
 public class ShapesController extends Controller {
 
-    private Point mouseposition = new Point(0, 0);
-    private Point mouseposition2 = new Point(0, 0);
-    private int x = 0;
-    private int y = 0;
-    private boolean select = false;
+    private Point mouseposition;
+    private Point mouseposition2;
+    private int x, y;
+
+    private boolean select;
 
     public ShapesController(Object newModel) {
+
         super(newModel);
+        mouseposition = new Point(0, 0);
+        mouseposition2 = new Point(0, 0);
+        x = 0;
+        y = 0;
+        select = false;
     }
 
     public Shape getTarget(MouseEvent e)
     {
         SCollection collection = (SCollection) super.getModel();
+        Iterator<Shape> iter = collection.iterator();
 
-        for (Iterator<Shape> iter = collection.iterator(); iter.hasNext(); ) {
+        while (iter.hasNext()) {
             Shape shape = iter.next();
             if (shape.getBounds().contains(e.getPoint())) {
                 return shape;
@@ -37,8 +44,9 @@ public class ShapesController extends Controller {
 
     public void translateSelected(int dx, int dy) {
         SCollection collection = (SCollection) super.getModel();
+        Iterator<Shape> iter = collection.iterator();
 
-        for (Iterator<Shape> iter = collection.iterator(); iter.hasNext(); ) {
+        while (iter.hasNext()) {
             Shape shape = iter.next();
 
             if (((SelectionAttributes) shape.getAttributes(SelectionAttributes.ID)).isSelected()) {
@@ -49,9 +57,26 @@ public class ShapesController extends Controller {
 
     }
 
+    public void reSizeSelected(int dx, int dy) {
+        SCollection collection = (SCollection) super.getModel();
+        Iterator<Shape> iter = collection.iterator();
+
+        while (iter.hasNext()) {
+            Shape shape = iter.next();
+
+            if (((SelectionAttributes) shape.getAttributes(SelectionAttributes.ID)).isSelected()) {
+
+                shape.reSize(dx, dy);
+            }
+        }
+
+    }
+
     public void unselectAll() {
         SCollection collection = (SCollection) super.getModel();
-        for (Iterator<Shape> iter = collection.iterator(); iter.hasNext(); ) {
+        Iterator<Shape> iter = collection.iterator();
+
+        while (iter.hasNext()) {
             Shape shape = iter.next();
             ((SelectionAttributes) shape.getAttributes(SelectionAttributes.ID)).unSelect();
         }
@@ -59,9 +84,7 @@ public class ShapesController extends Controller {
     }
 
     public void mousePressed(MouseEvent e) {
-        mouseposition = e.getLocationOnScreen();
-        x = (int) mouseposition.getX();
-        y = (int) mouseposition.getY();
+
         Shape target = this.getTarget(e);
         if (target != null) {
             select = ((SelectionAttributes) target.getAttributes(SelectionAttributes.ID)).isSelected();
@@ -95,7 +118,7 @@ public class ShapesController extends Controller {
         mouseposition = e.getLocationOnScreen();
         x = (int) mouseposition.getX();
         y = (int) mouseposition.getY();
-        Shape target = this.getTarget(e);
+        Shape target = getTarget(e);
 
         if (!e.isShiftDown()) {
             unselectAll();
