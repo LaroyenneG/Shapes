@@ -6,6 +6,7 @@ import graphics.shapes.attributes.SelectionAttributes;
 import graphics.ui.Controller;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Iterator;
 
@@ -16,7 +17,7 @@ public class ShapesController extends Controller {
     private Point mouseposition2;
     private int x, y;
 
-    private boolean select, resize;
+    private boolean select, resize, multipleSelection;
 
     public ShapesController(Object newModel) {
 
@@ -27,6 +28,7 @@ public class ShapesController extends Controller {
         y = 0;
         select = false;
         resize = true;
+        multipleSelection = false;
     }
 
     public Shape getTarget(MouseEvent e)
@@ -85,8 +87,10 @@ public class ShapesController extends Controller {
             Shape shape = iter.next();
 
             if (((SelectionAttributes) shape.getAttributes(SelectionAttributes.ID)).isSelected()) {
-                System.out.println("-- " + dx + ":" + dy + "--");
-                shape.reSize(dx, dy);
+                //Condition de taille minimale
+                if (shape.getBounds().width > 15 && shape.getBounds().height > 15 || (dx >= 0 && dy >= 0)) {
+                    shape.reSize(dx, dy);
+                }
             }
         }
 
@@ -148,7 +152,7 @@ public class ShapesController extends Controller {
         y = (int) mouseposition.getY();
         Shape target = getTarget(e);
 
-        if (!e.isShiftDown() && !getTargetHandler(e)) {
+        if (!e.isShiftDown() && !getTargetHandler(e) && !multipleSelection) {
             unselectAll();
         } else {
 
@@ -169,6 +173,14 @@ public class ShapesController extends Controller {
         resize = false;
     }
 
+    public void keyPressed(KeyEvent evt) {
+        System.out.println("TEST");
+        multipleSelection = true;
+    }
+
+    public void keyReleased(KeyEvent evt) {
+        multipleSelection = false;
+    }
 
 }
 
