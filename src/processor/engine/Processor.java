@@ -56,8 +56,10 @@ public class Processor {
         return reader.readLine();
     }
 
-
-    private static String[] argsSpace(String[] args) throws ProcessorException {
+    /*
+    Reformat all argument. Interpret quotes and clean space.
+     */
+    public static String[] prepareArgsToCommand(String[] args) throws ProcessorException {
 
         List<String> argsList = new ArrayList<>();
 
@@ -65,7 +67,7 @@ public class Processor {
 
             StringBuilder string = new StringBuilder(args[i]);
 
-            if (string.toString().contains(String.valueOf(QUOTES))) {
+            if (new String(string).contains(String.valueOf(QUOTES))) {
 
                 for (i = i + 1; i < args.length; i++) {
 
@@ -76,21 +78,49 @@ public class Processor {
                     }
 
                     if (i + 1 >= args.length) {
-                        throw new ProcessorException("invalid quote");
+                        throw new ProcessorException("invalid quotes");
                     }
                 }
-                string = new StringBuilder(string.toString().replaceAll(String.valueOf(QUOTES), ""));
+
+                string = new StringBuilder(new String(string).replaceAll(String.valueOf(QUOTES), ""));
             }
 
-            argsList.add(string.toString());
+            String cString = cleanLine(new String(string));
+            if (cString.length() > 0) {
+                argsList.add(cleanLine(cString));
+            }
         }
 
         return argsList.toArray(new String[0]);
     }
 
 
+    /*
+    Clean all spaces before and after the line.
+     */
+    public static String cleanLine(String line) {
+
+        int cursor_1 = 0;
+
+        while (cursor_1 < line.length() && line.charAt(cursor_1) == ' ') {
+            cursor_1++;
+        }
+
+        int cursor_2 = line.length() - 1;
+        while ((cursor_2 >= 0 && line.charAt(cursor_2) == ' ')) {
+            cursor_2--;
+        }
+
+        if (cursor_1 > cursor_2) {
+            return "";
+        }
+
+        return line.substring(cursor_1, cursor_2 + 1);
+    }
+
     public void interpretLine(String line) throws ProcessorException {
 
+        line = cleanLine(line);
 
         if (line.length() < 1 || line.charAt(0) == COMMAND_CHAR) {
             return;
@@ -199,7 +229,7 @@ public class Processor {
 
         String[] args = line.split(" ");
 
-        args = argsSpace(args);
+        args = prepareArgsToCommand(args);
 
         String[] cmdArgs = new String[args.length - 1];
 

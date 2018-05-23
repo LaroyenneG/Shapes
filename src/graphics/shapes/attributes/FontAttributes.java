@@ -1,7 +1,8 @@
 package graphics.shapes.attributes;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.AffineTransform;
 
 public class FontAttributes extends Attributes {
 
@@ -30,14 +31,7 @@ public class FontAttributes extends Attributes {
 
     public Rectangle getBounds(String str) {
 
-        Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-
-        BufferedImage image = new BufferedImage(dimension.width, dimension.height, BufferedImage.TYPE_INT_ARGB);
-
-        Graphics2D g = (Graphics2D) image.getGraphics();
-        g.setFont(font);
-
-        return font.getStringBounds(str, g.getFontRenderContext()).getBounds();
+        return font.getStringBounds(str, new FontRenderContext(new AffineTransform(), true, true)).getBounds();
     }
 
 }
