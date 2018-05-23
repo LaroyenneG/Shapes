@@ -92,12 +92,32 @@ public class CommandExportModel extends CommandShapesEditor {
         return String.valueOf(dictionary++);
     }
 
+    private static StringBuilder buildSubCommand(String key, StringBuilder command) {
+
+        final String commandName = new CommandCreateShape().getName();
+
+
+        StringBuilder string = new StringBuilder();
+
+        string.append(Processor.VARIABLE_CHAR)
+                .append(key)
+                .append(Processor.COMMAND_AFFECTATION)
+                .append(Processor.SEP_CHAR_1)
+                .append(commandName)
+                .append(' ')
+                .append(command)
+                .append(Processor.SEP_CHAR_2)
+                .append(BR);
+
+        return string;
+    }
 
     private List<String> buildCommandFromSCollection(StringBuilder line, SCollection shapes) throws CommandShapesException {
 
+        /* Optimisation not easy */
+
         line.append(BR);
 
-        final String commandName = new CommandCreateShape().getName();
 
         List<String> keyList = new ArrayList<>();
 
@@ -109,23 +129,18 @@ public class CommandExportModel extends CommandShapesEditor {
 
             String key = getNextName();
 
-            line.append(Processor.VARIABLE_CHAR)
-                    .append(key)
-                    .append(Processor.COMMAND_AFFECTATION)
-                    .append(Processor.SEP_CHAR_1);
-
-            line.append(commandName).append(' ');
+            StringBuilder command = new StringBuilder();
 
             if (shape instanceof SCollection) {
 
                 List<String> subKeyList = buildCommandFromSCollection(line, (SCollection) shape);
 
-                line.append(CommandCreateShape.COL_OPTION_NAME);
+                command.append(CommandCreateShape.COL_OPTION_NAME);
 
                 for (String k :
                         subKeyList) {
 
-                    line.append(' ')
+                    command.append(' ')
                             .append(Processor.VARIABLE_CHAR)
                             .append(k);
                 }
@@ -134,7 +149,7 @@ public class CommandExportModel extends CommandShapesEditor {
 
                 SRectangle rectangle = (SRectangle) shape;
 
-                line.append(CommandCreateShape.RECT_OPTION_NAME)
+                command.append(CommandCreateShape.RECT_OPTION_NAME)
                         .append(' ')
                         .append(rectangle.getLoc().x)
                         .append(' ')
@@ -148,7 +163,7 @@ public class CommandExportModel extends CommandShapesEditor {
 
                 SCircle circle = (SCircle) shape;
 
-                line.append(CommandCreateShape.CIR_OPTION_NAME)
+                command.append(CommandCreateShape.CIR_OPTION_NAME)
                         .append(' ')
                         .append(circle.getLoc().x)
                         .append(' ')
@@ -160,7 +175,7 @@ public class CommandExportModel extends CommandShapesEditor {
 
                 SText text = (SText) shape;
 
-                line.append(CommandCreateShape.TEXT_OPTION_NAME)
+                command.append(CommandCreateShape.TEXT_OPTION_NAME)
                         .append(' ')
                         .append(text.getLoc().x)
                         .append(' ')
@@ -172,9 +187,7 @@ public class CommandExportModel extends CommandShapesEditor {
                 throw new CommandShapesException("invalid object signature");
             }
 
-            line.append(Processor.SEP_CHAR_2);
-
-            line.append(BR);
+            line.append(buildSubCommand(key, command));
 
             line.append(buildAttributesCommand(shape, key));
 
@@ -200,7 +213,9 @@ public class CommandExportModel extends CommandShapesEditor {
 
             StringBuilder commands = new StringBuilder(Processor.COMMAND_CHAR + HEADER_MESSAGE + BR);
 
-            commands.append(BR).append("clear");
+            commands.append(BR)
+                    .append("clear")
+                    .append(BR);
 
             buildCommandFromSCollection(commands, model(processor));
 
