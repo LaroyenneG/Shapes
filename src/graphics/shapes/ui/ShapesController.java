@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.Iterator;
 
+
 public class ShapesController extends Controller {
 
     private Point mouseposition;
@@ -40,6 +41,23 @@ public class ShapesController extends Controller {
         }
         //Aucune figure est sélectionnée => return NULL
         return null;
+    }
+
+    public boolean getTargetHandler(MouseEvent e) {
+        SCollection collection = (SCollection) super.getModel();
+        Iterator<Shape> iter = collection.iterator();
+
+        while (iter.hasNext()) {
+            Shape shape = iter.next();
+            Rectangle bounds = shape.getBounds();
+            Rectangle handSup = new Rectangle(bounds.x, bounds.y, 10, 10);
+            Rectangle handInf = new Rectangle(bounds.x + bounds.width - 10, bounds.x + bounds.width - 10, 10, 10);
+            if (handSup.contains(e.getPoint()) || handInf.contains(e.getPoint())) {
+                return true;
+            }
+        }
+        //Aucune figure est sélectionnée => return NULL
+        return false;
     }
 
     public void translateSelected(int dx, int dy) {
@@ -109,7 +127,12 @@ public class ShapesController extends Controller {
         if (!e.isShiftDown()) {
 
             translateSelected(dx, dy);
+            if (getTargetHandler(e)) {
+
+                reSizeSelected(dx, dy);
+            }
         }
+
         mouseposition2 = e.getLocationOnScreen();
         super.getView().repaint();
     }
