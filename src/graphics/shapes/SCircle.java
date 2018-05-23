@@ -20,7 +20,9 @@ public class SCircle extends Shape {
 
     public void setRadius(int radius) {
 
-        this.radius = radius;
+        if (radius >= 0) {
+            this.radius = radius;
+        }
     }
 
     @Override
@@ -54,7 +56,10 @@ public class SCircle extends Shape {
 
     @Override
     public void reSize(int dx, int dy) {
-        setRadius(getRadius() + dx);
+
+        if (radius + dx >= MINIMAL_SIZE) {
+            setRadius(radius + dx);
+        }
     }
 
     @Override

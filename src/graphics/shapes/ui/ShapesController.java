@@ -87,9 +87,9 @@ public class ShapesController extends Controller {
 
             if (((SelectionAttributes) shape.getAttributes(SelectionAttributes.ID)).isSelected()) {
                 //Condition de taille minimale
-                if (shape.getBounds().width > 15 && shape.getBounds().height > 15 || (dx >= 0 && dy >= 0)) {
+                // if (shape.getBounds().width > 15 && shape.getBounds().height > 15 || (dx >= 0 && dy >= 0)) {
                     shape.reSize(dx, dy);
-                }
+                //}
             }
         }
 

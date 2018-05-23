@@ -49,8 +49,11 @@ public class SRectangle extends Shape {
 
     @Override
     public void reSize(int dx, int dy) {
-        rect.width += dx;
-        rect.height += dy;
+
+        if (((rect.width += dx) >= MINIMAL_SIZE) && ((rect.height += dy) >= MINIMAL_SIZE)) {
+            rect.width += dx;
+            rect.height += dy;
+        }
     }
 
     @Override

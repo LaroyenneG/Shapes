@@ -67,7 +67,9 @@ public class SText extends Shape {
 
         int size = DEFAULT_POLICE.font.getSize() + dx;
 
-        ((FontAttributes) this.getAttributes(FontAttributes.ID)).setFontSize(size);
+        if (size >= MINIMAL_SIZE - 5) {
+            ((FontAttributes) getAttributes(FontAttributes.ID)).setFontSize(size);
+        }
     }
 
     @Override
