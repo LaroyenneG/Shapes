@@ -13,14 +13,19 @@ public class EditorMenu extends JMenuBar {
 
     public static final String ID_CREDIT = "credit";
     public static final String ID_QUIT = "quit";
+    public static final String ID_IMPORT = "importa";
+    public static final String ID_EXPORT = "export";
     public static final String ID_RESET = "reset";
     public static final String ID_SCHOOL = "school";
 
     private JMenu option;
+    private JMenu script;
     private JMenu info;
 
     private JMenuItem reset;
     private JMenuItem credit;
+    private JMenuItem importa;
+    private JMenuItem export;
     private JMenuItem quit;
     private JMenuItem school;
 
@@ -37,10 +42,13 @@ public class EditorMenu extends JMenuBar {
         jMenuItems = new ArrayList<>();
 
         info = new JMenu("About");
+        script = new JMenu("Script");
         option = new JMenu("Options");
 
         reset = new JMenuItem("Reset");
         credit = new JMenuItem("Credit");
+        importa = new JMenuItem("Importation");
+        export = new JMenuItem("Exportation");
         school = new JMenuItem("School");
         quit = new JMenuItem("Exit");
 
@@ -48,6 +56,8 @@ public class EditorMenu extends JMenuBar {
 
         jMenuItems.add(credit);
         jMenuItems.add(reset);
+        jMenuItems.add(importa);
+        jMenuItems.add(export);
         jMenuItems.add(school);
         jMenuItems.add(quit);
 
@@ -60,16 +70,22 @@ public class EditorMenu extends JMenuBar {
 
         reset.setActionCommand(ID_RESET);
         credit.setActionCommand(ID_CREDIT);
+        importa.setActionCommand(ID_IMPORT);
+        export.setActionCommand(ID_EXPORT);
         school.setActionCommand(ID_SCHOOL);
         quit.setActionCommand(ID_QUIT);
 
         option.add(reset);
         option.add(quit);
 
+        script.add(importa);
+        script.add(export);
+
         info.add(credit);
         info.add(school);
 
         add(option);
+        add(script);
         add(info);
     }
 

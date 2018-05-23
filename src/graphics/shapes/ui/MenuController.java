@@ -4,6 +4,7 @@ import graphics.shapes.SCollection;
 import graphics.ui.Controller;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 
 public class MenuController extends Controller {
@@ -27,6 +28,21 @@ public class MenuController extends Controller {
 
             case EditorMenu.ID_QUIT:
                 System.exit(0);
+                break;
+
+            case EditorMenu.ID_IMPORT:
+                JFileChooser chooser = new JFileChooser();
+                FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                        "JPG & GIF Images", "jpg", "gif");
+                chooser.setFileFilter(filter);
+                if(chooser.showOpenDialog(dialog) == JFileChooser.APPROVE_OPTION) {
+                    String filePath = chooser.getSelectedFile().getPath();
+                    System.out.println(filePath);
+                }
+                break;
+
+            case EditorMenu.ID_EXPORT:
+                System.out.println("ok_export");
                 break;
 
             case EditorMenu.ID_RESET:
