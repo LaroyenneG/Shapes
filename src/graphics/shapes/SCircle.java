@@ -54,7 +54,7 @@ public class SCircle extends Shape {
 
     @Override
     public void reSize(int dx, int dy) {
-        setRadius(getRadius() - dx);
+        setRadius(getRadius() + dx);
     }
 
     @Override

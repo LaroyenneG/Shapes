@@ -16,7 +16,7 @@ public class ShapesController extends Controller {
     private Point mouseposition2;
     private int x, y;
 
-    private boolean select;
+    private boolean select, resize;
 
     public ShapesController(Object newModel) {
 
@@ -26,6 +26,7 @@ public class ShapesController extends Controller {
         x = 0;
         y = 0;
         select = false;
+        resize = true;
     }
 
     public Shape getTarget(MouseEvent e)
@@ -46,13 +47,14 @@ public class ShapesController extends Controller {
     public boolean getTargetHandler(MouseEvent e) {
         SCollection collection = (SCollection) super.getModel();
         Iterator<Shape> iter = collection.iterator();
+        int size = 8;
 
         while (iter.hasNext()) {
             Shape shape = iter.next();
             Rectangle bounds = shape.getBounds();
-            Rectangle handSup = new Rectangle(bounds.x, bounds.y, 10, 10);
-            Rectangle handInf = new Rectangle(bounds.x + bounds.width - 10, bounds.x + bounds.width - 10, 10, 10);
-            if (handSup.contains(e.getPoint()) || handInf.contains(e.getPoint())) {
+            Rectangle handInf = new Rectangle(bounds.x + bounds.width - size, bounds.y + bounds.height - size, size, size);
+
+            if (handInf.contains(e.getPoint())) {
                 return true;
             }
         }
@@ -83,7 +85,7 @@ public class ShapesController extends Controller {
             Shape shape = iter.next();
 
             if (((SelectionAttributes) shape.getAttributes(SelectionAttributes.ID)).isSelected()) {
-
+                System.out.println("-- " + dx + ":" + dy + "--");
                 shape.reSize(dx, dy);
             }
         }
@@ -113,6 +115,9 @@ public class ShapesController extends Controller {
         } else if (target != null && select) {
 
         }
+        if (getTargetHandler(e)) {
+            resize = true;
+        }
 
     }
 
@@ -124,14 +129,14 @@ public class ShapesController extends Controller {
         int dy = y - mouseposition2.y;
 
 
-        if (!e.isShiftDown()) {
+        if (!e.isShiftDown() && !resize) {
 
             translateSelected(dx, dy);
-            if (getTargetHandler(e)) {
 
-                reSizeSelected(dx, dy);
-            }
         }
+        if (resize)
+
+            reSizeSelected(dx, dy);
 
         mouseposition2 = e.getLocationOnScreen();
         super.getView().repaint();
@@ -143,13 +148,16 @@ public class ShapesController extends Controller {
         y = (int) mouseposition.getY();
         Shape target = getTarget(e);
 
-        if (!e.isShiftDown()) {
+        if (!e.isShiftDown() && !getTargetHandler(e)) {
             unselectAll();
         } else {
 
         }
         if (target != null) {
             ((SelectionAttributes) target.getAttributes(SelectionAttributes.ID)).toggleSelection();
+        }
+        if (getTargetHandler(e)) {
+            resize = true;
         }
 
         super.getView().repaint();
@@ -158,7 +166,7 @@ public class ShapesController extends Controller {
     }
 
     public void mouseReleased(MouseEvent e) {
-
+        resize = false;
     }
 
 

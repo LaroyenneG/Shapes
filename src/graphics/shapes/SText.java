@@ -64,6 +64,10 @@ public class SText extends Shape {
 
     @Override
     public void reSize(int dx, int dy) {
+
+        int size = DEFAULT_POLICE.font.getSize() + dx;
+
+        ((FontAttributes) this.getAttributes(FontAttributes.ID)).setFontSize(size);
     }
 
     @Override
