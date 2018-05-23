@@ -6,6 +6,7 @@ public class SRectangle extends Shape {
 
     private Point loc;
     private Rectangle rect;
+    private int MINIMAL_SIZE = 10;
 
     public SRectangle(Point loc, int width, int height) {
 
@@ -50,7 +51,7 @@ public class SRectangle extends Shape {
     @Override
     public void reSize(int dx, int dy) {
 
-        if (((rect.width += dx) >= MINIMAL_SIZE) && ((rect.height += dy) >= MINIMAL_SIZE)) {
+        if ((((rect.width + dx) >= MINIMAL_SIZE) && ((rect.height + dy) >= MINIMAL_SIZE) || (dx >= 0 && dy >= 0))) {
             rect.width += dx;
             rect.height += dy;
         }
