@@ -6,7 +6,6 @@ import graphics.shapes.attributes.SelectionAttributes;
 import graphics.ui.Controller;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Iterator;
 
@@ -114,7 +113,7 @@ public class ShapesController extends Controller {
             select = ((SelectionAttributes) target.getAttributes(SelectionAttributes.ID)).isSelected();
         }
 
-        if (target == null || !select) {
+        if (e.getButton() != MouseEvent.BUTTON3 && (target == null || !select)) {
             unselectAll();
         } else if (target != null && select) {
 
@@ -152,18 +151,17 @@ public class ShapesController extends Controller {
         y = (int) mouseposition.getY();
         Shape target = getTarget(e);
 
-        if (!e.isShiftDown() && !getTargetHandler(e) && !multipleSelection) {
-            unselectAll();
-        } else {
-
-        }
+        //Sélection traditionnelle
         if (target != null) {
             ((SelectionAttributes) target.getAttributes(SelectionAttributes.ID)).toggleSelection();
+        } else if (!e.isShiftDown() && !getTargetHandler(e) && !multipleSelection && e.getButton() != MouseEvent.BUTTON3) {
+            //unselectAll();
+        } else {
+
         }
         if (getTargetHandler(e)) {
             resize = true;
         }
-
         super.getView().repaint();
         mouseposition2 = e.getLocationOnScreen();
         mouseposition = e.getLocationOnScreen();
@@ -173,14 +171,7 @@ public class ShapesController extends Controller {
         resize = false;
     }
 
-    public void keyPressed(KeyEvent evt) {
-        System.out.println("TEST");
-        multipleSelection = true;
-    }
 
-    public void keyReleased(KeyEvent evt) {
-        multipleSelection = false;
-    }
 
 }
 
