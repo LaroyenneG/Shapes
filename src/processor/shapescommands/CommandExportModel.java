@@ -1,16 +1,31 @@
 package processor.shapescommands;
 
+import graphics.shapes.Shape;
 import processor.engine.Processor;
 
 public class CommandExportModel extends CommandShapesEditor {
+
+    private int dictionnary;
 
     public CommandExportModel() {
         super("export");
     }
 
 
+    private static String buildAttributesCommand(Shape shape, String varName) {
+
+        String command = "";
+
+
+        return command;
+    }
+
+    //Map<String, String>
+
     @Override
     public void execute(Processor processor, String[] args) {
+
+        dictionnary = 0;
 
         if (args.length != 1) {
             try {
@@ -19,8 +34,6 @@ public class CommandExportModel extends CommandShapesEditor {
                 processor.err().println(e.getMessage());
             }
         }
-
-
     }
 
     @Override

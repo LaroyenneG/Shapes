@@ -9,7 +9,9 @@ import java.awt.*;
 import java.util.Iterator;
 
 public class ShapeDraftman implements ShapeVisitor {
-    public static final ColorAttributes DEFAULT_COLOR_ATTRIBUTES = new ColorAttributes(false, false, Color.WHITE, Color.WHITE);
+
+    public static final ColorAttributes DEFAULT_COLOR_ATTRIBUTES = new ColorAttributes(false, false, Color.WHITE, Color.BLACK);
+
     private Graphics2D graph2D;
 
     public ShapeDraftman(Graphics g) {
@@ -47,10 +49,11 @@ public class ShapeDraftman implements ShapeVisitor {
             graph2D.drawRect(rectangle.getLoc().x, rectangle.getLoc().y, rect.width, rect.height);
         }
 
-        this.graph2D.drawRect(rectangle.getLoc().x, rectangle.getLoc().y, rect.width, rect.height);
+        graph2D.drawRect(rectangle.getLoc().x, rectangle.getLoc().y, rect.width, rect.height);
         SelectionAttributes sa = (SelectionAttributes) rectangle.getAttributes(SelectionAttributes.ID);
-        if (sa.isSelected())
-            this.drawHandler(rectangle);
+        if (sa.isSelected()) {
+            drawHandler(rectangle);
+        }
     }
 
     @Override
@@ -72,8 +75,9 @@ public class ShapeDraftman implements ShapeVisitor {
         }
 
         SelectionAttributes sa = (SelectionAttributes) circle.getAttributes(SelectionAttributes.ID);
-        if (sa.isSelected())
-            this.drawHandler(circle);
+        if (sa.isSelected()) {
+            drawHandler(circle);
+        }
     }
 
     @Override
@@ -87,7 +91,7 @@ public class ShapeDraftman implements ShapeVisitor {
 
         SelectionAttributes sa = (SelectionAttributes) collection.getAttributes(SelectionAttributes.ID);
         if (sa.isSelected()) {
-            this.drawHandler(collection);
+            drawHandler(collection);
         }
 
     }
@@ -111,8 +115,8 @@ public class ShapeDraftman implements ShapeVisitor {
         }
 
         SelectionAttributes sa = (SelectionAttributes) text.getAttributes(SelectionAttributes.ID);
-        if (sa.isSelected())
-            this.drawHandler(text);
-
+        if (sa.isSelected()) {
+            drawHandler(text);
+        }
     }
 }
