@@ -133,13 +133,12 @@ public class ShapesController extends Controller {
         int dy = y - mouseposition2.y;
 
         if (!e.isShiftDown() && !resize) {
-
             translateSelected(dx, dy);
-
         }
-        if (resize)
 
+        if (resize) {
             reSizeSelected(dx, dy);
+        }
 
         mouseposition2 = e.getLocationOnScreen();
 
