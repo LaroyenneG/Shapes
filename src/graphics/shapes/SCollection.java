@@ -85,6 +85,7 @@ public class SCollection extends Shape {
             shapes.next().reSize(dx, dy);
         }
     }
+
     @Override
     public String toString() {
 

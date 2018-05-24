@@ -14,24 +14,16 @@ public class Processor {
     public static final char VARIABLE_CHAR = '$';
     public static final char QUOTES = '"';
     public static final char COMMAND_AFFECTATION = '=';
-
-    private HashMap<String, String> variables;
-
     private static final String DEFAULT_PROMPT = "[shapes]$";
-
+    private static Processor INSTANCE = null;
+    private HashMap<String, String> variables;
     private PrintStream out;
     private PrintStream err;
     private InputStream in;
     private BufferedReader reader;
-
     private Object system;
-
     private TreeMap<String, Command> proc;
-
     private boolean terminated;
-
-
-    private static Processor INSTANCE = null;
 
     private Processor() {
 
@@ -60,11 +52,6 @@ public class Processor {
             INSTANCE = new Processor();
         }
         return INSTANCE;
-    }
-
-    public String fetch() throws IOException {
-
-        return reader.readLine();
     }
 
     /*
@@ -105,7 +92,6 @@ public class Processor {
         return argsList.toArray(new String[0]);
     }
 
-
     /*
     Clean all spaces before and after the line.
      */
@@ -127,6 +113,11 @@ public class Processor {
         }
 
         return line.substring(cursor_1, cursor_2 + 1);
+    }
+
+    public String fetch() throws IOException {
+
+        return reader.readLine();
     }
 
     public void interpretLine(String line) throws ProcessorException {

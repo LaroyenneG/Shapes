@@ -89,10 +89,6 @@ public class CommandExportModel extends CommandShapesEditor {
         return new String(command);
     }
 
-    private String getNextName() {
-        return "s" + String.valueOf(dictionary++);
-    }
-
     private static StringBuilder buildSubCommand(String key, StringBuilder command) {
 
         final String commandName = new CommandCreateShape().getName();
@@ -111,6 +107,10 @@ public class CommandExportModel extends CommandShapesEditor {
                 .append(BR);
 
         return string;
+    }
+
+    private String getNextName() {
+        return "s" + String.valueOf(dictionary++);
     }
 
     private List<String> buildCommandFromSCollection(StringBuilder line, SCollection shapes) throws CommandShapesException {
