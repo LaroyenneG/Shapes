@@ -52,6 +52,7 @@ public class SText extends Shape {
         FontAttributes font = (FontAttributes) getAttributes(FontAttributes.ID);
 
         Rectangle bounds = font.getBounds(text);
+
         bounds.setLocation(new Point(loc.x, loc.y));
 
         return bounds;
@@ -71,7 +72,7 @@ public class SText extends Shape {
 
         int size = oldSize;
 
-        size += dx < dy ? dx : dy;
+        size += Math.abs(dx) < dy ? Math.abs(dx) : dy;
 
         font.setFontSize(size);
 
