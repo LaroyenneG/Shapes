@@ -36,7 +36,7 @@ public class MenuController extends Controller {
             case EditorMenu.ID_IMPORT:
                 chooser = new JFileChooser();
                 FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                        "JPG & GIF Images", "jpg", "gif");
+                        "Shapes Model", "shapes");
                 chooser.setFileFilter(filter);
                 chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 if (chooser.showOpenDialog(dialog) == JFileChooser.APPROVE_OPTION) {
