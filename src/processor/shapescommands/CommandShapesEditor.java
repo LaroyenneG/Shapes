@@ -62,7 +62,7 @@ public abstract class CommandShapesEditor extends Command {
         return Boolean.parseBoolean(string);
     }
 
-    static String converColor(Color color) {
+    static String convertColor(Color color) {
 
         String hex = Integer.toHexString(color.getRGB());
 
@@ -71,12 +71,21 @@ public abstract class CommandShapesEditor extends Command {
         return hex;
     }
 
+    static String convertFont(Font font) {
+        return "\"" + font.getName() + ":" + font.getStyle() + ":" + font.getSize() + "\"";
+    }
+
     static Color readColor(String string) {
         return Color.decode(string);
     }
 
     static Font readFont(String string) {
-        return Font.getFont(string);
+
+        String[] parameters = string.split(":");
+
+        Font font = new Font(parameters[0], Integer.parseInt(parameters[1]), Integer.parseInt(parameters[2]));
+
+        return font;
     }
 
     @Override

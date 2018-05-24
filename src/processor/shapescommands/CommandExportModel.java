@@ -43,9 +43,9 @@ public class CommandExportModel extends CommandShapesEditor {
                     .append(' ')
                     .append(String.valueOf(color.stroked))
                     .append(" ")
-                    .append(converColor(color.filledColor))
+                    .append(convertColor(color.filledColor))
                     .append(' ')
-                    .append(converColor(color.strokedColor));
+                    .append(convertColor(color.strokedColor));
         }
 
         command.append(BR);
@@ -61,10 +61,10 @@ public class CommandExportModel extends CommandShapesEditor {
                     .append(CommandAddAttribute.FONT_OPTION_NAME)
                     .append(' ')
                     .append(Processor.QUOTES)
-                    .append(font.font.getName())
+                    .append(convertFont(font.font))
                     .append(Processor.QUOTES)
                     .append(' ')
-                    .append(converColor(font.fontColor));
+                    .append(convertColor(font.fontColor));
         }
 
 
@@ -221,7 +221,6 @@ public class CommandExportModel extends CommandShapesEditor {
 
             writer.write(new String(commands));
 
-            writer.append(commands);
             writer.flush();
             writer.close();
 
