@@ -118,13 +118,12 @@ public class Editor extends JFrame {
                 processor.printPrompt();
                 processor.interpretLine(processor.fetch());
                 self.sView.repaint();
-                Thread.sleep(1000); //Concurrent modifications.
             } catch (ProcessorException e) {
                 processor.err().println(e.getMessage());
             } catch (NumberFormatException e) {
                 processor.err().println("bad input value");
                 e.printStackTrace();
-            } catch (IOException | InterruptedException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

@@ -181,7 +181,9 @@ public class CommandExportModel extends CommandShapesEditor {
                         .append(' ')
                         .append(text.getLoc().y)
                         .append(' ')
-                        .append(text.getText());
+                        .append(Processor.QUOTES)
+                        .append(text.getText())
+                        .append(Processor.QUOTES);
 
             } else {
                 throw new CommandShapesException("invalid object signature");

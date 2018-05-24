@@ -2,6 +2,7 @@ package graphics.shapes.ui;
 
 import graphics.shapes.SCollection;
 import graphics.ui.Controller;
+import processor.engine.Processor;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -9,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 
 public class MenuController extends Controller {
+
+    private static final String FILE_EXT = "shapes";
 
     private JOptionPane dialog;
 
@@ -19,8 +22,6 @@ public class MenuController extends Controller {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-
-        JFileChooser chooser = null;
 
         switch (actionEvent.getActionCommand()) {
 
@@ -34,37 +35,11 @@ public class MenuController extends Controller {
                 break;
 
             case EditorMenu.ID_IMPORT:
-                chooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                        "Shapes Model", "shapes");
-                chooser.setFileFilter(filter);
-                chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                if (chooser.showOpenDialog(dialog) == JFileChooser.APPROVE_OPTION) {
-                    String filePath = chooser.getSelectedFile().getPath();
-                    File file = new File(filePath);
-                }
+                importFile();
                 break;
 
             case EditorMenu.ID_EXPORT:
-                chooser = new JFileChooser();
-                chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                if (chooser.showOpenDialog(dialog) == JFileChooser.APPROVE_OPTION) {
-                    String directory = chooser.getSelectedFile().getPath();
-                    System.out.println(directory);
-
-                    String fileName = (String) JOptionPane.showInputDialog(
-                            dialog,
-                            "Input file name :",
-                            "Files",
-                            JOptionPane.PLAIN_MESSAGE,
-                            null,
-                            null,
-                            "");
-                    if(fileName != null ){
-                        File file = new File(directory+File.separator+fileName);
-                    }
-                }
-
+                exportFile();
                 break;
 
             case EditorMenu.ID_RESET:
@@ -78,6 +53,65 @@ public class MenuController extends Controller {
 
             default:
                 break;
+        }
+    }
+
+
+    private void importFile() {
+
+        JFileChooser chooser = new JFileChooser();
+
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "Shapes Model", FILE_EXT);
+        chooser.setFileFilter(filter);
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        if (chooser.showOpenDialog(dialog) == JFileChooser.APPROVE_OPTION) {
+
+            String filePath = chooser.getSelectedFile().getPath();
+
+            File file = new File(filePath);
+
+            Processor processor = Processor.getInstance();
+            try {
+                processor.interpretLine("script " + file.getAbsolutePath());
+                getView().repaint();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(dialog, "Error to import file", "Shapes has encountered a problem", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+
+    private void exportFile() {
+
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        if (chooser.showOpenDialog(dialog) == JFileChooser.APPROVE_OPTION) {
+
+            String directory = chooser.getSelectedFile().getPath();
+
+            String fileName = (String) JOptionPane.showInputDialog(
+                    dialog,
+                    "Input file name :",
+                    "Files",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    "");
+
+            if (fileName != null) {
+
+                File file = new File(directory + File.separator + fileName + "." + FILE_EXT);
+
+                Processor processor = Processor.getInstance();
+                try {
+                    processor.interpretLine("export " + file.getAbsolutePath());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(dialog, "Error to export file", "Shapes has encountered a problem", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
     }
 }

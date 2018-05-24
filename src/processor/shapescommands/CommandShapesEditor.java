@@ -72,7 +72,7 @@ public abstract class CommandShapesEditor extends Command {
     }
 
     static String convertFont(Font font) {
-        return "\"" + font.getName() + ":" + font.getStyle() + ":" + font.getSize() + "\"";
+        return font.getName() + ":" + font.getStyle() + ":" + font.getSize();
     }
 
     static Color readColor(String string) {

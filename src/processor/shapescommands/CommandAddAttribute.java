@@ -52,11 +52,11 @@ public class CommandAddAttribute extends CommandShapesEditor {
                 throw new CommandShapesException("invalid argument number");
             }
 
-            String[] attAgrs = new String[args.length - 1];
+            String[] attArgs = new String[args.length - 1];
 
-            System.arraycopy(args, 1, attAgrs, 0, args.length - 1);
+            System.arraycopy(args, 1, attArgs, 0, args.length - 1);
 
-            selectShape(processor, args[0]).addAttributes(createAttribute(attAgrs));
+            selectShape(processor, args[0]).addAttributes(createAttribute(attArgs));
 
         } catch (CommandShapesException e) {
             processor.err().println(e.getMessage());
