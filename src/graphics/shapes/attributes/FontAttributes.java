@@ -13,7 +13,6 @@ public class FontAttributes extends Attributes {
 
     public Font font;
     public Color fontColor;
-    private int fSize;
 
     public FontAttributes(Font font, Color fontColor) {
         this.font = font;
@@ -36,7 +35,7 @@ public class FontAttributes extends Attributes {
     }
 
     public void setFontSize(int size) {
-        font = new Font(DEFAULT_FONT, Font.BOLD, size);
+        font = new Font(font.getName(), font.getStyle(), size);
     }
 
 
