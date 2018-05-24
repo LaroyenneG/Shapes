@@ -1,8 +1,8 @@
 package graphics.shapes.ui;
 
-import graphics.shapes.SCollection;
 import graphics.ui.Controller;
 import processor.engine.Processor;
+import processor.engine.ProcessorException;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -29,7 +29,6 @@ public class MenuController extends Controller {
                 JOptionPane.showMessageDialog(dialog, "Create by :\n\tLucas COLLOT-PENICHOT\n\tGuillaume LAROYENNE\n\tAlexis DECKER-WURTZ\n\tChristopher BERTRAND", "Credit", JOptionPane.INFORMATION_MESSAGE);
                 break;
 
-
             case EditorMenu.ID_QUIT:
                 System.exit(0);
                 break;
@@ -43,8 +42,7 @@ public class MenuController extends Controller {
                 break;
 
             case EditorMenu.ID_RESET:
-                ((SCollection) getModel()).deleteAllShapes();
-                getView().repaint();
+                resetView();
                 break;
 
             case EditorMenu.ID_SCHOOL:
@@ -56,6 +54,16 @@ public class MenuController extends Controller {
         }
     }
 
+    private void resetView() {
+
+        Processor processor = Processor.getInstance();
+        try {
+            processor.interpretLine("clear");
+            getView().repaint();
+        } catch (ProcessorException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void importFile() {
 

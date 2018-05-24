@@ -72,6 +72,7 @@ public abstract class CommandShapesEditor extends Command {
     }
 
     static String convertFont(Font font) {
+
         return font.getName() + ":" + font.getStyle() + ":" + font.getSize();
     }
 
@@ -83,9 +84,7 @@ public abstract class CommandShapesEditor extends Command {
 
         String[] parameters = string.split(":");
 
-        Font font = new Font(parameters[0], Integer.parseInt(parameters[1]), Integer.parseInt(parameters[2]));
-
-        return font;
+        return new Font(parameters[0], Integer.parseInt(parameters[1]), Integer.parseInt(parameters[2]));
     }
 
     @Override

@@ -16,7 +16,8 @@ import java.util.List;
 
 public class CommandExportModel extends CommandShapesEditor {
 
-    public static final String HEADER_MESSAGE = "Shapes script auto generated";
+    public static final String HEADER_MESSAGE = " Shapes script auto generated";
+
     private static final String BR = System.getProperty("line.separator");
     private int dictionary;
 
@@ -89,7 +90,7 @@ public class CommandExportModel extends CommandShapesEditor {
     }
 
     private String getNextName() {
-        return String.valueOf(dictionary++);
+        return "s" + String.valueOf(dictionary++);
     }
 
     private static StringBuilder buildSubCommand(String key, StringBuilder command) {
@@ -114,10 +115,7 @@ public class CommandExportModel extends CommandShapesEditor {
 
     private List<String> buildCommandFromSCollection(StringBuilder line, SCollection shapes) throws CommandShapesException {
 
-        /* Optimisation not easy */
-
         line.append(BR);
-
 
         List<String> keyList = new ArrayList<>();
 

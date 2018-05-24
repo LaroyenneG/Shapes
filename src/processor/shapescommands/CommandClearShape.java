@@ -17,7 +17,7 @@ public class CommandClearShape extends CommandShapesEditor {
             }
 
             model(processor).deleteAllShapes();
-
+            System.gc();
         } catch (CommandShapesException e) {
             processor.out().println(e.getMessage());
         }

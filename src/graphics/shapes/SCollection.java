@@ -22,26 +22,28 @@ public class SCollection extends Shape {
     }
 
     public void deleteAllShapes() {
+
         shapes.clear();
     }
 
     public void deleteShape(Shape shape) {
+
         shapes.remove(shape);
     }
 
     @Override
     public Point getLoc() {
-        Rectangle bound = getBounds();
-        return bound.getLocation();
+
+        return getBounds().getLocation();
     }
 
     @Override
     public void setLoc(Point loc) {
+
         Iterator<Shape> shapes = this.iterator();
         while (shapes.hasNext()) {
             shapes.next().setLoc(loc);
         }
-
     }
 
     @Override
@@ -59,11 +61,9 @@ public class SCollection extends Shape {
         Rectangle rectangle = null;
 
         for (Shape s : shapes) {
-            if(rectangle == null)
-            {
+            if (rectangle == null) {
                 rectangle = s.getBounds();
-            }
-            else {
+            } else {
                 rectangle = rectangle.union(s.getBounds());
             }
         }
@@ -73,6 +73,7 @@ public class SCollection extends Shape {
 
     @Override
     public void accept(ShapeVisitor sv) {
+
         sv.visitCollection(this);
     }
 
