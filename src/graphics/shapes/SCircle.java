@@ -57,8 +57,10 @@ public class SCircle extends Shape {
     @Override
     public void reSize(int dx, int dy) {
 
-        if (radius + dx >= MINIMAL_SIZE) {
-            setRadius(radius + dx);
+        int size = dx < dy ? dx : dy;
+
+        if (radius + size >= MINIMAL_SIZE) {
+            setRadius(radius + size);
         }
     }
 

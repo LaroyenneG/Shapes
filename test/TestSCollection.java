@@ -17,13 +17,6 @@ public class TestSCollection {
         sCollection.add(new SCircle(new Point(0, 1), 1));
         sCollection.add(new SRectangle(new Point(3, 1), 2, 2));
 
-        /*
-        SCollection subcollection = new SCollection();
-        subcollection.add(new SRectangle(new Point(2, 1), 3, 4));
-        subcollection.add(new SRectangle(new Point(2, 3), 1, 4));
-
-        sCollection.add(subcollection);
-        */
         return sCollection;
     }
 
@@ -32,12 +25,13 @@ public class TestSCollection {
     public void testGetBounds() {
 
         SCollection collection = toolBuild();
-        assertEquals(new Rectangle(-1, 0, 6, 3), collection.getBounds());
+        assertEquals(new Rectangle(0, 1, 5, 2), collection.getBounds());
     }
 
 
     @Test
     public void testGetLocation() {
+
         SCollection collection = toolBuild();
 
     }

@@ -21,13 +21,24 @@ public class TestSCircle {
     @Test
     public void testGetBounds() {
 
-        Point point = new Point(1, 2);
+        SCircle circle = new SCircle(new Point(1, 2), 2);
 
-        SCircle circle = new SCircle(point, 2);
-
-
-        Rectangle bounds = new Rectangle(1, 2, 4, 4);
+        Rectangle bounds = new Rectangle(1, 2, 2, 2);
 
         assertEquals(bounds, circle.getBounds());
+    }
+
+    @Test
+    public void testResize() {
+
+        SCircle circle = new SCircle(new Point(1, 2), 60);
+
+        circle.reSize(-50, -2);
+
+        assertEquals(60, circle.getRadius());
+
+        circle.reSize(5, -2);
+
+        assertEquals(58, circle.getRadius());
     }
 }
