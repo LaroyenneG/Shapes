@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 public class ShapeDraftman implements ShapeVisitor {
 
-    public static final ColorAttributes DEFAULT_COLOR_ATTRIBUTES = new ColorAttributes(false, false, Color.WHITE, Color.BLACK);
+    public static final ColorAttributes DEFAULT_COLOR_ATTRIBUTES = new ColorAttributes(false, true, Color.WHITE, Color.BLACK);
 
     private Graphics2D graph2D;
 
