@@ -30,7 +30,10 @@ public class Processor {
 
     private boolean terminated;
 
-    public Processor() {
+
+    private static Processor INSTANCE = null;
+
+    private Processor() {
 
         out = null;
         in = null;
@@ -52,7 +55,14 @@ public class Processor {
         addNewCommand(new CommandEcho());
     }
 
-    public String fetch() throws IOException {
+    public static synchronized Processor getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Processor();
+        }
+        return INSTANCE;
+    }
+
+    public synchronized String fetch() throws IOException {
 
         return reader.readLine();
     }
@@ -119,7 +129,7 @@ public class Processor {
         return line.substring(cursor_1, cursor_2 + 1);
     }
 
-    public void interpretLine(String line) throws ProcessorException {
+    public synchronized void interpretLine(String line) throws ProcessorException {
 
         line = cleanLine(line);
 
@@ -237,10 +247,9 @@ public class Processor {
         System.arraycopy(args, 1, cmdArgs, 0, args.length - 1);
 
         execute(decode(args[0]), cmdArgs);
-
     }
 
-    public Command decode(String name) throws ProcessorException {
+    public synchronized Command decode(String name) throws ProcessorException {
 
         Command command = proc.get(name);
 
@@ -255,65 +264,65 @@ public class Processor {
         out.print(DEFAULT_PROMPT);
     }
 
-    public void start() {
+    public synchronized void start() {
         terminated = false;
     }
 
-    public void execute(Command command, String[] args) {
+    public synchronized void execute(Command command, String[] args) {
 
         command.execute(this, args);
     }
 
-    public boolean isTerminated() {
+    public synchronized boolean isTerminated() {
         return terminated;
     }
 
-    public void terminated() {
+    public synchronized void terminated() {
         terminated = true;
     }
 
-    public PrintStream out() {
+    public synchronized PrintStream out() {
         return out;
     }
 
-    public PrintStream err() {
+    public synchronized PrintStream err() {
         return err;
     }
 
-    public InputStream in() {
+    public synchronized InputStream in() {
         return in;
     }
 
-    public void setIn(InputStream inputStream) {
+    public synchronized void setIn(InputStream inputStream) {
         in = inputStream;
         reader = new BufferedReader(new InputStreamReader(in));
     }
 
-    public void addNewCommand(Command command) {
+    public synchronized void addNewCommand(Command command) {
         proc.put(command.getName(), command);
     }
 
-    public void setOut(PrintStream printStream) {
+    public synchronized void setOut(PrintStream printStream) {
         out = printStream;
     }
 
-    public void setErr(PrintStream printStream) {
+    public synchronized void setErr(PrintStream printStream) {
         err = printStream;
     }
 
-    public BufferedReader reader() {
+    public synchronized BufferedReader reader() {
         return reader;
     }
 
-    public Object getSystem() {
+    public synchronized Object getSystem() {
         return system;
     }
 
-    public void setSystem(Object system) {
+    public synchronized void setSystem(Object system) {
         this.system = system;
     }
 
-    public List<Command> getCommands() {
+    public synchronized List<Command> getCommands() {
 
         List<Command> list = new ArrayList<>(proc.values());
 

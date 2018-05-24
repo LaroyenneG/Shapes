@@ -35,9 +35,9 @@ public class TestSCircle {
 
         circle.reSize(-50, -2);
 
-        assertEquals(60, circle.getRadius());
+        assertEquals(58, circle.getRadius());
 
-        circle.reSize(5, -2);
+        circle.reSize(-50, -60);
 
         assertEquals(58, circle.getRadius());
     }

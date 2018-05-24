@@ -97,7 +97,7 @@ public class Editor extends JFrame {
         self.pack();
         self.setVisible(true);
 
-        Processor processor = new Processor();
+        Processor processor = Processor.getInstance();
 
         processor.addNewCommand(new CommandCreateShape());
         processor.addNewCommand(new CommandDeleteShape());
