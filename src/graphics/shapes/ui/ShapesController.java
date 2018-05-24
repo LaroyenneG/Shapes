@@ -30,8 +30,8 @@ public class ShapesController extends Controller {
         multipleSelection = false;
     }
 
-    public Shape getTarget(MouseEvent e)
-    {
+    public Shape getTarget(MouseEvent e) {
+
         SCollection collection = (SCollection) super.getModel();
         Iterator<Shape> iter = collection.iterator();
 
@@ -46,6 +46,7 @@ public class ShapesController extends Controller {
     }
 
     public boolean getTargetHandler(MouseEvent e) {
+
         SCollection collection = (SCollection) super.getModel();
         Iterator<Shape> iter = collection.iterator();
         int size = 8;
@@ -64,6 +65,7 @@ public class ShapesController extends Controller {
     }
 
     public void translateSelected(int dx, int dy) {
+
         SCollection collection = (SCollection) super.getModel();
         Iterator<Shape> iter = collection.iterator();
 
@@ -79,23 +81,21 @@ public class ShapesController extends Controller {
     }
 
     public void reSizeSelected(int dx, int dy) {
-        SCollection collection = (SCollection) super.getModel();
-        Iterator<Shape> iter = collection.iterator();
 
-        while (iter.hasNext()) {
-            Shape shape = iter.next();
+        SCollection collection = (SCollection) super.getModel();
+        Iterator<Shape> iterator = collection.iterator();
+
+        while (iterator.hasNext()) {
+            Shape shape = iterator.next();
 
             if (((SelectionAttributes) shape.getAttributes(SelectionAttributes.ID)).isSelected()) {
-                //Condition de taille minimale
-                // if (shape.getBounds().width > 15 && shape.getBounds().height > 15 || (dx >= 0 && dy >= 0)) {
-                    shape.reSize(dx, dy);
-                //}
+                shape.reSize(dx, dy);
             }
         }
-
     }
 
     public void unselectAll() {
+
         SCollection collection = (SCollection) super.getModel();
         Iterator<Shape> iter = collection.iterator();
 
@@ -108,7 +108,7 @@ public class ShapesController extends Controller {
 
     public void mousePressed(MouseEvent e) {
 
-        Shape target = this.getTarget(e);
+        Shape target = getTarget(e);
         if (target != null) {
             select = ((SelectionAttributes) target.getAttributes(SelectionAttributes.ID)).isSelected();
         }
@@ -125,12 +125,12 @@ public class ShapesController extends Controller {
     }
 
     public void mouseDragged(MouseEvent e) {
+
         mouseposition = e.getLocationOnScreen();
         x = (int) mouseposition.getX();
         y = (int) mouseposition.getY();
         int dx = x - mouseposition2.x;
         int dy = y - mouseposition2.y;
-
 
         if (!e.isShiftDown() && !resize) {
 
@@ -142,10 +142,12 @@ public class ShapesController extends Controller {
             reSizeSelected(dx, dy);
 
         mouseposition2 = e.getLocationOnScreen();
+
         super.getView().repaint();
     }
 
     public void mouseClicked(MouseEvent e) {
+
         mouseposition = e.getLocationOnScreen();
         x = (int) mouseposition.getX();
         y = (int) mouseposition.getY();
@@ -170,8 +172,5 @@ public class ShapesController extends Controller {
     public void mouseReleased(MouseEvent e) {
         resize = false;
     }
-
-
-
 }
 

@@ -58,7 +58,6 @@ public class SCollection extends Shape {
 
         Rectangle rectangle = null;
 
-
         for (Shape s : shapes) {
             if(rectangle == null)
             {
@@ -79,7 +78,8 @@ public class SCollection extends Shape {
 
     @Override
     public void reSize(int dx, int dy) {
-        Iterator<Shape> shapes = this.iterator();
+
+        Iterator<Shape> shapes = iterator();
         while (shapes.hasNext()) {
             shapes.next().reSize(dx, dy);
         }
