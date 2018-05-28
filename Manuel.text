@@ -1,9 +1,22 @@
-salut
-coucou
-qsdfghjk
-sdfghjkk
-sdfghjk
-sdfxgchvj
-sdfxgchvjbnk
-sdfxgchvjbk
-dsfghvjb
+Dans ce document simple signifie un seul élément et multiple signifie plusieurs éléments.
+
+►Sélectionner:
+
+•Simlple: Clic gauche sur l'élément souhaiter.
+•Multiple: Clic droite sur tout les éléments souhaiter.
+
+
+►Déplacement:
+
+•Simple: Sélectionner l'élément à déplacer puis appuyer et maintenir clic gauche appuyé puis déplacer la souris jusqu'à l'endroit souhaité et relâcher.
+•Multiple: Sélectionner les éléments à déplacer puis appuyer et maintenir clic droit appuyé puis déplacer la souris jusqu'à l'endroit souhaité et relâcher.
+
+
+►Redimensionnement:
+•Simple: Sélectionner l'élement à redimensionner. Après sélection deux carrés (handler) vont apparaître, un en haut à gauche(handlerG) de l'élément sélectionné et un en bas à droite (handlerD).
+         Seul l'handlerD permet de redimensionner l'élément.
+	     Pour cela il faut enffectuer un clic gauche sur ce dernier puis déplacer la souris jusqu'à ce que l'élément est la taille souahité et relâcher.
+•Multiple: Sélectionner les élements à redimensionner.
+	       Après sélection deux carrés (handler) vont apparaître, un en haut à gauche(handlerG) de l'essemble de la sélection et un en bas à droite (handlerD).
+		   Seul l'handlerD permet de redimensionner les éléments.
+		   Pour cela il faut enffectuer un clic gauche sur ce dernier puis déplacer la souris jusqu'à ce que l'élément est la taille souhaité et relâcher.

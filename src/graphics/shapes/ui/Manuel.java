@@ -14,7 +14,7 @@ public class Manuel extends JFrame {
 
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        area = new JTextArea(45, 35);
+        area = new JTextArea(35, 50);
         area.setEditable(false);
         area.setLineWrap(true);
         area.setWrapStyleWord(true);
