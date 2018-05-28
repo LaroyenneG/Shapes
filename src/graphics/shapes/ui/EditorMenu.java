@@ -17,8 +17,10 @@ public class EditorMenu extends JMenuBar {
     public static final String ID_EXPORT = "export";
     public static final String ID_RESET = "reset";
     public static final String ID_SCHOOL = "school";
+    public static final String ID_MANUAL = "manual";
 
     private JMenu option;
+    private JMenu help;
     private JMenu script;
     private JMenu info;
 
@@ -28,6 +30,7 @@ public class EditorMenu extends JMenuBar {
     private JMenuItem export;
     private JMenuItem quit;
     private JMenuItem school;
+    private JMenuItem manual;
 
     private List<JMenuItem> jMenuItems;
 
@@ -43,6 +46,7 @@ public class EditorMenu extends JMenuBar {
 
         info = new JMenu("About");
         script = new JMenu("Script");
+        help = new JMenu ("Help");
         option = new JMenu("Options");
 
         reset = new JMenuItem("Reset");
@@ -51,6 +55,7 @@ public class EditorMenu extends JMenuBar {
         export = new JMenuItem("Exportation");
         school = new JMenuItem("School");
         quit = new JMenuItem("Exit");
+        manual =new JMenuItem("Manual");
 
         controller = defaultController(model);
 
@@ -60,6 +65,7 @@ public class EditorMenu extends JMenuBar {
         jMenuItems.add(export);
         jMenuItems.add(school);
         jMenuItems.add(quit);
+        jMenuItems.add(manual);
 
         initAttributes();
         setController(controller);
@@ -74,9 +80,12 @@ public class EditorMenu extends JMenuBar {
         export.setActionCommand(ID_EXPORT);
         school.setActionCommand(ID_SCHOOL);
         quit.setActionCommand(ID_QUIT);
+        manual.setActionCommand(ID_MANUAL);
 
         option.add(reset);
         option.add(quit);
+
+        help.add(manual);
 
         script.add(importa);
         script.add(export);
@@ -85,6 +94,7 @@ public class EditorMenu extends JMenuBar {
         info.add(school);
 
         add(option);
+        add(help);
         add(script);
         add(info);
     }

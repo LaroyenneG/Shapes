@@ -49,9 +49,24 @@ public class MenuController extends Controller {
                 JOptionPane.showMessageDialog(dialog, "ENSISA\nhttp://www.ensisa.uha.fr/\n12 Rue des Frères Lumière\n68093 Mulhouse\nFrance", "School", JOptionPane.INFORMATION_MESSAGE);
                 break;
 
+            case EditorMenu.ID_MANUAL:
+                runMan();
+                break;
+
             default:
                 break;
         }
+    }
+
+    private void runMan() {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+
+            public void run() {
+                Manuel manuel = new Manuel();
+                manuel.readerManuel();
+            }
+
+        });
     }
 
     private void resetView() {
