@@ -11,7 +11,7 @@ public class Manuel extends JFrame {
 
     public Manuel() {
         super("Manuel");
-        setBounds(100, 100, 491, 310);
+
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         area = new JTextArea(45, 35);
@@ -19,12 +19,10 @@ public class Manuel extends JFrame {
         area.setLineWrap(true);
         area.setWrapStyleWord(true);
         scroll = new JScrollPane(area);
-        scroll.setBounds(10, 11, 600, 800);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         getContentPane().add(scroll);
         setLocationRelativeTo(null);
         pack();
-
     }
 
     public void readerManuel() {
