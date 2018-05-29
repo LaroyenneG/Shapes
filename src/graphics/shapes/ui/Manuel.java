@@ -5,8 +5,8 @@ import java.io.*;
 
 public class Manuel extends JFrame {
 
-    private JTextArea area;
     private static final String PATH = "Manuel.text";
+    private JTextArea area;
     private JScrollPane scroll;
 
     public Manuel() {

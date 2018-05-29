@@ -46,7 +46,7 @@ public class EditorMenu extends JMenuBar {
 
         info = new JMenu("About");
         script = new JMenu("Script");
-        help = new JMenu ("Help");
+        help = new JMenu("Help");
         option = new JMenu("Options");
 
         reset = new JMenuItem("Reset");
@@ -55,7 +55,7 @@ public class EditorMenu extends JMenuBar {
         export = new JMenuItem("Exportation");
         school = new JMenuItem("School");
         quit = new JMenuItem("Exit");
-        manual =new JMenuItem("Manual");
+        manual = new JMenuItem("Manual");
 
         controller = defaultController(model);
 
