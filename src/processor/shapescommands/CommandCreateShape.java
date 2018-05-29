@@ -90,7 +90,7 @@ public class CommandCreateShape extends CommandShapesEditor {
             SCollection collection = model(processor);
             Shape shape = createShape(processor, args);
             collection.add(shape);
-            processor.out().print(shape.hashCode());
+            processor.out().println(shape.hashCode());
         } catch (CommandShapesException e) {
             processor.err().println(e.getMessage());
         }

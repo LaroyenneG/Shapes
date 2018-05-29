@@ -35,8 +35,6 @@ public class FontAttributes extends Attributes {
     }
 
     public void setFontSize(int size) {
-        font = new Font(font.getName(), font.getStyle(), size);
+        font = font.deriveFont((float) font.getSize() + size);
     }
-
-
 }

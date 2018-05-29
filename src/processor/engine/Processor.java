@@ -7,6 +7,7 @@ import java.util.*;
 
 public class Processor {
 
+    public static final String BR = System.getProperty("line.separator");
 
     public static final char COMMAND_CHAR = '#';
     public static final char SEP_CHAR_1 = '{';
@@ -173,10 +174,14 @@ public class Processor {
                     output.flush();
                     output.close();
 
-                    int l = -1;
+                    int c = -1;
                     StringBuilder result = new StringBuilder();
-                    while ((l = reader.read()) > 0) {
-                        result.append((char) l);
+                    while ((c = reader.read()) > 0) {
+                        result.append((char) c);
+                    }
+
+                    if (result.length() >= BR.length() && result.subSequence(result.length() - BR.length(), result.length()).equals(BR)) {
+                        result.delete(result.length() - BR.length(), result.length());
                     }
 
                     line = line.substring(0, a - 1) + result + line.substring(b + 1, line.length());

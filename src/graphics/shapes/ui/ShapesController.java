@@ -96,7 +96,7 @@ public class ShapesController extends Controller {
         }
     }
 
-    public void unselectAll() {
+    public void unSelectAll() {
 
         SCollection collection = (SCollection) super.getModel();
         Iterator<Shape> iterator = collection.iterator();
@@ -117,7 +117,7 @@ public class ShapesController extends Controller {
         }
 
         if (e.getButton() != MouseEvent.BUTTON3 && (target == null || !select)) {
-            unselectAll();
+            unSelectAll();
         }
         /*
         else if (target != null && select) {
@@ -167,7 +167,7 @@ public class ShapesController extends Controller {
         }
         /*
         else if (!e.isShiftDown() && !getTargetHandler(e) && !multipleSelection && e.getButton() != MouseEvent.BUTTON3) {
-            //unselectAll();
+            //unSelectAll();
         } else {
 
         }

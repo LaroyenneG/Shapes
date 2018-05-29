@@ -70,9 +70,7 @@ public class SText extends Shape {
 
         int oldSize = font.font.getSize();
 
-        int size = oldSize;
-
-        size += Math.abs(dx) < dy ? Math.abs(dx) : dy;
+        int size = oldSize + Math.abs(dx) < dy ? Math.abs(dx) : dy;
 
         font.setFontSize(size);
 
