@@ -18,11 +18,15 @@ public class EditorMenu extends JMenuBar {
     public static final String ID_RESET = "reset";
     public static final String ID_SCHOOL = "school";
     public static final String ID_MANUAL = "manual";
+    public static final String ID_RECTAGLE = "rectangle";
+    public static final String ID_CIRCLE = "circle";
+    public static final String ID_TEXT = "text";
 
     private JMenu option;
     private JMenu help;
     private JMenu script;
     private JMenu info;
+    private JMenu creator;
 
     private JMenuItem reset;
     private JMenuItem credit;
@@ -31,6 +35,9 @@ public class EditorMenu extends JMenuBar {
     private JMenuItem quit;
     private JMenuItem school;
     private JMenuItem manual;
+    private JMenuItem stext;
+    private JMenuItem srectangle;
+    private JMenuItem scircle;
 
     private List<JMenuItem> jMenuItems;
 
@@ -48,6 +55,7 @@ public class EditorMenu extends JMenuBar {
         script = new JMenu("Script");
         help = new JMenu("Help");
         option = new JMenu("Options");
+        creator = new JMenu("New");
 
         reset = new JMenuItem("Reset");
         credit = new JMenuItem("Credit");
@@ -56,6 +64,9 @@ public class EditorMenu extends JMenuBar {
         school = new JMenuItem("School");
         quit = new JMenuItem("Exit");
         manual = new JMenuItem("Manual");
+        srectangle = new JMenuItem("Rectangle");
+        scircle = new JMenuItem("Circle");
+        stext = new JMenuItem("Text");
 
         controller = defaultController(model);
 
@@ -66,6 +77,9 @@ public class EditorMenu extends JMenuBar {
         jMenuItems.add(school);
         jMenuItems.add(quit);
         jMenuItems.add(manual);
+        jMenuItems.add(stext);
+        jMenuItems.add(srectangle);
+        jMenuItems.add(scircle);
 
         initAttributes();
         setController(controller);
@@ -81,6 +95,9 @@ public class EditorMenu extends JMenuBar {
         school.setActionCommand(ID_SCHOOL);
         quit.setActionCommand(ID_QUIT);
         manual.setActionCommand(ID_MANUAL);
+        scircle.setActionCommand(ID_CIRCLE);
+        stext.setActionCommand(ID_TEXT);
+        srectangle.setActionCommand(ID_RECTAGLE);
 
         option.add(reset);
         option.add(quit);
@@ -93,7 +110,12 @@ public class EditorMenu extends JMenuBar {
         info.add(credit);
         info.add(school);
 
+        creator.add(stext);
+        creator.add(scircle);
+        creator.add(srectangle);
+
         add(option);
+        add(creator);
         add(help);
         add(script);
         add(info);

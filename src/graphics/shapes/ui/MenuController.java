@@ -11,6 +11,14 @@ import java.io.File;
 
 public class MenuController extends Controller {
 
+    private static final int DEFAULT_X = 10;
+    private static final int DEFAULT_Y = 10;
+
+    private static final String COMMAND_CIRCLE = "create circle " + DEFAULT_X + " " + DEFAULT_Y + " 50";
+    private static final String COMMAND_RECTANGLE = "create rectangle " + DEFAULT_X + " " + DEFAULT_Y + " 50 50";
+    private static final String PRE_COMMAND_TEXT = "create text " + DEFAULT_X + " " + DEFAULT_Y;
+
+
     private static final String FILE_EXT = "shapes";
 
     private JOptionPane dialog;
@@ -53,9 +61,45 @@ public class MenuController extends Controller {
                 runMan();
                 break;
 
+            case EditorMenu.ID_CIRCLE:
+                try {
+                    Processor.getInstance().interpretLine(COMMAND_CIRCLE);
+                } catch (ProcessorException e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case EditorMenu.ID_RECTAGLE:
+                try {
+                    Processor.getInstance().interpretLine(COMMAND_RECTANGLE);
+                } catch (ProcessorException e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case EditorMenu.ID_TEXT:
+
+                String textName = (String) JOptionPane.showInputDialog(
+                        dialog,
+                        "Input text name :",
+                        "Text form",
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        null,
+                        "");
+
+                try {
+                    Processor.getInstance().interpretLine(PRE_COMMAND_TEXT + " \"" + textName + "\"");
+                } catch (ProcessorException e) {
+                    e.printStackTrace();
+                }
+                break;
+
             default:
                 break;
         }
+
+        getView().repaint();
     }
 
     private void runMan() {
@@ -65,7 +109,6 @@ public class MenuController extends Controller {
                 Manuel manuel = new Manuel();
                 manuel.readerManuel();
             }
-
         });
     }
 
@@ -74,7 +117,6 @@ public class MenuController extends Controller {
         Processor processor = Processor.getInstance();
         try {
             processor.interpretLine("clear");
-            getView().repaint();
         } catch (ProcessorException e) {
             e.printStackTrace();
         }
@@ -95,10 +137,8 @@ public class MenuController extends Controller {
 
             File file = new File(filePath);
 
-            Processor processor = Processor.getInstance();
             try {
-                processor.interpretLine("script " + file.getAbsolutePath());
-                getView().repaint();
+                Processor.getInstance().interpretLine("script " + file.getAbsolutePath());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(dialog, "Error to import file", "Shapes has encountered a problem", JOptionPane.ERROR_MESSAGE);
             }
@@ -128,9 +168,8 @@ public class MenuController extends Controller {
 
                 File file = new File(directory + File.separator + fileName + "." + FILE_EXT);
 
-                Processor processor = Processor.getInstance();
                 try {
-                    processor.interpretLine("export " + file.getAbsolutePath());
+                    Processor.getInstance().interpretLine("export " + file.getAbsolutePath());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(dialog, "Error to export file", "Shapes has encountered a problem", JOptionPane.ERROR_MESSAGE);
                 }

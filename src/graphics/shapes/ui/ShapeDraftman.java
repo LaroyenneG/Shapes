@@ -7,6 +7,8 @@ import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 
 import java.awt.*;
+import java.awt.font.TextAttribute;
+import java.text.AttributedString;
 import java.util.Iterator;
 
 public class ShapeDraftman implements ShapeVisitor {
@@ -114,9 +116,10 @@ public class ShapeDraftman implements ShapeVisitor {
             graph2D.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
         }
         if (colorAttributes.stroked) {
-            graph2D.setColor(colorAttributes.strokedColor);
-            graph2D.setFont(fontAttributes.font);
-            graph2D.drawString(text.getText(), text.getLoc().x, text.getLoc().y + bounds.height);
+            AttributedString attributedString = new AttributedString(text.getText());
+            attributedString.addAttribute(TextAttribute.FONT, fontAttributes.font);
+            attributedString.addAttribute(TextAttribute.FOREGROUND, colorAttributes.strokedColor);
+            graph2D.drawString(attributedString.getIterator(), text.getLoc().x, text.getLoc().y + bounds.height);
         }
 
         SelectionAttributes sa = (SelectionAttributes) text.getAttributes(SelectionAttributes.ID);
