@@ -69,7 +69,7 @@ public class MenuController extends Controller {
                 }
                 break;
 
-            case EditorMenu.ID_RECTAGLE:
+            case EditorMenu.ID_RECTANGLE:
                 try {
                     Processor.getInstance().interpretLine(COMMAND_RECTANGLE);
                 } catch (ProcessorException e) {

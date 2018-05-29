@@ -29,6 +29,8 @@ public class ShapesView extends View {
         ShapeDraftman draftman = new ShapeDraftman(g);
 
         model.accept(draftman);
+
+        g.dispose();
     }
 
     @Override

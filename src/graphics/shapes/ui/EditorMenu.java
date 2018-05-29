@@ -18,7 +18,7 @@ public class EditorMenu extends JMenuBar {
     public static final String ID_RESET = "reset";
     public static final String ID_SCHOOL = "school";
     public static final String ID_MANUAL = "manual";
-    public static final String ID_RECTAGLE = "rectangle";
+    public static final String ID_RECTANGLE = "rectangle";
     public static final String ID_CIRCLE = "circle";
     public static final String ID_TEXT = "text";
 
@@ -97,7 +97,7 @@ public class EditorMenu extends JMenuBar {
         manual.setActionCommand(ID_MANUAL);
         scircle.setActionCommand(ID_CIRCLE);
         stext.setActionCommand(ID_TEXT);
-        srectangle.setActionCommand(ID_RECTAGLE);
+        srectangle.setActionCommand(ID_RECTANGLE);
 
         option.add(reset);
         option.add(quit);
