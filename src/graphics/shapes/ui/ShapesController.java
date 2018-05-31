@@ -123,13 +123,12 @@ public class ShapesController extends Controller {
 
             SelectionAttributes s = (SelectionAttributes) target.getAttributes(SelectionAttributes.ID);
 
-
             if (s.isSelected()) {
-
-
                 resize = getTargetHandler();
             }
         }
+
+        getView().repaint();
     }
 
     @Override
