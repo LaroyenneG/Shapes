@@ -40,9 +40,9 @@ public class Editor extends JFrame {
         menu = new EditorMenu(model);
         menu.setView(sView);
 
+
         setJMenuBar(menu);
     }
-
 
     private static void buildShapesForExample(SCollection model) {
 
