@@ -18,7 +18,6 @@ public class ShapesController extends Controller {
 
     private Point mousePosition;
 
-    private boolean select;
     private boolean resize;
 
     public ShapesController(Object newModel) {
@@ -27,8 +26,7 @@ public class ShapesController extends Controller {
 
         mousePosition = new Point(0, 0);
 
-        select = false;
-        resize = true;
+        resize = false;
     }
 
     public Shape getTarget() {
@@ -120,20 +118,17 @@ public class ShapesController extends Controller {
         changeMousePosition(e);
 
         Shape target = getTarget();
+
         if (target != null) {
-            select = ((SelectionAttributes) target.getAttributes(SelectionAttributes.ID)).isSelected();
-        }
 
-        if (e.getButton() != MouseEvent.BUTTON3 && (target == null || !select)) {
-            unSelectAll();
-        }
-        /*
-        else if (target != null && select) {
+            SelectionAttributes s = (SelectionAttributes) target.getAttributes(SelectionAttributes.ID);
 
-        }
-        */
-        if (getTargetHandler()) {
-            resize = true;
+
+            if (s.isSelected()) {
+
+
+                resize = getTargetHandler();
+            }
         }
     }
 
@@ -143,7 +138,6 @@ public class ShapesController extends Controller {
         int dx = e.getPoint().x - mousePosition.x;
         int dy = e.getPoint().y - mousePosition.y;
 
-        System.out.println(dx + "," + dy);
 
         if (!e.isShiftDown() && !resize) {
             translateSelected(dx, dy);
@@ -163,25 +157,15 @@ public class ShapesController extends Controller {
 
         changeMousePosition(e);
 
+        if (!e.isShiftDown()) {
+            unSelectAll();
+        }
+
         Shape target = getTarget();
 
-        //Sélection traditionnelle
         if (target != null) {
             ((SelectionAttributes) target.getAttributes(SelectionAttributes.ID)).toggleSelection();
         }
-        /*
-        else if (!e.isShiftDown() && !getTargetHandler(e) && !multipleSelection && e.getButton() != MouseEvent.BUTTON3) {
-            unSelectAll();
-        } else {
-
-        }
-        */
-
-
-        if (getTargetHandler()) {
-            resize = true;
-        }
-
 
         getView().repaint();
     }
