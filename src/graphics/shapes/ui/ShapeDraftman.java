@@ -13,7 +13,11 @@ import java.util.Iterator;
 
 public class ShapeDraftman implements ShapeVisitor {
 
+
+    public static final int HANDLER_SIZE = 8;
+
     public static final ColorAttributes DEFAULT_COLOR_ATTRIBUTES = new ColorAttributes(false, true, Color.WHITE, Color.BLACK);
+    private static final Color HANDLER_COLOR = Color.GRAY;
 
     private Graphics2D graph2D;
 
@@ -22,13 +26,13 @@ public class ShapeDraftman implements ShapeVisitor {
     }
 
     private void drawHandler(Shape shape) {
-        int size = 8;
-        Color HANDLER_COLOR = Color.GRAY;
+
+
         Rectangle r = shape.getBounds();
         graph2D.setColor(HANDLER_COLOR);
 
-        graph2D.drawRect(shape.getLoc().x, shape.getLoc().y, size, size);
-        graph2D.drawRect(shape.getLoc().x + r.width - size, shape.getLoc().y + r.height - size, size, size);
+        graph2D.drawRect(shape.getLoc().x, shape.getLoc().y, HANDLER_SIZE, HANDLER_SIZE);
+        graph2D.drawRect(shape.getLoc().x + r.width - HANDLER_SIZE, shape.getLoc().y + r.height - HANDLER_SIZE, HANDLER_SIZE, HANDLER_SIZE);
     }
 
 
