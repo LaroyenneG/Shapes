@@ -1,25 +1,37 @@
 Dans ce document simple signifie un seul élément et multiple signifie plusieurs éléments.
 
-►Sélectionner:
+► Sélectionner:
 
-•Simlple: Clic gauche sur l'élément souhaiter.
+• Simple: Clic gauche sur l'élément souhaiter.
 
-•Multiple: Clic droite sur tout les éléments souhaiter.
-
-
-►Déplacement:
-
-•Simple:
-Sélectionner l'élément à déplacer puis appuyer et maintenir clic gauche appuyé puis déplacer la souris jusqu'à l'endroit souhaité et relâcher.
-
-•Multiple:
-Sélectionner les éléments à déplacer puis appuyer et maintenir clic droit appuyé puis déplacer la souris jusqu'à l'endroit souhaité et relâcher.
+• Multiple: Maintenir la touche SHIFT appuyé puis faire clic gauche sur tout les éléments souhaités.
 
 
-►Redimensionnement:
+► Déplacement:
 
-•Simple:
-Sélectionner l'élement à redimensionner. Après sélection, deux carrés (handler) vont apparaître, un en haut à gauche(handlerG) de l'élément sélectionné et un en bas à droite (handlerD). Seul l'handlerD permet de redimensionner l'élément. Pour cela il faut enffectuer un clic gauche sur ce dernier puis déplacer la souris jusqu'à ce que l'élément est la taille souahité et relâcher.
+• Simple:
+Sélectionner l'élément à déplacé puis appuyer et maintenir clic gauche appuyé puis déplacer la souris jusqu'à l'endroit souhaité et relâcher.
 
-•Multiple:
-Sélectionner les élements à redimensionner. Après sélection, deux carrés (handler) vont apparaître, un en haut à gauche(handlerG) de l'essemble de la sélection et un en bas à droite (handlerD). Seul l'handlerD permet de redimensionner les éléments. Pour cela il faut enffectuer un clic gauche sur ce dernier puis déplacer la souris jusqu'à ce que l'élément est la taille souhaité et relâcher.
+• Multiple:
+Sélectionner les éléments à déplacé puis appuyer et maintenir clic droit appuyé puis déplacer la souris jusqu'à l'endroit souhaité et relâcher.
+
+
+► Redimensionnement:
+
+• Simple:
+Sélectionner l'élement à redimensionner. Après sélection, deux carrés (handler) vont apparaître, un en haut à gauche(handlerG) de l'élément sélectionné et un en bas à droite (handlerD). Seul l'handlerD permet de redimensionner l'élément. Pour cela il faut effectuer un clic gauche sur ce dernier puis déplacer la souris jusqu'à ce que l'élément ai la taille souhaité et relâcher.
+
+• Multiple:
+Sélectionner les élements à redimensionner. Après sélection, deux carrés (handler) vont apparaître, un en haut à gauche(handlerG) de l'essemble de la sélection et un en bas à droite (handlerD). Seul l'handlerD permet de redimensionner les éléments. Pour cela il faut effectuer un clic gauche sur ce dernier puis déplacer la souris jusqu'à ce que l'élément ai la taille souhaité et relâcher.
+
+► Raccourci clavier:
+Sélectionner la/les forme(s) sur laquelle/lesquelles vous voulez appliquer les actions suivantes.
+• "d": Suppression
+• "r": colorie le fond en rouge
+• "g": colorie le fond en vert
+• "b": colorie le fond en bleu
+• "w": colorie le fond en blanc
+• "y": colorie le fond en jaune
+• "u": supprime la couleur de fond de la forme
+
+
