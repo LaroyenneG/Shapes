@@ -19,6 +19,15 @@ public class ColorAttributes extends Attributes {
         this.strokedColor = strokedColor;
     }
 
+    public void setColor(Color color) {
+        this.filled = true;
+        this.filledColor = color;
+    }
+
+    public void unfill() {
+        this.filled = false;
+    }
+
     @Override
     public String getId() {
         return ID;

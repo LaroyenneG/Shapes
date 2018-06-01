@@ -2,6 +2,7 @@ package graphics.shapes.ui;
 
 import graphics.shapes.SCollection;
 import graphics.shapes.Shape;
+import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 import graphics.ui.Controller;
 
@@ -111,7 +112,6 @@ public class ShapesController extends Controller {
         mousePosition = e.getPoint();
     }
 
-
     @Override
     public void mousePressed(MouseEvent e) {
 
@@ -169,6 +169,25 @@ public class ShapesController extends Controller {
         getView().repaint();
     }
 
+    public void changeFilledColor(Color color) {
+
+        SCollection collection = (SCollection) getModel();
+        Iterator<Shape> iterator = collection.iterator();
+
+        while (iterator.hasNext()) {
+            Shape target = iterator.next();
+            SelectionAttributes sa = (SelectionAttributes) target.getAttributes(SelectionAttributes.ID);
+            if (sa.isSelected()) {
+                try {
+                    ColorAttributes colorAttributes = (ColorAttributes) target.getAttributes(ColorAttributes.ID);
+                    colorAttributes.setColor(color);
+                } catch (Exception e) {
+                    target.addAttributes(new ColorAttributes(true, true, color, Color.black));
+                }
+            }
+        }
+    }
+
     @Override
     public void mouseReleased(MouseEvent e) {
         resize = false;
@@ -179,12 +198,50 @@ public class ShapesController extends Controller {
 
         if (evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D') {
 
-
             Shape target = getTarget();
 
             if (target != null) {
                 ((SCollection) getModel()).deleteShape(target);
             }
+        }
+
+        if (evt.getKeyChar() == 'g' || evt.getKeyChar() == 'G') {
+            changeFilledColor(Color.GREEN);
+        }
+
+        if (evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W') {
+            changeFilledColor(Color.WHITE);
+        }
+
+        if (evt.getKeyChar() == 'b' || evt.getKeyChar() == 'B') {
+            changeFilledColor(Color.BLUE);
+        }
+
+        if (evt.getKeyChar() == 'r' || evt.getKeyChar() == 'R') {
+
+            changeFilledColor(Color.RED);
+        }
+
+        if (evt.getKeyChar() == 'y' || evt.getKeyChar() == 'Y') {
+            changeFilledColor(Color.YELLOW);
+        }
+        if (evt.getKeyChar() == 'u' || evt.getKeyChar() == 'U') {
+            SCollection collection = (SCollection) getModel();
+            Iterator<Shape> iterator = collection.iterator();
+
+            while (iterator.hasNext()) {
+                Shape target = iterator.next();
+                SelectionAttributes sa = (SelectionAttributes) target.getAttributes(SelectionAttributes.ID);
+                if (sa.isSelected()) {
+                    try {
+                        ColorAttributes colorAttributes = (ColorAttributes) target.getAttributes(ColorAttributes.ID);
+                        colorAttributes.unfill();
+                    } catch (Exception e) {
+                        target.addAttributes(new ColorAttributes(false, true, Color.black, Color.black));
+                    }
+                }
+            }
+
         }
 
         getView().repaint();
