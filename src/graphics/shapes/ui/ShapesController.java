@@ -175,14 +175,15 @@ public class ShapesController extends Controller {
         Iterator<Shape> iterator = collection.iterator();
 
         while (iterator.hasNext()) {
-            Shape target = iterator.next();
-            SelectionAttributes sa = (SelectionAttributes) target.getAttributes(SelectionAttributes.ID);
+            Shape shape = iterator.next();
+            SelectionAttributes sa = (SelectionAttributes) shape.getAttributes(SelectionAttributes.ID);
             if (sa.isSelected()) {
-                try {
-                    ColorAttributes colorAttributes = (ColorAttributes) target.getAttributes(ColorAttributes.ID);
+
+                ColorAttributes colorAttributes = (ColorAttributes) shape.getAttributes(ColorAttributes.ID);
+                if (colorAttributes == null) {
+                    shape.addAttributes(new ColorAttributes(true, true, color, Color.black));
+                } else {
                     colorAttributes.setColor(color);
-                } catch (Exception e) {
-                    target.addAttributes(new ColorAttributes(true, true, color, Color.black));
                 }
             }
         }
@@ -226,19 +227,21 @@ public class ShapesController extends Controller {
             changeFilledColor(Color.YELLOW);
         }
         if (evt.getKeyChar() == 'u' || evt.getKeyChar() == 'U') {
+
             SCollection collection = (SCollection) getModel();
             Iterator<Shape> iterator = collection.iterator();
 
             while (iterator.hasNext()) {
-                Shape target = iterator.next();
-                SelectionAttributes sa = (SelectionAttributes) target.getAttributes(SelectionAttributes.ID);
+                Shape shape = iterator.next();
+                SelectionAttributes sa = (SelectionAttributes) shape.getAttributes(SelectionAttributes.ID);
                 if (sa.isSelected()) {
-                    try {
-                        ColorAttributes colorAttributes = (ColorAttributes) target.getAttributes(ColorAttributes.ID);
+                    ColorAttributes colorAttributes = (ColorAttributes) shape.getAttributes(ColorAttributes.ID);
+                    if (colorAttributes == null) {
+                        shape.addAttributes(new ColorAttributes(false, true, Color.black, Color.black));
+                    } else {
                         colorAttributes.unfill();
-                    } catch (Exception e) {
-                        target.addAttributes(new ColorAttributes(false, true, Color.black, Color.black));
                     }
+
                 }
             }
 
