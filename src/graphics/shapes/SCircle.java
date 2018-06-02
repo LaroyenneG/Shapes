@@ -75,5 +75,4 @@ public class SCircle extends Shape {
 
         return new String(string);
     }
-
 }

@@ -1,7 +1,10 @@
 package graphics.shapes.ui;
 
 import javax.swing.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Manuel extends JFrame {
 
@@ -42,11 +45,8 @@ public class Manuel extends JFrame {
 
             area.append(text.toString());
             fr.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

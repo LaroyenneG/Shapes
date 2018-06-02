@@ -10,7 +10,7 @@ public abstract class Shape {
 
     public static final int MINIMAL_SIZE = 15;
 
-    TreeMap<String, Attributes> attributes;
+    private TreeMap<String, Attributes> attributes;
 
     public Shape() {
         attributes = new TreeMap<>();
