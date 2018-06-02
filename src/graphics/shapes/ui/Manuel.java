@@ -29,6 +29,7 @@ public class Manuel extends JFrame {
     }
 
     public void readerManuel() {
+
         File f = new File(PATH);
         try {
             FileReader fr = new FileReader(f);
@@ -44,8 +45,10 @@ public class Manuel extends JFrame {
             }
 
             area.append(text.toString());
+
             fr.close();
         } catch (IOException e) {
+            System.out.println("Cannot open manuel file :-(");
             e.printStackTrace();
         }
     }
